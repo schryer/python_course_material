@@ -3,9 +3,9 @@
 .. role:: raw-html(raw)
     :format: html
 
-=============================================================================
-|sc| Programming and Data Analysis |br| for Scientists and Engineers |mONEcm|
-=============================================================================
+==========================================================
+Programming and Data Analysis for Scientists and Engineers
+==========================================================
 
 :Dates: 
     June 13,14 (Introduction to programming in Python_)
@@ -14,7 +14,7 @@
        
     Project work (Dates flexible)
 
-:Credits: 6 |EAP|
+:Credits: 6 EAP
 
 :Instructors: 
     David Schryer (schryer@ut.ee) 
@@ -22,9 +22,9 @@
     Lauri Võsandi
 
 :UT Course Name:
-    Data Analysis and Computational Methods with |MATLAB|
+    Data Analysis and Computational Methods with MATLAB
 
-    (Enroll here, however, we will use Python_ instead of |MATLAB|)
+    (Enroll here, however, we will use Python_ instead of MATLAB)
 
 
 The rapid changes we are witnessing with the internet revolution have
@@ -54,24 +54,6 @@ installation and to ensure all students will have the same
 computational environment.  If the student has difficulty installing
 VirtualBox_, the instructors will provide assistance.
 
-|ONEcm|
-
-.. image:: UT_logo_words.png
-   :scale: 80 %
-   :alt: University of Tartu logo
-   :align: center
-
-|ONEcm|
-
-.. |br| replace:: :raw-html:`<br>` :raw-latex:`\\`
-
-.. |sc| replace:: :raw-html:`<br>` :raw-latex:`\sc`
-
-.. |ONEcm| replace:: :raw-html:`<br>` :raw-latex:`\vspace{1cm}`
-.. |mONEcm| replace:: :raw-html:`<br>` :raw-latex:`\vspace{-1cm}`
-
-.. |EAP| replace:: :raw-html:`EAP`:raw-latex:`{\sc eap}`
-.. |MATLAB| replace:: :raw-html:`MATLAB`:raw-latex:`{\sc matlab}`
 
 .. [1] Organizations using Python_  
 
