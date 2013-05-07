@@ -3,15 +3,6 @@
 .. role:: raw-html(raw)
     :format: html
 
-.. |br| raw:: latex
-
-   \\
-
-.. |sc| raw:: latex
-
-   \sc
-
-
 =============================================================================
 |sc| Programming and Data Analysis |br| for Scientists and Engineers |mONEcm|
 =============================================================================
@@ -72,8 +63,12 @@ VirtualBox_, the instructors will provide assistance.
 
 |ONEcm|
 
-.. |ONEcm| replace:: :raw-latex:`\vspace{1cm}`
-.. |mONEcm| replace:: :raw-latex:`\vspace{-1cm}`
+.. |br| replace:: :raw-html:`<br>` :raw-latex:`\\`
+
+.. |sc| replace:: :raw-html:`<br>` :raw-latex:`\sc`
+
+.. |ONEcm| replace:: :raw-html:`<br>` :raw-latex:`\vspace{1cm}`
+.. |mONEcm| replace:: :raw-html:`<br>` :raw-latex:`\vspace{-1cm}`
 
 .. |EAP| replace:: :raw-html:`EAP`:raw-latex:`{\sc eap}`
 .. |MATLAB| replace:: :raw-html:`MATLAB`:raw-latex:`{\sc matlab}`
