@@ -8,9 +8,9 @@
 =============================================================================
 
 :Dates: 
-    June 13,14 (Introduction to programming in Python_)
+    June 6,7 (Introduction to programming in Python_)
     
-    June 27,28 (Data analysis)
+    June 13,14 (Data analysis)
        
     Project work (Dates flexible)
 
