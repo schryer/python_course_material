@@ -59,7 +59,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="3.959798"
-     inkscape:cx="39.08204"
+     inkscape:cx="40.092192"
      inkscape:cy="52.333249"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -277,19 +277,19 @@
          style="font-size:8px;font-weight:bold;text-align:center;text-anchor:middle;fill:#0066ff;-inkscape-font-specification:Liberation Serif Bold">Other packages and toolboxes</tspan><tspan
          sodipodi:role="line"
          x="364.90039"
-         y="161.02144"
+         y="162.9588"
          id="tspan4552-8-0-2"
-         style="font-size:6px;text-align:center;text-anchor:middle">BioPython    PySCeS    FAME</tspan></text>
+         style="font-size:6px;text-align:center;text-anchor:middle" /></text>
     <text
        xml:space="preserve"
        style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif"
-       x="364.99609"
-       y="126.5985"
+       x="365"
+       y="122.36217"
        id="text4544-9-8-9-0"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
-         x="364.99609"
-         y="126.5985"
+         x="365"
+         y="122.36217"
          id="tspan4552-8-0-2-0"
          style="font-size:8px;font-weight:bold;text-align:center;text-anchor:middle;fill:#0066ff;-inkscape-font-specification:Liberation Serif Bold">User programs</tspan></text>
     <flowRoot
@@ -303,5 +303,39 @@
            height="474.7717"
            x="-11.111678"
            y="-223.85219" /></flowRegion><flowPara
-         id="flowPara3376" /></flowRoot>  </g>
+         id="flowPara3376" /></flowRoot>    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif"
+       x="365"
+       y="154.07925"
+       id="text4544-9-8-9-5"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4546-5-8-91-8"
+         x="365"
+         y="154.07925"
+         style="font-size:8px;font-weight:bold;text-align:center;text-anchor:middle;fill:#0066ff;-inkscape-font-specification:Liberation Serif Bold" /><tspan
+         sodipodi:role="line"
+         x="365"
+         y="162.14189"
+         id="tspan4552-8-0-2-2"
+         style="font-size:6px;text-align:center;text-anchor:middle">BioPython    PySCeS    PIL</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Liberation Serif;-inkscape-font-specification:Liberation Serif"
+       x="365"
+       y="124.63504"
+       id="text4544-9-8-9-5-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4546-5-8-91-8-9"
+         x="365"
+         y="124.63504"
+         style="font-size:8px;font-weight:bold;text-align:center;text-anchor:middle;fill:#0066ff;-inkscape-font-specification:Liberation Serif Bold" /><tspan
+         sodipodi:role="line"
+         x="365"
+         y="132.69768"
+         id="tspan4552-8-0-2-2-4"
+         style="font-size:6px;text-align:center;text-anchor:middle">mMass   PyMOL   Galaxy</tspan></text>
+  </g>
 </svg>
