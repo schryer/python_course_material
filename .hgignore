@@ -1,7 +1,11 @@
-*.py[cod]
+syntax: glob
+
+*.py[co]
 
 # C extensions
 *.so
+
+*~
 
 # Packages
 *.egg
