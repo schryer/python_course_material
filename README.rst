@@ -21,6 +21,8 @@ Programming and Data Analysis for Scientists and Engineers
     
     Lauri Võsandi
 
+    Martin Laasmaa
+
 :UT Course Name:
     Data Analysis and Computational Methods with MATLAB
 
