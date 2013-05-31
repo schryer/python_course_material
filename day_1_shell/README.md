@@ -19,8 +19,7 @@ Login or create an account on GitHub.
 
 After some time you will have your own git repository at:
 
-    https://github.com/`YOUR-NAME`/python_course_material
-
+    https://github.com/YOUR-NAME/python_course_material
 
 Click on the directory named `day_1_shell`.
 
@@ -54,7 +53,7 @@ We will spend most of our time learning about the basics of the shell
 by manipulating some experimental data from a hearing test. To *clone*
 the repository you *forked* on GitHub, enter the following command:
 
-    hg clone git://github.com/`YOUR-NAME`/python_course_material.git
+    hg clone git://github.com/YOUR-NAME/python_course_material.git
 
 This command will grab all of the data needed for this workshop from
 the internet.  (We will talk about the `hg` command later in the
