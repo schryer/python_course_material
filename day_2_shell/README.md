@@ -21,7 +21,7 @@ After some time you will have your own git repository at:
 
     https://github.com/YOUR-NAME/python_course_material
 
-Click on the directory named `day_1_shell`.
+Click on the directory named `day_2_shell`.
 
 A *terminal* is a program you run that gives you access to the
 shell. There are many different terminal programs that vary across
@@ -136,16 +136,16 @@ you will see that `testfile` is gone.
 ## Changing Directories
 
 Now, let's move to a different directory. The command `cd` (change
-directory) is used to move around. Let's move into the `boot-camps`
+directory) is used to move around. Let's move into the `python_course_material`
 directory. Enter the following command:
 
-    cd boot-camps
+    cd python_course_material
 
 Use the `ls` command to see what is inside this directory.  This
-directory contains all of the material for this boot camp. Now move to
+directory contains all of the material for this course. Now move to
 the directory containing the data for the shell tutorial:
 
-    cd shell
+    cd day_2_shell
 
 Now use the `ls` command to see what is inside this directory. You
 will see that there is an entry which is green. This means that this
@@ -153,8 +153,8 @@ is an executable. If you use `ls -F` you will see that this file ends
 with a star.
 
 If you enter the `cd` command by itself, you will return to the home
-directory. Try this, and then navigate back to the `shell`
-directory.
+directory. Try this.  To go back to the previous directory you were in
+enter `cd -`.  This will take you back to the `day_2_shell` directory.
 
 ## Arguments
 
@@ -172,7 +172,7 @@ This will open the manual page for `ls`. Use the space key to go
 forward and b to go backwards. When you are done reading, just hit `q`
 to quit.
 
-Programs that are run from the shell can get extremely complicated. To
+Programs that are run from the shell may have many arguments. To
 see an example, open up the manual page for the `find` program,
 which we will use later this session. No one can possibly learn all of
 these arguments, of course. So you will probably find yourself
@@ -200,20 +200,20 @@ give `ls` the names of other directories to view. Navigate to the
 home directory if you are not already there. Then enter the
 command:
 
-    ls boot-camps
+    ls python_course_material
 
 This will list the contents of the `boot-camps` directory without
 you having to navigate there. Now enter:
 
-    ls boot-camps/shell
+    ls python_course_material/day_2_shell
 
-This prints the contents of `shell`. The `cd` command works in a
+This prints the contents of `day_2_shell`. The `cd` command works in a
 similar way. Try entering:
 
-    cd boot-camps/shell
+    cd python_course_material/day_2_shell
 
-and you will jump directly to `shell` without having to go through
-the intermediate directory.
+and you will jump directly to `python_course_material/day_2_shell` 
+without having to go through the intermediate directory.
 
 ## Full vs. Relative Paths
 
@@ -235,16 +235,15 @@ directory in `home` which is a directory in `/`.
 
 Now enter the following command:
 
-    cd /home/swc/boot-camps/shell
+    cd /home/USER-NAME/python_course_material/day_2_shell
 
-This jumps to `shell`. Now go back to the home directory. We saw
+This jumps to `day_2_shell`. Now go back to the home directory. We saw
 earlier that the command:
 
-    cd boot-camps/shell
+    cd python_course_material/day_2_shell
 
-had the same effect - it took us to the `shell` directory. But,
-instead of specifying the full path
-(`/home/swc/boot-camps/shell`), we specified a *relative path*. In
+had the same effect - it took us to the `day_2_shell` directory. But,
+instead of specifying the full path, we specified a *relative path*. In
 other words, we specified the path relative to our current
 directory. A full path always starts with a `/`. A relative path does
 not. You can usually use either a full path or a relative path
@@ -270,7 +269,7 @@ familiar in there?
 
 There are some shortcuts which you should know about. Dealing with the
 home directory is very common. So, in the shell the tilde character,
-`~`, is a shortcut for your home directory. Navigate to the `shell`
+`~`, is a shortcut for your home directory. Navigate to the `day_2_shell`
 directory, then enter the command:
 
     ls ~
@@ -281,20 +280,21 @@ above your current directory. Thus:
 
     ls ..
 
-prints the contents of the `/home/swc/boot-camps`. You can chain
-these together, so:
+prints the contents of the
+`/home/USER-NAME/python_course_material`. You can chain these
+together, so:
 
     ls ../../
 
-prints the contents of `/home/swc` which is your home
+prints the contents of `/home/USER-NAME` which is your home
 directory. Finally, the special directory `.` always refers to your
 current directory. So, `ls`, `ls .`, and `ls ././././.` all do the
 same thing, they print the contents of the current directory. This may
 seem like a useless shortcut right now, but we'll see when it is
 needed in a little while.
 
-To summarize, while you are in the `shell` directory, the commands
-`ls ~`, `ls ~/.`, `ls ../../`, and `ls /home/swc` all do exactly the
+To summarize, while you are in the `day_2_shell` directory, the commands
+`ls ~`, `ls ~/.`, `ls ../../`, and `ls /home/USER-NAME` all do exactly the
 same thing. These shortcuts are not necessary, they are provided for
 your convenience.
 
@@ -337,7 +337,7 @@ onto more advanced shell topics...
 
 ### Wild cards
 
-Navigate to the `~/boot-camps/shell/data/THOMAS` directory. This
+Navigate to the `~/python_course_material/day_2_shell/data/THOMAS` directory. This
 directory contains our hearing test data for THOMAS. If we type `ls`,
 we will see that there are a bunch of files which are just four digit
 numbers. By default, `ls` lists all of the files in a given
@@ -391,12 +391,12 @@ lot of time. When you start typing out the name of a directory, then
 hit the tab key, the shell will try to fill in the rest of the
 directory name. For example, enter:
 
-    cd b<tab>
+    cd p<tab>
 
 The shell will fill in the rest of the directory name for
-`boot-camps`. Now enter:
+`python_course_material`. Now enter:
 
-    ls s<tab><tab>
+    ls d<tab>s<tab>
 
 When you hit the first tab, nothing happens. The reason is that there
 are multiple directories in the home directory which start with
@@ -414,10 +414,9 @@ You can easily access previous commands.  Hit the up arrow.
 Hit it again.  You can step backwards through your command history.
 The down arrow takes your forwards in the command history.
 
-^-C will cancel the command you are writing, and give you a fresh prompt.
+`Ctrl-C` will cancel the command you are writing, and give you a fresh prompt.
 
-^-R will do a reverse-search through your command history.  This
-is very useful.
+`Ctrl-R` will do a reverse-search through your command history.  This is very useful.
 
 You can also review your recent commands with the `history` command.  Just enter:
 
@@ -481,7 +480,7 @@ shell looks for programs to run. If your program is not in this list,
 then an error is printed. The shell ONLY checks in the places listed
 in the `PATH` environment variable.
 
-Navigate to the `shell` directory and list the contents. You will
+Navigate to the `day_2_shell` directory and list the contents. You will
 notice that there is a program (executable file) called `hello` in
 this directory. Now, try to run the program by entering:
 
@@ -498,11 +497,11 @@ directory. This tells the shell to run the `hello` program which is
 located right here. So, you can run any program by entering the path
 to that program. You can run `hello` equally well by specifying:
 
-    /home/swc/boot-camps/shell/hello
+    /home/USER-NAME/python_course_material/day_2_shell/hello
 
 Or by entering:
 
-    ../shell/hello
+    ../day_2_shell/hello
 
 When there are no `/` characters, the shell assumes you want to look
 in one of the default places for the program.
@@ -529,12 +528,13 @@ is where the name comes from, `cat` is short for concatenate).
 * * * *
 **Short Exercises**
 
-1.  Print out the contents of the `~/boot-camps/shell/dictionary.txt`
-    file. What does this file contain?
+1.  Print out the contents of the
+    `~/python_course_material/day_2_shell/dictionary.txt` file. What
+    does this file contain?
 
-2.  Without changing directories, (you should still be in `shell`),
+2.  Without changing directories, (you should still be in `day_2_shell`),
     use one short command to print the contents of all of the files in
-    the `/home/swc/boot-camps/shell/data/THOMAS` directory.
+    the `/home/USER-NAME/python_course_material/day_2_shell/data/THOMAS` directory.
 
 * * * *
 
@@ -583,7 +583,7 @@ in reverse while using `less`.
 ## Redirection
 
 Let's turn to the experimental data from the hearing tests that we
-began with. This data is located in the `~/boot-camps/shell/data`
+began with. This data is located in the `~/python_course_material/day_2_shell/data`
 directory. Each subdirectory corresponds to a particular participant
 in the study. Navigate to the `Bert` subdirectory in `data`.  There
 are a bunch of text files which contain experimental data
@@ -610,7 +610,7 @@ exists.
 Use `>>`, to append the contents of all of the files whose names
 contain the number 4 in the directory:
 
-    /home/swc/boot-camps/shell/data/gerdal
+    /home/swc/python_course_material/day_2_shell/data/gerdal
 
 to the existing `all_data` file. Thus, when you are done `all_data`
 should contain all of the experiment data from Bert and any
@@ -758,20 +758,20 @@ data to come in. Now type:
     are
     good
 
-then CONTROL+d. You should is the lines:
+then `Ctrl-d`. You should is the lines:
 
     are
     good
 
-printed back at you. The CONTROL+d keyboard shortcut inserts an
+printed back at you. The `Ctrl-d` keyboard shortcut inserts an
 *end-of-file* character. It is sort of the standard way of telling the
 program "I'm done entering data". The `|` character is replaces the
 data from the keyboard with data from another command. You can string
 all sorts of commands together using the pipe.
 
 The philosophy behind these command line programs is that none of them
-really do anything all that impressive. BUT when you start chaining
-them together, you can do some really powerful things really
+really do anything all that impressive. HOWEVER, when you start chaining
+them together, you can do some really powerful things very
 efficiently. If you want to be proficient at using the shell, you must
 learn to become proficient with the pipe and redirection operators:
 `|`, `>`, `>>`.
@@ -795,8 +795,8 @@ and enter the following command:
     nano toBeSorted
 
 Now enter the four names as shown above. When you are done, press
-CONTROL+O to write out the file. Press enter to use the file name
-`toBeSorted`. Then press CONTROL+x to exit `nano`.
+`Ctrl-o` to write out the file. Press enter to use the file name
+`toBeSorted`. Then press `Ctrl-x` to exit `nano`.
 
 When you are back to the command line, enter the command:
 
@@ -812,7 +812,7 @@ name to the file, then sort it and make a new file called Sorted.
 
 * * * *
 
-Let's navigate back to `~/boot-camps/shell/data`. Enter the following command:
+Let's navigate back to `~/python_course_material/day_2_shell/data`. Enter the following command:
 
     wc Bert/* | sort -k 3 -n
 
@@ -958,11 +958,11 @@ require a `find` command):
 Hint: If you make a mistake and need to start over just do the
 following:
 
-1.  Navigate to the `shell` directory
+1.  Navigate to the `day_2_shell` directory
 
 2.  Delete the `data` directory
 
-3.  Enter the command: `git checkout -- data` You should see that the
+3.  Enter the command: `python generate_data.py` You should see that the
     data directory has reappeared in its original state
 
 **BONUS**
