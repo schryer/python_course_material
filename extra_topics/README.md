@@ -10,6 +10,9 @@ contained in `extra_topics`.
 - The custom table used in `biopython.ipynb` is explained further in `tables.ipynb`, but only curious
   readers should look at this file.
 
+- `numpy.ipynb` provides a short introduction to numpy with plotting
+functions and solving a linear system. 
+
 A number of notebooks do not require any previous knowledge and can be explored at any time:
 
 - `sympy.ipynb` provides a short introduction to sympy
