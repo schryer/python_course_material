@@ -18,7 +18,7 @@ A number of notebooks do not require any previous knowledge and can be explored 
 
 Two notebooks provide different methods to read in data from external files:
 
-- `exploring_data.ipynb` introduces the thought process one can use to explore new data for the first time.
+- `exploring_data.ipynb` introduces a thought process one can use to explore new data for the first time.
   It briefly uses the `pandas` library and introduces plotting using `matplotlib`.
 
 - `proteomics_data.ipynb` uses the `pandas` library to read in and manipulate proteomics data.
