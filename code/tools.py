@@ -2,7 +2,7 @@
 This module provides useful tools to use in other Python programs.
 '''
 
-__all__ = ['show']
+__all__ = ['show', 'make_sequence_table']
 
 from io import BytesIO
 
