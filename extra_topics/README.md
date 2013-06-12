@@ -1,6 +1,6 @@
 # Learning goals for `extra_topics`
 
-The `.ipynb` files in this directory (`extra_topics`) allow newcommers to scientific programming
+The `.ipynb` files in this directory (`extra_topics`) allow newcomers to scientific programming
 to learn the basic skills to be self-sufficient learners.  All data files can be found in the `data` directory
 contained in `extra_topics`.
 
