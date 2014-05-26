@@ -1501,13 +1501,13 @@ table.dataframe th, td {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="introduction-to-scientific-computing-with-python">Introduction to scientific computing with&nbsp;Python</h2>
-<hr />
-<p>David Schryer&nbsp;(schryer@ut.ee)</p>
-<ul>
-<li>https://github.com/schryer<br /></li>
-<li>https://bitbucket.org/schryer</li>
-</ul>
+<h3 id="introduction-to-scientific-computing-with-python">Introduction to scientific computing with&nbsp;Python</h3>
+<p>David Schryer <script type="text/javascript">
+<!--
+h='&#x75;&#116;&#46;&#x65;&#x65;';a='&#64;';n='&#x73;&#x63;&#104;&#114;&#x79;&#x65;&#114;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x73;&#x63;&#104;&#114;&#x79;&#x65;&#114;&#32;&#x61;&#116;&#32;&#x75;&#116;&#32;&#100;&#x6f;&#116;&#32;&#x65;&#x65;</noscript></p>
 <p>All notebooks in this lecture series are available&nbsp;at</p>
 <ul>
 <li>https://github.com/schryer/python_course_material</li>
@@ -1520,14 +1520,25 @@ table.dataframe th, td {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="running-python-code">Running Python&nbsp;code</h2>
-<hr />
-<ul>
-<li><p>Python code is interpreted by a program that follows the instructions in the&nbsp;code.</p></li>
-<li><p>Strings of Python code can be fed to the interpreter as&nbsp;follows:</p>
-<pre><code>python -c &quot;a = 5 + 2; print(a)&quot;</code></pre></li>
-<li><p>In this case the interpreter stores the result of <code>5 + 2</code> in the variable <code>a</code> (assignment) and then feeds this value into the print function which does what it should. A semicolon <code>;</code> was used here to tell the interpreter that these are two separate statements (processed from left to right). Usually statements are placed on different lines to separate them (semicolons are <em>optional</em>):</p></li>
-</ul>
+<h2 id="python-is-an-unnatural-language.">Python is an <strong>unnatural</strong>&nbsp;language.</h2>
+<p>Even if many words used in Python resemble English words, they are interpreted in a very different way. It is best if one does not associate the English meaning with the Python meaning and instead relearns each word in&nbsp;turn.</p>
+<h3 id="think-in-tokens-not-words-with-punctuation.">Think in <em>tokens</em>, not words with&nbsp;punctuation.</h3>
+<p>The words used in programs are not words, they are <em>tokens</em> that are interpreted as one unit of thought with a single meaning depending on the context. All other symbols (i.e. <code>=</code>, <code>+</code>) and sometimes combinations of symbols (i.e. <code>==</code>, <code>+=</code>) are also <em>tokens</em>. All tokens are interpreted with the same&nbsp;rules.</p>
+<h3 id="what-you-write-is-not-a-text-it-is-code.">What you write is not a text, it is&nbsp;code.</h3>
+<p>Instead of writing text, computer people write code because of its natural tendency to be incomprehensible. All effort should be made to make the code you write easy for <strong>humans</strong> to read&nbsp;(interpret).</p>
+<h3 id="think-in-statements-not-sentences.">Think in <em>statements</em> not&nbsp;sentences.</h3>
+<p>Programs are made up of a series of <em>statements</em> made up of tokens (i.e. <code>e = 2.718281828</code>) which can roughly be thought of as sentences. However, unlike natural language, one does not read each <em>statement</em> in consecutive order to reach the end of your code.<br />Instead, one must read Python statements in the order defined by the rules of the language. This may be confusing to the novice because statements written in the code are sometimes skipped and others are read many many many times even though they appear only once; Reading code is almost never top to bottom and usually involves jumping around, however, all effort should be made to make the code you write easy for <strong>humans</strong> to&nbsp;interpret.</p>
+<h3 id="code-is-never-ambiguous.">Code is never&nbsp;ambiguous.</h3>
+<p>Python code is interpreted by the python interpreter. Given the same input, your computer program should always do the same thing. One way to learn how to read code is to ask the interpreter&nbsp;questions.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="execute-each-cell-in-this-ipython-notebook-by-pressing-ctrl-holding-it-down-and-then-pressing-enter-ctrl-enter">Execute each <em>cell</em> in this IPython notebook by pressing Ctrl, holding it down, and then pressing Enter&nbsp;(Ctrl-Enter)</h2>
 </div>
 </div>
 </div>
@@ -1538,8 +1549,7 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">2</span>
-<span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="mi">5</span> <span class="o">+</span> <span class="mi">2</span>
 </pre></div>
 
 </div>
@@ -1552,10 +1562,79 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<ul>
-<li><p>If we execute the Python interpreter without any arguments, it takes us into a special environment that interactively interprets what we feed&nbsp;it:</p>
-<pre><code>python</code></pre></li>
-</ul>
+<p>The statement <code>5 + 2</code> made up of the three tokens <code>5</code>, <code>+</code>, <code>2</code> causes Python to add these two numbers and return the result. We did not specify what to do with this result and in this case it was spit out onto the&nbsp;screen.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>=</code> token tells our program to store the output of adding these numbers into a <em>variable</em> named <code>a</code>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="mi">7</span> <span class="o">=</span> <span class="n">a</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We cannot tell the program to store the contents of <code>a</code> into a number. Variables cannot start with&nbsp;numbers.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="mi">7</span> <span class="o">==</span> <span class="n">a</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>==</code> token means test if the thing on the left is the same as the thing on the&nbsp;right.</p>
 </div>
 </div>
 </div>
@@ -1564,99 +1643,6 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="do-not-look-here."><span class="caps">DO</span> <span class="caps">NOT</span> <span class="caps">LOOK</span> <span class="caps">HERE</span>.</h1>
-<h1 id="open-a-terminal."><span class="caps">OPEN</span> A <span class="caps">TERMINAL</span>.</h1>
-<h1 id="try-it-out."><span class="caps">TRY</span> <span class="caps">IT</span> <span class="caps">OUT</span>.</h1>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li>.</li>
-</ul>
-<h1 id="did-everything-work">Did everything&nbsp;work?</h1>
-<h1 id="yes"><span class="caps">YES</span>?</h1>
-<h1 id="keep-going-and-make-it-fail">Keep going and <span class="caps">MAKE</span> <span class="caps">IT</span> <span class="caps">FAIL</span>:</h1>
-<ul>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li></li>
-<li>.</li>
-</ul>
-<h1 id="what-errors-did-you-get">What error(s) did you&nbsp;get?</h1>
-<p>Ask the people around you if you do not understand any of these errors. (Useful even outside of the Python&nbsp;world).</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="store-your-python-code-in-files-modules">Store your Python code in files&nbsp;(modules)</h2>
-<hr />
-<ul>
-<li><p>Python code is most often stored in text files; usually with a <code>.py</code> extension:</p>
-<pre><code>myprogram.py</code></pre></li>
-<li><p>To run the Python code in this file we&nbsp;use:</p>
-<pre><code>python myprogram.py</code></pre></li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="ipython-notebooks-can-also-store-python-code">IPython notebooks can also store Python&nbsp;code</h2>
-<hr />
-<ul>
-<li><p>Python code can also be stored in an IPython notebook; usually with a <code>.ipynb</code> extension.</p></li>
-<li><p>Notebooks are stored in the <a href="http://en.wikipedia.org/wiki/JSON"><span class="caps">JSON</span></a> format allowing one to mix formatted text, Python code and code&nbsp;output.</p></li>
-<li><p>To run an IPython notebook we&nbsp;use:</p>
-<pre><code>ipython notebook mynotebook.ipynb</code></pre></li>
-<li><p>If you start IPython notebook with the &#8212;script option, the Python code you write will be saved in another file with a <code>.py</code> extension:</p>
-<pre><code>ipython notebook mynotebook.ipynb --script</code></pre></li>
-</ul>
-<p>This will generate another file <code>mynotebook.py</code> which can be used as above (and in other ways we will&nbsp;learn).</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="first-steps-in-learning-python-syntax">First steps in learning Python&nbsp;syntax</h2>
 <p>IPython provides a <code>help</code> function.&nbsp;Try:</p>
 </div>
 </div>
@@ -1702,218 +1688,6 @@ In&nbsp;[]:
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="is-1-different-than-1.0">Is <code>1</code> different than <code>1.0</code> ?</h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Lets&nbsp;see:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="nb">type</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can do different things with integers and floating point&nbsp;values:</p>
-<p>Try typing <code>1.0</code> followed by a dot as such <code>1.0.</code></p>
-<ul>
-<li>now hit <span class="caps">TAB</span>.</li>
-</ul>
-<p>You will see a list after <code>1.0.</code></p>
-<p>These are the public objects within all floating point numbers that are intended to be&nbsp;used.</p>
-<p>Some of these objects are functions, which require brackets <code>()</code> to envoke or&nbsp;call:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="mf">1.0</span><span class="o">.</span><span class="n">conjugate</span><span class="p">(),</span> <span class="nb">type</span><span class="p">(</span><span class="mf">1.0</span><span class="o">.</span><span class="n">conjugate</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Some of these objects are also floating point&nbsp;numbers:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="mf">1.0</span><span class="o">.</span><span class="n">imag</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="mf">1.0</span><span class="o">.</span><span class="n">imag</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>So what is the <em>real</em> difference between 1.0 and&nbsp;1?</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="mf">1.0</span><span class="o">.</span><span class="n">as_integer_ratio</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">a</span><span class="o">.</span><span class="n">denominator</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">numerator</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>These number seem to be defined by the same integer ratio, which makes them mathematically equivalent. However, Python defines different types of <code>Number</code> objects.</p>
-<p><code>isinstance</code> checks if two objects are of the same&nbsp;type</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="nb">isinstance</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">float</span><span class="p">),</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><code>float</code> objects cannot be interpreted as <code>int</code> objects:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="nb">isinstance</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>However, it is more difficult to confirm that <code>int</code> objects can be interpreted as <code>float</code> objects.</p>
-<p>We need the <code>numbers</code> module.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numbers</span>
-<span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Real</span><span class="p">),</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Direct comparison of object types is not often needed in Python, so if you find yourself using <code>isinstance</code> very often you are probably not writing <code>Pythonic</code> code.</p>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
@@ -1924,6 +1698,21 @@ In&nbsp;[]:
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">IPython</span>
 <span class="k">print</span><span class="p">(</span><span class="s">&quot;This notebook was evaluated with: Python </span><span class="si">%s</span><span class="s"> and IPython </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">IPython</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb">
 </pre></div>
 
 </div>
