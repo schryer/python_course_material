@@ -22,8 +22,8 @@
         <header id="banner" class="body">
                 <h1><a href="http://schryer.github.io/python_course_material">Scientific Python </a></h1>
                 <nav><ul>
-                    <li><a href="http://schryer.github.io/python_course_material/pages/overview.html">Overview</a></li>
-                    <li><a href="http://schryer.github.io/python_course_material/python_course_material">Welcome to Scientific programming with Python</a></li>
+                    <li><a href="http://schryer.github.io/python_course_material/overview">Welcome to Scientific programming with Python</a></li>
+                    <li><a href="http://schryer.github.io/python_course_material/">Welcome to Scientific programming with Python</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
         
@@ -42,20 +42,18 @@ prohibitively difficult. The best results have been obtained in
 learning environments where student misconceptions are addressed
 rapidly.  A number of techniques have been shown to work, but they
 work best when the students understand their purpose. For this reason,
-the first topic of the course introduces the teaching methods and
-approach that will be&nbsp;used.</p>
+the first topic of the course introduces the teaching methods&nbsp;and </p>
 <p>The course will be run in a series of hands-on half day segments.  The
 first is an introduction to the course structure and basic computation
-using <a href="https://www.gnu.org/gnu/linux-and-gnu.html" title="An introduciton to GNU/Linux.">Linux</a>, including the installation of relevant programs,
+using <a href="https://www.gnu.org/gnu/linux-and-gnu.html" title="An introduciton to GNU/Linux.">Linux</a>, including the installation of relevent programs,
 libraries, and <a href="http://www.python.org" title="Python">Python</a>&nbsp;packages.</p>
 <p>The next half-day segment introduces the <a href="http://www.python.org" title="Python">Python</a> programming language
 using <a href="http://ipython.org/notebook.html" title="IPython notebook">IPython notebook</a>. Following segments will introduce plotting
-with <a href="http://matplotlib.org/" title="matplotlib Python package">matplotlib</a>, and basic components of both <a href="http://www.numpy.org/" title="numpy Python package">NumPy</a> and <a href="http://www.scipy.org/" title="scipy Python package">SciPy</a>
+with <a href="http://matplotlib.org/" title="matplotlib Python package">matplotlib</a>, and basic components of both <a href="http://www.numpy.org/" title="numpy Python package">Numpy</a> and <a href="http://www.scipy.org/" title="scipy Python package">SciPy</a>
 while solving computational biology&nbsp;problems.</p>
 <p>All students will be required to bring a portable computer to all
 sessions.  During the first session we will first install <a href="https://www.gnu.org/gnu/linux-and-gnu.html" title="An introduciton to GNU/Linux.">Linux</a> and
 then <a href="http://www.python.org" title="Python">Python</a> tools onto this&nbsp;computer.</p>
-<p>Please contact <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#115;&#99;&#104;&#114;&#121;&#101;&#114;&#64;&#117;&#116;&#46;&#101;&#101;">&#115;&#99;&#104;&#114;&#121;&#101;&#114;&#64;&#117;&#116;&#46;&#101;&#101;</a> for further&nbsp;information.</p>
 </section>
         <section id="extras" class="body">
         </section><!-- /#extras -->
