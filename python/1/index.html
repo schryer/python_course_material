@@ -202,6 +202,43 @@ seen&nbsp;below.</p>
 
 
 <span class="mf">3.141592653589793</span>
+</pre></div>
+
+
+<h2>Variable&nbsp;names</h2>
+<p>Variable names in Python can contain alphanumerical characters <code>a-z</code>, <code>A-Z</code>,
+<code>0-9</code> and some special characters such as <code>_</code>. Variable names cannot start with
+a&nbsp;number.</p>
+<p>By convension, variable names start with a lower-case letter, and Class names
+start with a capital&nbsp;letter.</p>
+<p>In addition, there are a number of Python keywords that cannot be used as
+variable names. These keywords&nbsp;are:</p>
+<div class="highlight"><pre><span class="n">and</span><span class="p">,</span> <span class="n">as</span><span class="p">,</span> <span class="n">assert</span><span class="p">,</span> <span class="k">break</span><span class="p">,</span> <span class="n">class</span><span class="p">,</span> <span class="k">continue</span><span class="p">,</span> <span class="n">def</span><span class="p">,</span> <span class="n">del</span><span class="p">,</span> <span class="n">elif</span><span class="p">,</span> <span class="k">else</span><span class="p">,</span> <span class="n">except</span><span class="p">,</span>
+<span class="n">exec</span><span class="p">,</span> <span class="n">finally</span><span class="p">,</span> <span class="k">for</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="n">global</span><span class="p">,</span> <span class="k">if</span><span class="p">,</span> <span class="n">import</span><span class="p">,</span> <span class="n">in</span><span class="p">,</span> <span class="n">is</span><span class="p">,</span> <span class="n">lambda</span><span class="p">,</span> <span class="n">not</span><span class="p">,</span> <span class="n">or</span><span class="p">,</span>
+<span class="n">pass</span><span class="p">,</span> <span class="n">print</span><span class="p">,</span> <span class="n">raise</span><span class="p">,</span> <span class="k">return</span><span class="p">,</span> <span class="n">try</span><span class="p">,</span> <span class="k">while</span><span class="p">,</span> <span class="n">with</span><span class="p">,</span> <span class="n">yield</span><span class="p">.</span>
+</pre></div>
+
+
+<p>Common python functions and modules should also not be used as variable names.
+If it is commonly imported,
+<span class="caps">DO</span> <span class="caps">NOT</span> use it as a variable&nbsp;name:</p>
+<div class="highlight"><pre><span class="n">string</span><span class="p">,</span> <span class="n">os</span><span class="p">,</span> <span class="n">sys</span><span class="p">,</span> <span class="n">ord</span><span class="p">,</span> <span class="n">chr</span><span class="p">,</span> <span class="kt">int</span><span class="p">,</span> <span class="kt">float</span><span class="p">,</span> <span class="kt">bool</span><span class="p">,</span> <span class="kt">long</span><span class="p">,</span> <span class="n">numpy</span><span class="p">,</span> <span class="p">....</span> <span class="p">(</span><span class="n">longer</span> <span class="n">list</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Acceptable variable&nbsp;names</h3>
+<p>These are all legal variable&nbsp;names.</p>
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mf">3.4</span>
+<span class="n">x23982342</span> <span class="o">=</span> <span class="mf">56.8</span>
+</pre></div>
+
+
+<h3>Use descriptive variable&nbsp;names</h3>
+<p>Use variable names that describe what they&nbsp;contain.</p>
+<div class="highlight"><pre><span class="n">number_of_cats</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">area_of_cat_house</span> <span class="o">=</span> <span class="mf">3.4</span> <span class="err">#</span> <span class="n">in</span> <span class="n">square</span> <span class="n">meters</span>
+<span class="n">cat_fights_per_day</span> <span class="o">=</span> <span class="mf">56.8</span>
 </pre></div><script type= "text/javascript">
     if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
         var mathjaxscript = document.createElement('script');
@@ -249,7 +286,7 @@ seen&nbsp;below.</p>
 </li>
 
 <li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
-<li class="tag-4">
+<li class="tag-1">
     <a href="http://schryer.github.io/python_course_material/tag/python.html">
         <i class="icon-tag icon-large"></i>Python
     </a>

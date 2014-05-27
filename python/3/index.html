@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lesson 3: Python Strings.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="David Schryer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://schryer.github.io/python_course_material/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://schryer.github.io/python_course_material/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://schryer.github.io/python_course_material/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://schryer.github.io/python_course_material/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://schryer.github.io/python_course_material/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://schryer.github.io/python_course_material/" type="application/atom+xml" rel="alternate" title="Scientific Programming with Python ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://schryer.github.io/python_course_material/index.html">Scientific Programming with Python </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                <li><a href="http://schryer.github.io/python_course_material/ipython">Using the IPython notebook</a></li>
+                <li><a href="http://schryer.github.io/python_course_material/">Welcome to Scientific Programming with Python</a></li>
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="http://schryer.github.io/python_course_material/category/article.html">
+						<i class="icon-folder-open icon-large"></i>article
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://schryer.github.io/python_course_material/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Lesson 3: Python Strings.">
+                                        Lesson 3: Python Strings.
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-05-21T12:00:00">
+        <i class="icon-calendar"></i>Wed 21 May 2014
+</abbr>
+<span class="label">By</span>
+<a href="http://schryer.github.io/python_course_material/author/david-schryer.html"><i class="icon-user"></i>David Schryer</a>
+<span class="label">Category</span>
+<a href="http://schryer.github.io/python_course_material/category/article.html"><i class="icon-folder-open"></i>article</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://schryer.github.io/python_course_material/tag/python.html"><i class="icon-tag"></i>Python</a>
+</footer><!-- /.post-info -->                </div>
+                <h2>Python <em>containers</em></h2>
+<p>Python <em>containers</em> collect items together in one single collection that can be
+stored
+using a single variable&nbsp;name.</p>
+<p><a href="http://www.python.org" title="Python programming language">Python</a> containers hold fundamental <a href="http://www.python.org" title="Python programming language">Python</a> types.  One exception are strings
+which are
+both a fundamental type and a <a href="http://www.python.org" title="Python programming language">Python</a>&nbsp;collection.</p>
+<h3>Strings</h3>
+<p>Strings can be made by enclosing text with either single or double quotation
+characters (&#8216;) or&nbsp;(&#8220;).</p>
+<div class="highlight"><pre><span class="n">Stan_Ulam_said</span> <span class="o">=</span> <span class="s">&quot;Whatever is worth saying can be stated in fifty words or less.&quot;</span>
+<span class="n">I_say</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">Most</span> <span class="n">ideas</span> <span class="n">can</span> <span class="n">be</span> <span class="n">expressed</span> <span class="n">in</span> <span class="n">fifty</span> <span class="n">Python</span> <span class="n">statements</span> <span class="n">or</span> <span class="n">less</span><span class="p">.</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<h4>Line&nbsp;breaks</h4>
+<p>Line breaks can be added to a <a href="http://www.python.org" title="Python programming language">Python</a> string by using a line feed control
+character (<code>\n</code>).</p>
+<div class="highlight"><pre><span class="n">John_Tukey_said</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">An</span> <span class="n">approximate</span> <span class="n">answer</span> <span class="n">to</span> <span class="n">the</span> <span class="n">right</span> <span class="n">problem</span> <span class="n">is</span> <span class="n">worth</span> <span class="n">a</span> <span class="n">good</span> <span class="n">deal</span><span class="err">\</span><span class="n">n</span> <span class="n">more</span> <span class="n">than</span> <span class="n">an</span> <span class="n">exact</span> <span class="n">answer</span> <span class="n">to</span> <span class="n">an</span> <span class="n">approximate</span> <span class="n">problem</span><span class="p">.</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<h4>Multiline&nbsp;strings</h4>
+<p>Line breaks can also be added using multiline strings. These are made by
+starting and ending with three quotation characters (<code>''' text '''</code>) or (<code>"""
+text """</code>).</p>
+<div class="highlight"><pre><span class="n">John_Tukey_said</span> <span class="o">=</span> <span class="err">&#39;&#39;&#39;</span>
+
+<span class="n">An</span> <span class="n">approximate</span> <span class="n">answer</span> <span class="n">to</span> <span class="n">the</span> <span class="n">right</span> <span class="n">problem</span> <span class="n">is</span> <span class="n">worth</span> <span class="n">a</span> <span class="n">good</span> <span class="n">deal</span> 
+<span class="n">more</span> <span class="n">than</span> <span class="n">an</span> <span class="n">exact</span> <span class="n">answer</span> <span class="n">to</span> <span class="n">an</span> <span class="n">approximate</span> <span class="n">problem</span><span class="p">.</span>
+
+<span class="err">&#39;&#39;&#39;</span>
+</pre></div>
+
+
+<h4>Triple quotes can be used to make strings that contain quote&nbsp;characters:</h4>
+<div class="highlight"><pre><span class="n">Even_though_the_student_knew_the_problem_was_ill_poised</span> <span class="o">=</span> <span class="err">&#39;&#39;&#39;</span><span class="p">,</span>
+
+<span class="n">the</span> <span class="n">professor</span> <span class="n">strongly</span> <span class="n">advised</span><span class="o">:</span>
+
+<span class="s">&quot;Do the calculation!&quot;</span><span class="p">.</span><span class="err">&#39;&#39;&#39;</span>
+</pre></div>
+
+
+<h2>Using Containers in&nbsp;Python</h2>
+<p>Containers allow us to perform useful operations on collections of&nbsp;types.</p>
+<h3>Using the word <code>in</code> to test is something is <em>in</em>side a&nbsp;container.</h3>
+<p><code>True</code> if an item is contained in a container object, otherwise <code>False</code>.</p>
+<div class="highlight"><pre><span class="err">&#39;</span><span class="n">fifty</span><span class="err">&#39;</span> <span class="n">in</span> <span class="n">Stan_Ulam_said</span>
+</pre></div>
+
+
+<p>The <code>not</code> keyword can be used to test the opposite (The substring &#8216;50&#8217; is <code>not</code>
+in this <code>str</code> object):</p>
+<div class="highlight"><pre><span class="err">&#39;</span><span class="mi">50</span><span class="err">&#39;</span> <span class="n">not</span> <span class="n">in</span> <span class="n">Stan_Ulam_said</span>
+</pre></div>
+
+
+<h3>Elements of <em>list-like</em> containers (like strings) can be accessed by&nbsp;index</h3>
+<p>(starting at <code>0</code>):</p>
+<div class="highlight"><pre><span class="n">I_say</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>Multiple elements can be accessed at once by&nbsp;slicing:</h3>
+<div class="highlight"><pre><span class="n">I_say</span><span class="p">[</span><span class="mi">0</span><span class="o">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Leaving out one of these indicies means <strong>to the beginning</strong> or <strong>to the end</strong>:</p>
+<div class="highlight"><pre><span class="n">I_say</span><span class="p">[</span><span class="o">:</span><span class="mi">4</span><span class="p">]</span>
+
+
+<span class="n">I_say</span><span class="p">[</span><span class="mi">5</span><span class="o">:</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>Negative index values mean <strong>number of index values from the&nbsp;end</strong></h3>
+<p>An index of <code>-1</code> means the last item in the <em>list-like</em></p>
+<div class="highlight"><pre><span class="n">I_say</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>Slicing also works with negative&nbsp;indicies:</h3>
+<p>The following means take the slice starting <strong>five index values from the end</strong>
+(<code>-5</code>) and slice <strong>to the end</strong> (<code>:</code>)</p>
+<div class="highlight"><pre><span class="n">I_say</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="o">:</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>You can also skip elements in regular steps when&nbsp;slicing</h3>
+<p>In the following cases we slice in steps of <code>2</code>.</p>
+<div class="highlight"><pre><span class="n">I_say</span><span class="p">[</span><span class="mi">5</span><span class="o">:</span><span class="mi">16</span><span class="o">:</span><span class="mi">2</span><span class="p">]</span>
+
+
+<span class="n">I_say</span><span class="p">[</span><span class="o">::</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>The number of items in a container is its&nbsp;length:</h3>
+<div class="highlight"><pre><span class="n">len</span><span class="p">(</span><span class="n">I_say</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This is the same as calling the hidden function inside containers <code>__len__</code>, but
+this is rarely used&nbsp;directly.</p>
+<div class="highlight"><pre><span class="n">I_say</span><span class="p">.</span><span class="n">__len__</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>The smallest and largest items in a container are found using <code>min</code> and</h3>
+<p><code>max</code></p>
+<p>However, this is not often useful for&nbsp;strings.</p>
+<div class="highlight"><pre><span class="n">min</span><span class="p">(</span><span class="n">I_say</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">I_say</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Use the <code>.index</code> function to find the index of the first occurance&nbsp;of</h3>
+<p>something in a&nbsp;container:</p>
+<div class="highlight"><pre><span class="n">I_say</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="err">&#39;</span><span class="n">fifty</span><span class="err">&#39;</span><span class="p">)</span>
+
+
+<span class="n">Stan_Ulam_said</span><span class="p">.</span><span class="n">index</span><span class="p">(</span><span class="err">&#39;</span><span class="n">fifty</span><span class="err">&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>This proves that I said <code>fifty</code> first&#8230;</p>
+<h3>Use the <code>.count</code> function to find the number of times an object occurs in&nbsp;a</h3>
+<p>container:</p>
+<div class="highlight"><pre><span class="n">John_Tukey_said</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="err">&#39;</span><span class="n">approximate</span><span class="err">&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>Exercise:  Try to use all of the properties and functions contained in&nbsp;string</h2>
+<p>types.</p>
+<p>Hint: These are accessed using the dot notation.  Try typing a variable name
+like <code>I_say</code> followed by a dot, and then hitting the <code>Tab</code> key. (i.e. <code>I_say.</code>
+followed by one or more <code>Tab</code> keystrokes).  Try using the build-in <a href="http://www.python.org" title="Python programming language">Python</a> help
+function. (i.e. <code>help(I_say)</code>)</p>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="http://schryer.github.io/python_course_material/category/article.html">
+    <i class="icon-folder-open icon-large"></i>article
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-1">
+    <a href="http://schryer.github.io/python_course_material/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://schryer.github.io/python_course_material/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://schryer.github.io/python_course_material/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>

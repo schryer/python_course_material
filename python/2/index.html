@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Scientific Programming with Python - article</title>
+    <title>Lesson 2: Fundamental Python Types.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="David Schryer">
@@ -86,9 +86,20 @@
     <div class="container-fluid">
       <div class="row">
         <div class="span9" id="content">
-        <div class="article">
-                <h1><a href="http://schryer.github.io/python_course_material/python/1">Lesson 1: Reading Python Code.</a></h1>
-                <div class="well small"><footer class="post-info">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Lesson 2: Fundamental Python Types.">
+                                        Lesson 2: Fundamental Python Types.
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
 <span class="label">Date</span>
 <abbr class="published" title="2014-05-21T12:00:00">
         <i class="icon-calendar"></i>Wed 21 May 2014
@@ -101,60 +112,71 @@
 
 <span class="label">Tags</span>
 	<a href="http://schryer.github.io/python_course_material/tag/python.html"><i class="icon-tag"></i>Python</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>Lesson 1: Reading Python Code.</p>
-                        <a class="btn primary xsmall" href="http://schryer.github.io/python_course_material/python/1">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="http://schryer.github.io/python_course_material/python/2">Lesson 2: Fundamental Python Types.</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2014-05-21T12:00:00">
-        <i class="icon-calendar"></i>Wed 21 May 2014
-</abbr>
-<span class="label">By</span>
-<a href="http://schryer.github.io/python_course_material/author/david-schryer.html"><i class="icon-user"></i>David Schryer</a>
-<span class="label">Category</span>
-<a href="http://schryer.github.io/python_course_material/category/article.html"><i class="icon-folder-open"></i>article</a>.
+</footer><!-- /.post-info -->                </div>
+                <h2>Fundamental Python&nbsp;types</h2>
+<p>Python has a number of fundamental types.  Please explore the code below to see
+what they&nbsp;are.</p>
+<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">10000000000000000000000000</span>
+<span class="n">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">type</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
 
 
-<span class="label">Tags</span>
-	<a href="http://schryer.github.io/python_course_material/tag/python.html"><i class="icon-tag"></i>Python</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>Lesson 2: Fundamental Python Types.</p>
-                        <a class="btn primary xsmall" href="http://schryer.github.io/python_course_material/python/2">more ...</a>
-                </div>
-        </div>
-        <hr />
-        <div class="article">
-                <h1><a href="http://schryer.github.io/python_course_material/python/3">Lesson 3: Python Strings.</a></h1>
-                <div class="well small"><footer class="post-info">
-<span class="label">Date</span>
-<abbr class="published" title="2014-05-21T12:00:00">
-        <i class="icon-calendar"></i>Wed 21 May 2014
-</abbr>
-<span class="label">By</span>
-<a href="http://schryer.github.io/python_course_material/author/david-schryer.html"><i class="icon-user"></i>David Schryer</a>
-<span class="label">Category</span>
-<a href="http://schryer.github.io/python_course_material/category/article.html"><i class="icon-folder-open"></i>article</a>.
+<span class="n">c</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">type</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+</pre></div>
 
 
-<span class="label">Tags</span>
-	<a href="http://schryer.github.io/python_course_material/tag/python.html"><i class="icon-tag"></i>Python</a>
-</footer><!-- /.post-info --></div>
-                <div class="summary"><p>Lesson 3: Python Strings.</p>
-                        <a class="btn primary xsmall" href="http://schryer.github.io/python_course_material/python/3">more ...</a>
-                </div>
-        </div>
-        <hr />
+<h3>The boolean type can contain the values <code>True</code> and <code>False</code> which&nbsp;always</h3>
+<p>start with capital&nbsp;letters:</p>
+<div class="highlight"><pre><span class="n">d1</span> <span class="o">=</span> <span class="n">True</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">False</span>
 
-                <section id="content" class="body">
-                <h1>Pages</h1>
-                        <li><a href="http://schryer.github.io/python_course_material/ipython">Using the IPython notebook</a></li>
-                        <li><a href="http://schryer.github.io/python_course_material/">Welcome to Scientific Programming with Python</a></li>
-                </section>
+<span class="n">type</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Complex numbers are a fundamental type: note the use of <code>j</code> to specify&nbsp;the</h3>
+<p>imaginary&nbsp;part</p>
+<div class="highlight"><pre><span class="n">e</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="mf">1.0</span><span class="n">j</span>
+<span class="n">type</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>The <code>None</code> type</h3>
+<p>This type is very commonly used and also starts with a capital <code>N</code>.</p>
+<div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="n">None</span>
+</pre></div>
+
+
+<h2>All types have&nbsp;properties</h2>
+<p>The variable <code>c</code> defined above is an integer type.  This type has the following
+properties that are accessed with dot notation.  The dot can be thought of as
+meaning &#8220;get something from the thing on the left&#8221; (in this case <code>c</code>).</p>
+<div class="highlight"><pre><span class="n">c</span><span class="p">.</span><span class="n">bit_length</span>    <span class="n">c</span><span class="p">.</span><span class="n">conjugate</span>    <span class="n">c</span><span class="p">.</span><span class="n">denominator</span>    <span class="n">c</span><span class="p">.</span><span class="n">imag</span>    <span class="n">c</span><span class="p">.</span><span class="n">numerator</span>
+</pre></div>
+
+
+<p>c.real</p>
+<p>In this case <code>c.bit_length</code> is actually a function which must be <em>called</em> using
+round brackets <code>()</code>to use (more on functions&nbsp;later).</p>
+<div class="highlight"><pre><span class="n">c</span><span class="p">.</span><span class="n">real</span><span class="p">,</span> <span class="n">c</span><span class="p">.</span><span class="n">bit_length</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Some properties are&nbsp;hidden</h2>
+<p>Although <code>f</code> is a <code>None</code> type, it still has hidden&nbsp;properties.</p>
+<div class="highlight"><pre><span class="n">f</span><span class="p">.</span><span class="n">__sizeof__</span><span class="p">()</span>
+</pre></div>
+
+
+<h2>Many types have common&nbsp;properties</h2>
+<p>Python has been designed such that its types are as compatible as possible with
+each other.
+This is done by giving them common properties so that the same Python code is
+able to process different&nbsp;types.</p>
+<h2>Exercise:  Find the common properties between the types listed&nbsp;above</h2>
+                </div><!-- /.entry-content -->
+        </article>
+</section>
         </div><!--/span-->
 
                 <div class="span3 well sidebar-nav" id="sidebar">
