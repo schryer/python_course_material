@@ -83,11 +83,6 @@ minimum distance from the sun, and the third will multiply these together with
 seen&amp;nbsp;below.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="n"&gt;math&lt;/span&gt;
 &lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;
-
-
-
-
-&lt;span class="mf"&gt;3.141592653589793&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
