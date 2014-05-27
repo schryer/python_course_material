@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lesson 1: Reading Python Code.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="David Schryer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://schryer.github.io/python_course_material/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://schryer.github.io/python_course_material/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://schryer.github.io/python_course_material/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://schryer.github.io/python_course_material/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://schryer.github.io/python_course_material/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://schryer.github.io/python_course_material/" type="application/atom+xml" rel="alternate" title="Scientific Programming with Python ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://schryer.github.io/python_course_material/index.html">Scientific Programming with Python </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                <li><a href="http://schryer.github.io/python_course_material/">Welcome to Scientific Programming with Python</a></li>
+                          <li class="divider-vertical"></li>
+                  <li class="active">
+                    <a href="http://schryer.github.io/python_course_material/category/article.html">
+						<i class="icon-folder-open icon-large"></i>article
+					</a>
+                  </li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://schryer.github.io/python_course_material/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content">
+        <article>
+                <header>
+                        <h1>
+                                <a href=""
+                                        rel="bookmark"
+                                        title="Permalink to Lesson 1: Reading Python Code.">
+                                        Lesson 1: Reading Python Code.
+                                </a>
+                        </h1>
+                </header>
+                <div class="entry-content">
+                <div class="well">
+<footer class="post-info">
+<span class="label">Date</span>
+<abbr class="published" title="2014-05-21T12:00:00">
+        <i class="icon-calendar"></i>Wed 21 May 2014
+</abbr>
+<span class="label">By</span>
+<a href="http://schryer.github.io/python_course_material/author/david-schryer.html"><i class="icon-user"></i>David Schryer</a>
+<span class="label">Category</span>
+<a href="http://schryer.github.io/python_course_material/category/article.html"><i class="icon-folder-open"></i>article</a>.
+
+
+<span class="label">Tags</span>
+	<a href="http://schryer.github.io/python_course_material/tag/python.html"><i class="icon-tag"></i>Python</a>
+</footer><!-- /.post-info -->                </div>
+                <h2>Python is an <strong>unnatural</strong>&nbsp;language.</h2>
+<p>Even if many words used in Python resemble English words, they
+are interpreted in a very different way.  It is best if one
+does not associate the English meaning with the Python meaning
+and instead relearns each word in&nbsp;turn.</p>
+<h3>Think in <em>tokens</em>, not words with&nbsp;punctuation.</h3>
+<p>The words used in programs are not words, they are <em>tokens</em> that are interpreted
+as one unit of thought with a single meaning depending on the context. All other
+symbols (i.e. <code>=</code>, <code>+</code>)
+and sometimes combinations of symbols (i.e. <code>==</code>, <code>+=</code>) are also <em>tokens</em>.  All
+tokens are interpreted
+with the same&nbsp;rules.</p>
+<h3>What you write is not a text, it is&nbsp;code.</h3>
+<p>Instead of writing text, computer people write code because of its natural
+tendency to be incomprehensible.
+All effort should be made to make the code you write easy for <strong>humans</strong> to read&nbsp;(interpret).</p>
+<h3>Think in <em>statements</em> not&nbsp;sentences.</h3>
+<p>Programs are made up of a series of <em>statements</em> made up of tokens (i.e. <code>e =
+2.718281828</code>) which can roughly
+be thought of as sentences. However, unlike natural language, one
+does not read each <em>statement</em> in consecutive order to reach the end of your
+code.
+Instead, one must read Python statements in the order defined by the rules of
+the language. This may be confusing to the novice because statements written in
+the code are sometimes skipped and others are read many many many times even
+though
+they appear only once; Reading code is almost never top to bottom and usually
+involves jumping around, however,
+all effort should be made to make the code you write easy for <strong>humans</strong> to&nbsp;interpret.</p>
+<h3>Code is never&nbsp;ambiguous.</h3>
+<p>Python code is interpreted by the python interpreter.
+Given the same input, your computer program should always do the same thing.
+One way to learn how to read code is to ask the interpreter&nbsp;questions.</p>
+<h2>Execute each <em>cell</em> in this IPython notebook by pressing <code>Ctrl</code>, holding&nbsp;it</h2>
+<p>down, and then pressing <code>Enter</code> (<code>Ctrl-Enter</code>)</p>
+<div class="highlight"><pre><span class="mi">5</span> <span class="o">+</span> <span class="mi">2</span>
+</pre></div>
+
+
+<p>The statement <code>5 + 2</code> made up of the three tokens <code>5</code>, <code>+</code>, <code>2</code> causes Python to
+add these two numbers and return the result.  We did not specify what to do with
+this result and in this case it was spit out onto the&nbsp;screen.</p>
+<div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">2</span>
+</pre></div>
+
+
+<p>The <code>=</code> token tells our program to store the output of adding these numbers into
+a <em>variable</em> named <code>a</code>.</p>
+<div class="highlight"><pre><span class="mi">7</span> <span class="o">=</span> <span class="n">a</span>
+</pre></div>
+
+
+<p>We cannot tell the program to store the contents of <code>a</code> into a number. Variables
+cannot start with&nbsp;numbers.</p>
+<div class="highlight"><pre><span class="mi">7</span> <span class="o">==</span> <span class="n">a</span>
+</pre></div>
+
+
+<p>The <code>==</code> token means test if the thing on the left is the same as the thing on
+the&nbsp;right.</p>
+<p>IPython provides a <code>help</code> function.&nbsp;Try:</p>
+<div class="highlight"><pre><span class="n">help</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>You will learn things you never knew about integers, and a whole lot about
+operators like <code>+</code>.</p>
+<p>A shorter version of help is available but it only works on variables (like <code>b</code>
+below), not <em>expressions</em> like <code>1</code> or <code>41**(3 /2.0)</code>:</p>
+<div class="highlight"><pre><span class="n">b</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">b</span><span class="o">?</span>
+</pre></div>
+
+
+<h2>Exercise:</h2>
+<p>Write three Python statements in the next cell to calculate the area swept out
+by a planet orbiting the sun.  The first will store the maximum distance the
+planet moves away from the sun during its orbit, the second will store the
+minimum distance from the sun, and the third will multiply these together with
+<mathjax>$\pi$</mathjax> and store the value in a variable <code>planet_area</code>.</p>
+<p>Hint: The value of <mathjax>$\pi$</mathjax> can be retrieved from the Python <code>math</code> <em>module</em> as
+seen&nbsp;below.</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">math</span>
+<span class="n">math</span><span class="p">.</span><span class="n">pi</span>
+
+
+
+
+<span class="mf">3.141592653589793</span>
+</pre></div><script type= "text/javascript">
+    if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+        var mathjaxscript = document.createElement('script');
+        mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+        mathjaxscript.type = 'text/javascript';
+        mathjaxscript.src = 'https:' == document.location.protocol
+                ? 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+                : 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+        mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({" +
+            "    config: ['MMLorHTML.js']," +
+            "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+            "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+            "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+            "    displayAlign: 'center'," +
+            "    displayIndent: '0em'," +
+            "    showMathMenu: true," +
+            "    tex2jax: { " +
+            "        inlineMath: [ ['$','$'] ], " +
+            "        displayMath: [ ['$$','$$'] ]," +
+            "        processEscapes: true," +
+            "        preview: 'TeX'," +
+            "    }, " +
+            "    'HTML-CSS': { " +
+            "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+            "    } " +
+            "}); ";
+        (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+    }
+</script>
+
+                </div><!-- /.entry-content -->
+        </article>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+<li>
+<a href="http://schryer.github.io/python_course_material/category/article.html">
+    <i class="icon-folder-open icon-large"></i>article
+</a>
+</li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+<li class="tag-4">
+    <a href="http://schryer.github.io/python_course_material/tag/python.html">
+        <i class="icon-tag icon-large"></i>Python
+    </a>
+</li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://schryer.github.io/python_course_material/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://schryer.github.io/python_course_material/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
