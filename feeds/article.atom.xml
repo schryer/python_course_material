@@ -73,7 +73,7 @@ below), not &lt;em&gt;expressions&lt;/em&gt; like &lt;code&gt;1&lt;/code&gt; or 
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;h2&gt;Exercise:&lt;/h2&gt;
+&lt;h2&gt;Exercise: Convert English into&amp;nbsp;Python.&lt;/h2&gt;
 &lt;p&gt;Write three Python statements in the next cell to calculate the area swept out
 by a planet orbiting the sun.  The first will store the maximum distance the
 planet moves away from the sun during its orbit, the second will store the
