@@ -215,7 +215,7 @@ round brackets &lt;code&gt;()&lt;/code&gt;to use (more on functions&amp;nbsp;lat
 each other.
 This is done by giving them common properties so that the same Python code is
 able to process different&amp;nbsp;types.&lt;/p&gt;
-&lt;h2&gt;Exercise:  Find the common properties between the types listed&amp;nbsp;above&lt;/h2&gt;</summary><category term="Python"></category></entry><entry><title>Lesson 3: Python Strings.</title><link href="http://schryer.github.io/python_course_material/python/3" rel="alternate"></link><updated>2014-05-21T12:00:00+03:00</updated><author><name>David Schryer</name></author><id>tag:schryer.github.io/python_course_material,2014-05-21:python/3</id><summary type="html">&lt;h2&gt;Python &lt;em&gt;containers&lt;/em&gt;&lt;/h2&gt;
+&lt;h2&gt;Exercise:  Find the common properties between the types listed&amp;nbsp;above&lt;/h2&gt;</summary><category term="Python"></category></entry><entry><title>Lesson 3: Python Strings As Containers.</title><link href="http://schryer.github.io/python_course_material/python/3" rel="alternate"></link><updated>2014-05-21T12:00:00+03:00</updated><author><name>David Schryer</name></author><id>tag:schryer.github.io/python_course_material,2014-05-21:python/3</id><summary type="html">&lt;h2&gt;Python &lt;em&gt;containers&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;Python &lt;em&gt;containers&lt;/em&gt; collect items together in one single collection that can be
 stored
 using a single variable&amp;nbsp;name.&lt;/p&gt;
