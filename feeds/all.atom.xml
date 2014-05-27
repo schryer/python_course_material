@@ -1475,25 +1475,6 @@ table.dataframe th, td {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="introduction-to-scientific-computing-with-python"&gt;Introduction to scientific computing with&amp;nbsp;Python&lt;/h3&gt;
-&lt;p&gt;David Schryer &lt;script type="text/javascript"&gt;
-&lt;!--
-h='&amp;#x75;&amp;#116;&amp;#46;&amp;#x65;&amp;#x65;';a='&amp;#64;';n='&amp;#x73;&amp;#x63;&amp;#104;&amp;#114;&amp;#x79;&amp;#x65;&amp;#114;';e=n+a+h;
-document.write('&lt;a h'+'ref'+'="ma'+'ilto'+':'+e+'"&gt;'+e+'&lt;\/'+'a'+'&gt;');
-// --&gt;
-&lt;/script&gt;&lt;noscript&gt;&amp;#x73;&amp;#x63;&amp;#104;&amp;#114;&amp;#x79;&amp;#x65;&amp;#114;&amp;#32;&amp;#x61;&amp;#116;&amp;#32;&amp;#x75;&amp;#116;&amp;#32;&amp;#100;&amp;#x6f;&amp;#116;&amp;#32;&amp;#x65;&amp;#x65;&lt;/noscript&gt;&lt;/p&gt;
-&lt;p&gt;All notebooks in this lecture series are available&amp;nbsp;at&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;https://github.com/schryer/python_course_material&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="python-is-an-unnatural-language."&gt;Python is an &lt;strong&gt;unnatural&lt;/strong&gt;&amp;nbsp;language.&lt;/h2&gt;
 &lt;p&gt;Even if many words used in Python resemble English words, they are interpreted in a very different way. It is best if one does not associate the English meaning with the Python meaning and instead relearns each word in&amp;nbsp;turn.&lt;/p&gt;
 &lt;h3 id="think-in-tokens-not-words-with-punctuation."&gt;Think in &lt;em&gt;tokens&lt;/em&gt;, not words with&amp;nbsp;punctuation.&lt;/h3&gt;
@@ -1512,7 +1493,7 @@ document.write('&lt;a h'+'ref'+'="ma'+'ilto'+':'+e+'"&gt;'+e+'&lt;\/'+'a'+'&gt;'
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="execute-each-cell-in-this-ipython-notebook-by-pressing-ctrl-holding-it-down-and-then-pressing-enter-ctrl-enter"&gt;Execute each &lt;em&gt;cell&lt;/em&gt; in this IPython notebook by pressing Ctrl, holding it down, and then pressing Enter&amp;nbsp;(Ctrl-Enter)&lt;/h2&gt;
+&lt;h2 id="execute-each-cell-in-this-ipython-notebook-by-pressing-ctrl-holding-it-down-and-then-pressing-enter-ctrl-enter"&gt;Execute each &lt;em&gt;cell&lt;/em&gt; in this IPython notebook by pressing &lt;code&gt;Ctrl&lt;/code&gt;, holding it down, and then pressing &lt;code&gt;Enter&lt;/code&gt; (&lt;code&gt;Ctrl-Enter&lt;/code&gt;)&lt;/h2&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1642,7 +1623,7 @@ In&amp;nbsp;[]:
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;You will learn things you never knew about integers, and a whole lot about operators like &lt;code&gt;+&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;A shorter version of help is available but it only works on variables, not &lt;em&gt;expressions&lt;/em&gt; like &lt;code&gt;1&lt;/code&gt; or &lt;code&gt;41**(3 /2.0)&lt;/code&gt;:&lt;/p&gt;
+&lt;p&gt;A shorter version of help is available but it only works on variables (like &lt;code&gt;b&lt;/code&gt; below), not &lt;em&gt;expressions&lt;/em&gt; like &lt;code&gt;1&lt;/code&gt; or &lt;code&gt;41**(3 /2.0)&lt;/code&gt;:&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1662,34 +1643,48 @@ In&amp;nbsp;[]:
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h2 id="exercise"&gt;Exercise:&lt;/h2&gt;
+&lt;p&gt;Write three Python statements in the next cell to calculate the area swept out by a planet orbiting the sun. The first will store the maximum distance the planet moves away from the sun during its orbit, the second will store the minimum distance from the sun, and the third will multiply these together with &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; and store the value in a variable &lt;code&gt;planet_area&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Hint: The value of &lt;span class="math"&gt;\(\pi\)&lt;/span&gt; can be retrieved from the Python &lt;code&gt;math&lt;/code&gt; &lt;em&gt;module&lt;/em&gt; as seen&amp;nbsp;below.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[]:
+In&amp;nbsp;[1]:
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
     &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;IPython&lt;/span&gt;
-&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;This notebook was evaluated with: Python &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt; and IPython &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;.&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;IPython&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__version__&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;math&lt;/span&gt;
+&lt;span class="n"&gt;math&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pi&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+    Out[1]:&lt;/div&gt;
+
+
+&lt;div class="output_text output_subarea output_pyout"&gt;
+&lt;pre&gt;
+3.141592653589793
+&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[]:
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;
-&lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 

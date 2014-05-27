@@ -1588,25 +1588,6 @@ table.dataframe th, td {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="introduction-to-scientific-computing-with-python">Introduction to scientific computing with&nbsp;Python</h3>
-<p>David Schryer <script type="text/javascript">
-<!--
-h='&#x75;&#116;&#46;&#x65;&#x65;';a='&#64;';n='&#x73;&#x63;&#104;&#114;&#x79;&#x65;&#114;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
-// -->
-</script><noscript>&#x73;&#x63;&#104;&#114;&#x79;&#x65;&#114;&#32;&#x61;&#116;&#32;&#x75;&#116;&#32;&#100;&#x6f;&#116;&#32;&#x65;&#x65;</noscript></p>
-<p>All notebooks in this lecture series are available&nbsp;at</p>
-<ul>
-<li>https://github.com/schryer/python_course_material</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="python-is-an-unnatural-language.">Python is an <strong>unnatural</strong>&nbsp;language.</h2>
 <p>Even if many words used in Python resemble English words, they are interpreted in a very different way. It is best if one does not associate the English meaning with the Python meaning and instead relearns each word in&nbsp;turn.</p>
 <h3 id="think-in-tokens-not-words-with-punctuation.">Think in <em>tokens</em>, not words with&nbsp;punctuation.</h3>
@@ -1625,7 +1606,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="execute-each-cell-in-this-ipython-notebook-by-pressing-ctrl-holding-it-down-and-then-pressing-enter-ctrl-enter">Execute each <em>cell</em> in this IPython notebook by pressing Ctrl, holding it down, and then pressing Enter&nbsp;(Ctrl-Enter)</h2>
+<h2 id="execute-each-cell-in-this-ipython-notebook-by-pressing-ctrl-holding-it-down-and-then-pressing-enter-ctrl-enter">Execute each <em>cell</em> in this IPython notebook by pressing <code>Ctrl</code>, holding it down, and then pressing <code>Enter</code> (<code>Ctrl-Enter</code>)</h2>
 </div>
 </div>
 </div>
@@ -1755,7 +1736,7 @@ In&nbsp;[]:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>You will learn things you never knew about integers, and a whole lot about operators like <code>+</code>.</p>
-<p>A shorter version of help is available but it only works on variables, not <em>expressions</em> like <code>1</code> or <code>41**(3 /2.0)</code>:</p>
+<p>A shorter version of help is available but it only works on variables (like <code>b</code> below), not <em>expressions</em> like <code>1</code> or <code>41**(3 /2.0)</code>:</p>
 </div>
 </div>
 </div>
@@ -1775,34 +1756,48 @@ In&nbsp;[]:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exercise">Exercise:</h2>
+<p>Write three Python statements in the next cell to calculate the area swept out by a planet orbiting the sun. The first will store the maximum distance the planet moves away from the sun during its orbit, the second will store the minimum distance from the sun, and the third will multiply these together with <span class="math">\(\pi\)</span> and store the value in a variable <code>planet_area</code>.</p>
+<p>Hint: The value of <span class="math">\(\pi\)</span> can be retrieved from the Python <code>math</code> <em>module</em> as seen&nbsp;below.</p>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[1]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">import</span> <span class="nn">IPython</span>
-<span class="k">print</span><span class="p">(</span><span class="s">&quot;This notebook was evaluated with: Python </span><span class="si">%s</span><span class="s"> and IPython </span><span class="si">%s</span><span class="s">.&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">,</span> <span class="n">IPython</span><span class="o">.</span><span class="n">__version__</span><span class="p">))</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">math</span>
+<span class="n">math</span><span class="o">.</span><span class="n">pi</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[1]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+3.141592653589793
+</pre>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb">
-</pre></div>
 
 </div>
+
 </div>
 </div>
 
