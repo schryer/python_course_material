@@ -1,4 +1,4 @@
-# Welcome to the scientific Python programming course
+# Welcome to Scientific Programming with Python
 
 Please refer to the
 [course website](http://schryer.github.io/python_course_material) for

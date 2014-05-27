@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'David Schryer'
-SITENAME = u'Scientific Python'
+SITENAME = u'Scientific Programming with Python'
 SITEURL = ''
 TYPOGRIFY = True
 
@@ -34,10 +34,12 @@ DEFAULT_PAGINATION = 10
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-THEME = 'pelican-themes/subtle'
+#THEME = 'pelican-themes/subtle'
+THEME = 'pelican-themes/bootstrap2'
 
 #from plugins.pelican_plugin_render_math import math
 #PLUGINS = [math,]
 
+#MARKUP = ('md', 'ipynb')
 PLUGIN_PATH = 'pelican-plugins'
-PLUGINS = ['render_math',]
+PLUGINS = ['render_math']

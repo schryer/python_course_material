@@ -1,4 +1,4 @@
-Title: Welcome to scientific Python programming
+Title: Welcome to Scientific Programming with Python
 Date: 2014-05-22 12:00
 Tags: overview
 URL: 
@@ -6,10 +6,16 @@ save_as: index.html
 Category: page
 Slug: overview
 Author: David Schryer
-Summary: Overview of the scientific Python course
+Summary: Overview of the course
 
 Currently, this course is accepting students. Please contact
 <schryer@ut.ee> for more details.
+
+## Course material
+
+All course material is available at the
+[repository website](https://github.com/schryer/python_course_material)
+hosted at [GitHub].
 
 ## Motivation for the course
 

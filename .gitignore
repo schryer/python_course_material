@@ -3,9 +3,13 @@ __pycache__/
 *.py[cod]
 *~
 
-output/
-content/*.md
-content/pages/
+# Generated files
+doc/output/
+doc/content/
+
+# IPython files
+.ipynb_checkpoints/
+
 
 # C extensions
 *.so

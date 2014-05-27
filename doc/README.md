@@ -13,10 +13,11 @@ command:
 make github
 ```
 
-This command calls a [Python] script that reads all `Markdown` files
-in `stubs/` and `stubs/pages/` and creates analogous files within
+This command calls a [Python] script that reads all `Markdown`  files
+in `stubs/` and `stubs/pages/` and `.ipynb` files in `stubs/` and creates analogous files within
 `content/` and `content/pages/` with the contents of
-`external_links.md` appended to each. This command is provided as:
+`external_links.md` appended to each. For the `.ipynb` files, the header content is created from
+the base filename.  This command is provided as:
 
 ```shell
 python add_links.py
