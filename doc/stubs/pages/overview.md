@@ -8,8 +8,8 @@ Slug: overview
 Author: David Schryer
 Summary: Overview of the course
 
-Currently, this course is accepting students. Please contact
-<schryer@ut.ee> for more details.
+This course will be run from August 2014 and is accepting students.
+Please contact <schryer@ut.ee> for more details.
 
 ## Course material
 
@@ -57,23 +57,21 @@ from a peer before arriving at the first half-day session.
 
 The next half-day segment introduces the [Python] programming language
 using [IPython notebook]. Remaining segments will introduce plotting
-with [matplotlib], and basic components of both [NumPy] and [SciPy]
-while solving computational biology problems.
+with [matplotlib], and components of both [NumPy] and [SciPy] while
+solving computational biology problems.
 
 The last part of the course will introduce [Linux], [version control],
 and the [Bash] shell which are all essential tools for effective
 scientific programming.
 
-Please contact <schryer@ut.ee> for further information.
-
 ### List of topics
 
-0. Teaching approach and installation of relevant packages.
+0. Teaching approach and software installation.
 1. Introduction to programming with [Python].
 2. Use of [IPython notebook] to share data analysis in a reproducible form.
 3. Introduction of array processing using [NumPy].
 4. Data visualization using [matplotlib].
-5. Reading from and writing to files using first [Python] and then [pandas].
+5. Reading from and writing to files.
 5. Additional topics tailored for each student.
 6. Use of version control ([GitHub]) to carry out collaborative research.
 
