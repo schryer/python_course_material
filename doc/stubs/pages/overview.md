@@ -8,7 +8,7 @@ Slug: overview
 Author: David Schryer
 Summary: Overview of the course
 
-This course will be run from August 2014 and is accepting students.
+This course will be run from September 2nd, 2014 and is now accepting students.
 Please contact <schryer@ut.ee> for more details.
 
 ## Course material
@@ -37,9 +37,9 @@ work best when the students understand their purpose. For this reason,
 the first topic of the course introduces the teaching methods and
 approach that will be used.
 
-The course will be run in a series of hands-on half day segments.  The
-first is an introduction to the course structure and installation of
-the required software. Note that all students will be required to
+The course will be run in a series of 16 hands-on three hour segments.
+The first is an introduction to the course structure and installation
+of the required software. Note that all students will be required to
 bring a portable computer to all sessions.
 
 ## Software Installation
@@ -55,24 +55,34 @@ from a peer before arriving at the first half-day session.
 
 ## Course content
 
-The next half-day segment introduces the [Python] programming language
-using [IPython notebook]. Remaining segments will introduce plotting
-with [matplotlib], and components of both [NumPy] and [SciPy] while
-solving computational biology problems.
+The next three hour segment begins introducing the [Python]
+programming language using [IPython notebook]. Remaining segments will
+continue with core programming concepts, and continue on to introduce
+plotting with [matplotlib], and components of both [NumPy] and [SciPy]
+while solving computational biology problems.
 
-The last part of the course will introduce [Linux], [version control],
-and the [Bash] shell which are all essential tools for effective
-scientific programming.
+At the start of the second half of the course, students will be
+introduced to [Linux], [version control], and the [Bash] shell which
+are all essential tools for effective scientific programming. At this
+point students will begin to use an effective text editor such as [emacs]
+customized with [emacs-for-python] to edit their code with.
 
 ### List of topics
+
+#### First half of the course
 
 0. Teaching approach and software installation.
 1. Introduction to programming with [Python].
 2. Use of [IPython notebook] to share data analysis in a reproducible form.
-3. Introduction of array processing using [NumPy].
+3. Introduction to array processing using [NumPy].
 4. Data visualization using [matplotlib].
-5. Reading from and writing to files.
-5. Additional topics tailored for each student.
-6. Use of version control ([GitHub]) to carry out collaborative research.
+
+#### Second half of the course
+
+5. Introduction to [Linux], [version control] with [git] and [GitHub], and the [Bash] shell.
+6. Reading from and writing to files.
+7. Code organization and aspects of writing reusable code.
+8. Additional topics tailored for each student.
+9. Final project to be shared on GitHub.
 
 

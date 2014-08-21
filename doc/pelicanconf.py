@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'David Schryer'
 SITENAME = u'Scientific Programming with Python'
-SITEURL = ''
+SITEURL = 'python_course_material'
 TYPOGRIFY = True
 
 CUSTOM_ARTICLE_SHARING = 'sharing.html'
@@ -41,5 +41,5 @@ THEME = 'pelican-themes/bootstrap2'
 #PLUGINS = [math,]
 
 #MARKUP = ('md', 'ipynb')
-PLUGIN_PATH = 'pelican-plugins'
+PLUGIN_PATHS = ['pelican-plugins',]
 PLUGINS = ['render_math']

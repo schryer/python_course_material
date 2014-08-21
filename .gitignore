@@ -6,6 +6,8 @@ __pycache__/
 # Generated files
 doc/output/
 doc/content/
+doc/cache/
+doc/stubs/notebooks/generated/
 
 # IPython files
 .ipynb_checkpoints/

@@ -40,6 +40,9 @@
 [SciPy]: http://www.scipy.org/
 "scipy Python package"
 
+[git]: http://git-scm.com/
+"git program"
+
 [GitHub]: https://github.com/
 "GitHub web service"
 
@@ -54,3 +57,9 @@
 
 [pandas]: http://pandas.pydata.org/
 "pandas Python package"
+
+[emacs]: http://www.gnu.org/software/emacs/
+"emacs text editor"
+
+[emacs-for-python]: https://github.com/gabrielelanaro/emacs-for-python
+"Extensions that make emacs play well with Python code"
