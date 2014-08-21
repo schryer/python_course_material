@@ -26,7 +26,10 @@ Each markdown file in stubs/ is converted and written to output/
 
 def convert_ipynb_file_to_stub(ipynb_path):
 
+    notebook_filename = os.path.split(ipynb_path)[-1]
     generation_directory = 'stubs/notebooks/generated/'
+    notebook_directory = 'content/notebooks/'
+    notebook_path = ipynb_path.replace('stubs/notebooks/', notebook_directory)
     generated_path = ipynb_path.replace('stubs/notebooks/', generation_directory).replace('.ipynb', '_GENERATED_by_add_links.ipynb')
     generated_md_path = generated_path.replace('.ipynb', '.md')
     stub_md_path = generated_path.replace('.ipynb', '_stub.md')
@@ -44,6 +47,11 @@ def convert_ipynb_file_to_stub(ipynb_path):
     print('Executing: {}'.format(cmd))
     os.system(cmd)
 
+    # Copy original ipynb files to content/notebooks
+    cmd = 'cp {} {}'.format(ipynb_path, notebook_path)
+    print('Executing: {}'.format(cmd))
+    os.system(cmd)
+    
     # Convert ipynb files within generated directory
     support_path = generated_path.replace('.ipynb', '_files')
     support_directory = os.path.split(support_path)[-1]
@@ -65,6 +73,9 @@ def convert_ipynb_file_to_stub(ipynb_path):
     support_files = glob.glob(glob_str)
         
     # A: Write final .md file
+
+    download_text = '![{0}]({{filename}}/notebooks/{0})'.format(notebook_filename)
+    
     print('Reading generated Markdown file: {}'.format(generated_md_path))
     with open(generated_md_path, 'r') as f:
         md_lines = f.readlines()
@@ -78,6 +89,9 @@ def convert_ipynb_file_to_stub(ipynb_path):
     with open(stub_md_path, 'w') as f:
         for line in meta_lines:
             f.write(line)
+
+        f.write('Download original file: {}\n'.format(download_text))
+            
         for line_number, line in enumerate(md_lines):
             if len(line.split(support_directory)) > 1:
                 line = line.replace(support_directory, 'images')
@@ -132,7 +146,7 @@ def process_arguments(args):
     
     generated_files = glob.glob('content/*_GENERATED_by_add_links.md') \
                       + glob.glob('content/pages/*_GENERATED_by_add_links.md') \
-                      + glob.glob('content/notebooks/*_GENERATED_by_add_links.ipynb') 
+                      + glob.glob('content/notebooks/*.ipynb') 
     
     if args.clean_generated_files:
         for gfn in generated_files:

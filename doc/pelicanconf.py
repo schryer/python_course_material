@@ -37,6 +37,8 @@ DEFAULT_PAGINATION = 10
 #THEME = 'pelican-themes/subtle'
 THEME = 'pelican-themes/bootstrap2'
 
+STATIC_PATHS = ['images', 'notebooks']
+
 #from plugins.pelican_plugin_render_math import math
 #PLUGINS = [math,]
 
