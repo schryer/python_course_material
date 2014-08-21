@@ -74,7 +74,7 @@ def convert_ipynb_file_to_stub(ipynb_path):
         
     # A: Write final .md file
 
-    download_text = '![{0}]({{filename}}/notebooks/{0})'.format(notebook_filename)
+    download_link = '[{0}]({{filename}}/notebooks/{0})'.format(notebook_filename)
     
     print('Reading generated Markdown file: {}'.format(generated_md_path))
     with open(generated_md_path, 'r') as f:
@@ -90,7 +90,7 @@ def convert_ipynb_file_to_stub(ipynb_path):
         for line in meta_lines:
             f.write(line)
 
-        f.write('Download original file: {}\n'.format(download_text))
+        f.write('Download original file: {}\n'.format(download_link))
             
         for line_number, line in enumerate(md_lines):
             if len(line.split(support_directory)) > 1:
