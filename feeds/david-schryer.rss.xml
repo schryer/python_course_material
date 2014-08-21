@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scientific Programming with Python</title><link>http://schryer.github.io/python_course_material/</link><description></description><atom:link href="http://schryer.github.io/python_course_material/feeds/david-schryer.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 02 Sep 2014 11:00:00 +0300</lastBuildDate><item><title>Introducing containers in Python</title><link>http://schryer.github.io/python_course_material/python_3.html</link><description>&lt;h2&gt;Python &lt;em&gt;containers&lt;/em&gt;&lt;/h2&gt;
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Scientific Programming with Python</title><link>http://schryer.github.io/python_course_material/</link><description></description><atom:link href="http://schryer.github.io/python_course_material/feeds/david-schryer.rss.xml" rel="self"></atom:link><lastBuildDate>Tue, 02 Sep 2014 11:00:00 +0300</lastBuildDate><item><title>Introducing containers in Python</title><link>http://schryer.github.io/python_course_material/python_3.html</link><description>&lt;p&gt;Download original file: &lt;img alt="3_python_strings_as_containers.ipynb" src="http://schryer.github.io/python_course_material/notebooks/3_python_strings_as_containers.ipynb" /&gt;&lt;/p&gt;
+&lt;h2&gt;Python &lt;em&gt;containers&lt;/em&gt;&lt;/h2&gt;
 &lt;p&gt;Python &lt;em&gt;containers&lt;/em&gt; collect items together in one single collection that can be
 stored
 using a single variable&amp;nbsp;name.&lt;/p&gt;
@@ -137,7 +138,8 @@ this is rarely used&amp;nbsp;directly.&lt;/p&gt;
 &lt;p&gt;Hint: These are accessed using the dot notation.  Try typing a variable name
 like &lt;code&gt;I_say&lt;/code&gt; followed by a dot, and then hitting the &lt;code&gt;Tab&lt;/code&gt; key. (i.e. &lt;code&gt;I_say.&lt;/code&gt;
 followed by one or more &lt;code&gt;Tab&lt;/code&gt; keystrokes).  Try using the build-in &lt;a href="http://www.python.org" title="Python programming language"&gt;Python&lt;/a&gt; help
-function. (i.e. &lt;code&gt;help(I_say)&lt;/code&gt;)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Schryer</dc:creator><pubDate>Tue, 02 Sep 2014 11:00:00 +0300</pubDate><guid>tag:schryer.github.io,2014-09-02:python_course_material/python_3.html</guid><category>Python</category></item><item><title>Fundamental types in Python</title><link>http://schryer.github.io/python_course_material/python_2.html</link><description>&lt;h2&gt;Fundamental Python&amp;nbsp;types&lt;/h2&gt;
+function. (i.e. &lt;code&gt;help(I_say)&lt;/code&gt;)&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Schryer</dc:creator><pubDate>Tue, 02 Sep 2014 11:00:00 +0300</pubDate><guid>tag:schryer.github.io,2014-09-02:python_course_material/python_3.html</guid><category>Python</category></item><item><title>Fundamental types in Python</title><link>http://schryer.github.io/python_course_material/python_2.html</link><description>&lt;p&gt;Download original file: &lt;img alt="2_fundamental_python_types.ipynb" src="http://schryer.github.io/python_course_material/notebooks/2_fundamental_python_types.ipynb" /&gt;&lt;/p&gt;
+&lt;h2&gt;Fundamental Python&amp;nbsp;types&lt;/h2&gt;
 &lt;p&gt;Python has a number of fundamental types.  Please explore the code below to see
 what they&amp;nbsp;are.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10000000000000000000000000&lt;/span&gt;
@@ -197,7 +199,8 @@ round brackets &lt;code&gt;()&lt;/code&gt;to use (more on functions&amp;nbsp;lat
 each other.
 This is done by giving them common properties so that the same Python code is
 able to process different&amp;nbsp;types.&lt;/p&gt;
-&lt;h2&gt;Exercise:  Find the common properties between the types listed&amp;nbsp;above&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Schryer</dc:creator><pubDate>Tue, 02 Sep 2014 10:00:00 +0300</pubDate><guid>tag:schryer.github.io,2014-09-02:python_course_material/python_2.html</guid><category>Python</category></item><item><title>Python is not a natural language</title><link>http://schryer.github.io/python_course_material/python_1.html</link><description>&lt;h2&gt;Python is an &lt;strong&gt;unnatural&lt;/strong&gt;&amp;nbsp;language.&lt;/h2&gt;
+&lt;h2&gt;Exercise:  Find the common properties between the types listed&amp;nbsp;above&lt;/h2&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">David Schryer</dc:creator><pubDate>Tue, 02 Sep 2014 10:00:00 +0300</pubDate><guid>tag:schryer.github.io,2014-09-02:python_course_material/python_2.html</guid><category>Python</category></item><item><title>Python is not a natural language</title><link>http://schryer.github.io/python_course_material/python_1.html</link><description>&lt;p&gt;Download original file: &lt;img alt="1_reading_python_code.ipynb" src="http://schryer.github.io/python_course_material/notebooks/1_reading_python_code.ipynb" /&gt;&lt;/p&gt;
+&lt;h2&gt;Python is an &lt;strong&gt;unnatural&lt;/strong&gt;&amp;nbsp;language.&lt;/h2&gt;
 &lt;p&gt;Even if many words used in Python resemble English words, they
 are interpreted in a very different way.  It is best if one
 does not associate the English meaning with the Python meaning
