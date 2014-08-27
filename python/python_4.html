@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Keywords, __builtin__, and the Python standard library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="David Schryer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://schryer.github.io/python_course_material/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://schryer.github.io/python_course_material/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://schryer.github.io/python_course_material/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://schryer.github.io/python_course_material/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://schryer.github.io/python_course_material/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://schryer.github.io/python_course_material/" type="application/atom+xml" rel="alternate" title="Scientific Programming with Python ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://schryer.github.io/python_course_material/index.html">Scientific Programming with Python </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                  <li><a href="/python_course_material/">Home</a></li>
+                  <li><a href="/python_course_material/ipython/">Getting started with IPython notebook</a></li>
+                  <li><a href="/python_course_material/python/">Python notebooks</a></li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://schryer.github.io/python_course_material/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content" class="body">
+        <h1 class="entry-title">Keywords, __builtin__, and the Python standard library</h1>
+        <p>Download original file: <a href="http://schryer.github.io/python_course_material/notebooks/4_python_keywords.ipynb">4_python_keywords.ipynb</a></p>
+<h1>Python&nbsp;keywords</h1>
+<p>There are a limited number of keywords that form the Python&nbsp;language:</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">keyword</span>
+<span class="n">print</span><span class="p">(</span><span class="n">keyword</span><span class="p">.</span><span class="n">kwlist</span><span class="p">)</span>
+
+<span class="p">[</span><span class="err">&#39;</span><span class="n">False</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">None</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">True</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">and</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">as</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">assert</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">break</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">class</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">continue</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">def</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">del</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">elif</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">else</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">except</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">finally</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">for</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">from</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">global</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">if</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">import</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">in</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">is</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">lambda</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">nonlocal</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">not</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">or</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">pass</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">raise</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">return</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">try</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="k">while</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">with</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">yield</span><span class="err">&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<p>Note that variable names cannot be one of these&nbsp;keywords.</p>
+<p>In addition, variables cannot be one of the <code>__builtin__</code> objects (classes or
+functions) listed below (although some of these are [IPython] specific and are
+allowed outside of&nbsp;[IPython]).</p>
+<div class="highlight"><pre><span class="n">print</span><span class="p">(</span><span class="n">dir</span><span class="p">(</span><span class="n">__builtin__</span><span class="p">))</span>
+
+<span class="p">[</span><span class="err">&#39;</span><span class="n">ArithmeticError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">AssertionError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">AttributeError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">BaseException</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">BlockingIOError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">BrokenPipeError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">BufferError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">BytesWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ChildProcessError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ConnectionAbortedError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ConnectionError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ConnectionRefusedError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ConnectionResetError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">DeprecationWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">EOFError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Ellipsis</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">EnvironmentError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Exception</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">False</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">FileExistsError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">FileNotFoundError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">FloatingPointError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">FutureWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">GeneratorExit</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">IOError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ImportError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ImportWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">IndentationError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">IndexError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">InterruptedError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">IsADirectoryError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">KeyError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">KeyboardInterrupt</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">LookupError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">MemoryError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">NameError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">None</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">NotADirectoryError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">NotImplemented</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">NotImplementedError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">OSError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">OverflowError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">PendingDeprecationWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">PermissionError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ProcessLookupError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ReferenceError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ResourceWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">RuntimeError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">RuntimeWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">StopIteration</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">SyntaxError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">SyntaxWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">SystemError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">SystemExit</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">TabError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">TimeoutError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">True</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">TypeError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">UnboundLocalError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">UnicodeDecodeError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">UnicodeEncodeError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">UnicodeError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">UnicodeTranslateError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">UnicodeWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">UserWarning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ValueError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Warning</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ZeroDivisionError</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__IPYTHON__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__IPYTHON__active</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__build_class__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__debug__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__doc__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__import__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__loader__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__name__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__package__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">__spec__</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">abs</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">all</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">any</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ascii</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bin</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="kt">bool</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bytearray</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">bytes</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">callable</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">chr</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">classmethod</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">compile</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">complex</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">copyright</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">credits</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">delattr</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">dict</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">dir</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">divmod</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">dreload</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">enumerate</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">eval</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">exec</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">filter</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="kt">float</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">format</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">frozenset</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">get_ipython</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">getattr</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">globals</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hasattr</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hash</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">help</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">hex</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">id</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">input</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="kt">int</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">isinstance</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">issubclass</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">iter</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">len</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">license</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">list</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">locals</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">map</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">max</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">memoryview</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">min</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">next</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">object</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">oct</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">open</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">ord</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">pow</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">print</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">property</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">range</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">repr</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">reversed</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">round</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">set</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">setattr</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">slice</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">sorted</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">staticmethod</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">str</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">sum</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">super</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">tuple</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">type</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">vars</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">zip</span><span class="err">&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<h1>Built in Python&nbsp;components</h1>
+<p>In addition to both keywords and <code>__builtin__</code> objects, the Python standard
+library has very many built-in features and routines that make it a joy to
+program&nbsp;in.</p>
+<p><strong>Warning</strong> It is best if you never assign a new variable to have the same name
+as that found in the Python standard&nbsp;library</p>
+<p>The following list includes both the hidden and standard library components from
+your computer. The code to generate this list is found below, however, I do not
+expect you to understand this code so view at your own risk&nbsp;;)</p>
+<p><strong>Python standard&nbsp;library</strong></p>
+<div class="highlight"><pre><span class="n">sndhdr</span> <span class="n">textwrap</span> <span class="n">cmd</span> <span class="n">mimetypes</span> <span class="n">io</span> <span class="n">pyclbr</span> <span class="n">linecache</span> <span class="n">termios</span> <span class="n">sunau</span> <span class="n">site</span> <span class="n">mailcap</span>
+<span class="n">re</span> <span class="n">pdb</span> <span class="n">sysconfig</span> <span class="n">xmlrpc</span> <span class="n">pstats</span> <span class="n">crypt</span> <span class="n">selectors</span> <span class="n">asynchat</span> <span class="n">fnmatch</span> <span class="n">locale</span>
+<span class="n">xdrlib</span> <span class="n">importlib</span> <span class="n">plistlib</span> <span class="n">datetime</span> <span class="n">types</span> <span class="n">ftplib</span> <span class="n">imp</span> <span class="n">keyword</span> <span class="n">queue</span> <span class="n">gettext</span>
+<span class="n">glob</span> <span class="k">enum</span> <span class="n">pty</span> <span class="n">this</span> <span class="n">shlex</span> <span class="n">string</span> <span class="n">os</span> <span class="n">pickle</span> <span class="n">traceback</span> <span class="n">aifc</span> <span class="n">imghdr</span> <span class="n">http</span> <span class="n">timeit</span>
+<span class="n">resource</span> <span class="n">parser</span> <span class="n">getpass</span> <span class="n">tabnanny</span> <span class="n">codeop</span> <span class="n">copyreg</span> <span class="n">socket</span> <span class="n">token</span> <span class="n">xml</span> <span class="n">cProfile</span>
+<span class="n">asyncore</span> <span class="n">functools</span> <span class="n">sre_parse</span> <span class="n">pipes</span> <span class="n">fileinput</span> <span class="n">nis</span> <span class="n">threading</span> <span class="n">distutils</span> <span class="n">wsgiref</span>
+<span class="n">tracemalloc</span> <span class="n">colorsys</span> <span class="n">antigravity</span> <span class="n">ctypes</span> <span class="n">bisect</span> <span class="n">symtable</span> <span class="n">platform</span> <span class="k">struct</span>
+<span class="n">warnings</span> <span class="n">email</span> <span class="n">gzip</span> <span class="n">formatter</span> <span class="n">readline</span> <span class="n">dummy_threading</span> <span class="n">bz2</span> <span class="n">uuid</span> <span class="n">imaplib</span>
+<span class="n">py_compile</span> <span class="n">pkgutil</span> <span class="n">urllib</span> <span class="n">decimal</span> <span class="n">asyncio</span> <span class="n">fractions</span> <span class="n">venv</span> <span class="n">idlelib</span> <span class="n">collections</span>
+<span class="n">bdb</span> <span class="n">csv</span> <span class="n">sre_compile</span> <span class="n">dis</span> <span class="n">stringprep</span> <span class="n">base64</span> <span class="n">json</span> <span class="n">rlcompleter</span> <span class="n">configparser</span>
+<span class="n">codecs</span> <span class="n">smtpd</span> <span class="n">audioop</span> <span class="n">mailbox</span> <span class="n">turtle</span> <span class="n">posixpath</span> <span class="n">poplib</span> <span class="n">sre_constants</span> <span class="n">numbers</span>
+<span class="n">mmap</span> <span class="n">runpy</span> <span class="n">cgi</span> <span class="n">lib2to3</span> <span class="n">symbol</span> <span class="n">statistics</span> <span class="n">pprint</span> <span class="n">inspect</span> <span class="n">html</span> <span class="n">macpath</span>
+<span class="n">unittest</span> <span class="n">operator</span> <span class="n">compileall</span> <span class="n">sitecustomize</span> <span class="n">sqlite3</span> <span class="n">copy</span> <span class="n">trace</span> <span class="n">uu</span> <span class="n">tempfile</span>
+<span class="n">heapq</span> <span class="n">quopri</span> <span class="n">hashlib</span> <span class="n">tkinter</span> <span class="n">nntplib</span> <span class="n">logging</span> <span class="n">doctest</span> <span class="n">shelve</span> <span class="n">fpectl</span> <span class="n">sched</span>
+<span class="n">opcode</span> <span class="n">macurl2path</span> <span class="n">concurrent</span> <span class="n">optparse</span> <span class="n">shutil</span> <span class="n">ntpath</span> <span class="n">argparse</span> <span class="n">lzma</span> <span class="n">pathlib</span>
+<span class="n">webbrowser</span> <span class="n">contextlib</span> <span class="n">hmac</span> <span class="n">getopt</span> <span class="n">netrc</span> <span class="n">tty</span> <span class="n">pydoc</span> <span class="n">dbm</span> <span class="n">subprocess</span> <span class="n">weakref</span>
+<span class="n">encodings</span> <span class="n">calendar</span> <span class="n">modulefinder</span> <span class="n">xxlimited</span> <span class="n">test</span> <span class="n">nturl2path</span> <span class="n">socketserver</span> <span class="n">stat</span>
+<span class="n">pydoc_data</span> <span class="n">telnetlib</span> <span class="n">tarfile</span> <span class="n">cmath</span> <span class="n">smtplib</span> <span class="n">curses</span> <span class="n">chunk</span> <span class="n">pickletools</span> <span class="n">zipfile</span>
+<span class="n">multiprocessing</span> <span class="n">random</span> <span class="n">wave</span> <span class="n">genericpath</span> <span class="n">code</span> <span class="n">binhex</span> <span class="n">filecmp</span> <span class="n">ast</span> <span class="n">difflib</span> <span class="n">ssl</span>
+<span class="n">ipaddress</span> <span class="n">tokenize</span> <span class="n">abc</span> <span class="n">reprlib</span> <span class="n">cgitb</span> <span class="n">profile</span> <span class="n">ossaudiodev</span>
+</pre></div>
+
+
+<p><strong>Python hidden standard&nbsp;library</strong></p>
+<div class="highlight"><pre><span class="n">_markupbase</span> <span class="n">_testcapi</span> <span class="n">_compat_pickle</span> <span class="n">_json</span> <span class="n">_testimportmultiple</span> <span class="n">_curses</span>
+<span class="n">_codecs_cn</span> <span class="n">_weakrefset</span> <span class="n">_strptime</span> <span class="n">__phello__</span> <span class="n">_osx_support</span> <span class="n">_sysconfigdata</span>
+<span class="n">_ctypes</span> <span class="n">_dbm</span> <span class="n">_bz2</span> <span class="n">_codecs_tw</span> <span class="n">_collections_abc</span> <span class="n">_multibytecodec</span>
+<span class="n">_multiprocessing</span> <span class="n">_crypt</span> <span class="n">_testbuffer</span> <span class="n">_hashlib</span> <span class="n">_codecs_jp</span> <span class="n">_threading_local</span>
+<span class="n">_ssl</span> <span class="n">_pyio</span> <span class="n">_codecs_kr</span> <span class="n">_opcode</span> <span class="n">_codecs_hk</span> <span class="n">_sitebuiltins</span> <span class="n">_decimal</span> <span class="n">_bootlocale</span>
+<span class="n">_lzma</span> <span class="n">_sqlite3</span> <span class="n">_dummy_thread</span> <span class="n">_codecs_iso2022</span> <span class="n">_lsprof</span> <span class="n">__future__</span> <span class="n">_ctypes_test</span>
+<span class="n">_curses_panel</span> <span class="n">_csv</span> <span class="n">_gdbm</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span class="s-Atom">import</span> <span class="s-Atom">os</span>
+<span class="s-Atom">import</span> <span class="s-Atom">imp</span>
+<span class="s-Atom">import</span> <span class="s-Atom">sys</span>
+<span class="s-Atom">import</span> <span class="s-Atom">pprint</span>
+<span class="s-Atom">import</span> <span class="s-Atom">distutils</span><span class="p">.</span><span class="s-Atom">sysconfig</span>
+
+<span class="s-Atom">std_lib</span> <span class="o">=</span> <span class="s-Atom">distutils</span><span class="p">.</span><span class="s-Atom">sysconfig</span><span class="p">.</span><span class="nf">get_python_lib</span><span class="p">(</span><span class="s-Atom">standard_lib</span><span class="o">=</span><span class="nv">True</span><span class="p">)</span>
+
+<span class="s-Atom">std_set</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+<span class="s-Atom">hidden_set</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+<span class="s-Atom">for</span> <span class="s-Atom">top</span><span class="p">,</span> <span class="s-Atom">dirs</span><span class="p">,</span> <span class="s-Atom">files</span> <span class="s-Atom">in</span> <span class="s-Atom">os</span><span class="p">.</span><span class="nf">walk</span><span class="p">(</span><span class="s-Atom">std_lib</span><span class="p">)</span><span class="s-Atom">:</span>
+    <span class="s-Atom">for</span> <span class="s-Atom">fn</span> <span class="s-Atom">in</span> <span class="nn">files</span><span class="p">:</span>
+
+        <span class="s-Atom">#</span> <span class="nv">Remove</span> <span class="s-Atom">the</span> <span class="s-Atom">std_lib</span> <span class="s-Atom">path</span> <span class="s-Atom">from</span> <span class="s-Atom">the</span> <span class="s-Atom">path</span>
+        <span class="s-Atom">prefix</span> <span class="o">=</span> <span class="s-Atom">top</span><span class="p">.</span><span class="nf">replace</span><span class="p">(</span><span class="s-Atom">std_lib</span><span class="p">,</span> <span class="s-Atom">&#39;&#39;</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="s-Atom">os</span><span class="p">.</span><span class="s-Atom">path</span><span class="p">.</span><span class="s-Atom">sep</span><span class="p">,</span> <span class="s-Atom">&#39;&#39;</span><span class="p">)</span>
+
+        <span class="s-Atom">if</span> <span class="s-Atom">prefix</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s-Atom">&#39;site-packages&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="s-Atom">:</span>
+            <span class="s-Atom">continue</span>
+        <span class="s-Atom">if</span> <span class="s-Atom">fn</span> <span class="o">==</span> <span class="s-Atom">&#39;__init__.py&#39;:</span>
+            <span class="s-Atom">item</span> <span class="o">=</span> <span class="s-Atom">top</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="s-Atom">std_lib</span><span class="p">)</span> <span class="o">+</span> <span class="m">1</span><span class="s-Atom">:</span><span class="p">]</span>
+        <span class="s-Atom">elif</span> <span class="s-Atom">fn</span><span class="p">[</span><span class="o">-</span><span class="m">3</span><span class="s-Atom">:</span><span class="p">]</span> <span class="o">==</span> <span class="s-Atom">&#39;.py&#39;:</span>
+            <span class="s-Atom">item</span> <span class="o">=</span> <span class="s-Atom">os</span><span class="p">.</span><span class="s-Atom">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s-Atom">prefix</span><span class="p">,</span> <span class="s-Atom">fn</span><span class="p">)[:-</span><span class="m">3</span><span class="p">]</span>
+        <span class="s-Atom">elif</span> <span class="s-Atom">fn</span><span class="p">[</span><span class="o">-</span><span class="m">3</span><span class="s-Atom">:</span><span class="p">]</span> <span class="o">==</span> <span class="s-Atom">&#39;.so&#39;</span> <span class="s-Atom">and</span> <span class="s-Atom">top</span><span class="p">[</span><span class="o">-</span><span class="m">11</span><span class="s-Atom">:</span><span class="p">]</span> <span class="o">==</span> <span class="s-Atom">&#39;lib-dynload&#39;:</span>
+            <span class="s-Atom">item</span> <span class="o">=</span> <span class="s-Atom">fn</span><span class="p">[</span><span class="m">0</span><span class="p">:-</span><span class="m">3</span><span class="p">]</span>
+
+        <span class="s-Atom">#</span> <span class="nv">Only</span> <span class="s-Atom">consider</span> <span class="s-Atom">top</span> <span class="s-Atom">level</span> <span class="s-Atom">imports</span>
+        <span class="s-Atom">item</span> <span class="o">=</span> <span class="s-Atom">item</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s-Atom">os</span><span class="p">.</span><span class="s-Atom">path</span><span class="p">.</span><span class="s-Atom">sep</span><span class="p">)[</span><span class="m">0</span><span class="p">]</span>
+        <span class="s-Atom">if</span> <span class="s-Atom">item</span><span class="p">.</span><span class="nf">count</span><span class="p">(</span><span class="s-Atom">&#39;.&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="s-Atom">:</span>
+            <span class="s-Atom">item</span> <span class="o">=</span> <span class="s-Atom">item</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s-Atom">&#39;.&#39;</span><span class="p">)[</span><span class="m">0</span><span class="p">]</span>
+
+        <span class="s-Atom">#</span> <span class="nv">Only</span> <span class="s-Atom">add</span> <span class="s-Atom">items</span> <span class="s-Atom">that</span> <span class="s-Atom">you</span> <span class="s-Atom">can</span> <span class="s-Atom">actually</span> <span class="s-Atom">import</span>
+        <span class="nn">try</span><span class="p">:</span>
+            <span class="s-Atom">imp</span><span class="p">.</span><span class="nf">find_module</span><span class="p">(</span><span class="s-Atom">item</span><span class="p">)</span>
+        <span class="s-Atom">except</span> <span class="nv">ImportError</span> <span class="s-Atom">as</span> <span class="nn">e</span><span class="p">:</span>
+            <span class="s-Atom">continue</span>
+
+        <span class="s-Atom">if</span> <span class="s-Atom">item</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="s-Atom">&#39;_&#39;</span><span class="p">)</span><span class="s-Atom">:</span>
+            <span class="s-Atom">hidden_set</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="s-Atom">item</span><span class="p">)</span>
+        <span class="nn">else</span><span class="p">:</span>
+            <span class="s-Atom">std_set</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="s-Atom">item</span><span class="p">)</span>
+
+<span class="s-Atom">def</span> <span class="nf">format_set</span><span class="p">(</span><span class="s-Atom">raw_set</span><span class="p">)</span><span class="s-Atom">:</span>
+    <span class="s-Atom">return</span> <span class="s-Atom">pprint</span><span class="p">.</span><span class="nf">pformat</span><span class="p">(</span><span class="s-Atom">&#39; &#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="s-Atom">raw_set</span><span class="p">))).</span><span class="nf">replace</span><span class="p">(</span><span class="s2">&quot;&#39;&quot;</span><span class="p">,</span> <span class="s-Atom">&#39;&#39;</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="s-Atom">&#39;**Python standard library**\n\n```\n{}\n```&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="nf">format_set</span><span class="p">(</span><span class="s-Atom">std_set</span><span class="p">)))</span>
+<span class="nf">print</span><span class="p">(</span><span class="s-Atom">&#39;\n**Python hidden standard library**\n\n```\n{}\n```&#39;</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="nf">format_set</span><span class="p">(</span><span class="s-Atom">hidden_set</span><span class="p">)))</span>
+</pre></div>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://schryer.github.io/python_course_material/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://schryer.github.io/python_course_material/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
