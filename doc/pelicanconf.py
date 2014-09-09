@@ -39,6 +39,11 @@ THEME = 'pelican-themes/bootstrap2'
 
 STATIC_PATHS = ['images', 'notebooks']
 
+DISPLAY_PAGES_ON_MENU = False
+MENUITEMS = [('Home', '/{}/'.format(SITEURL)),
+             ('Getting started with IPython notebook', '/{}/ipython/'.format(SITEURL)),
+             ('Python notebooks', '/{}/python/'.format(SITEURL))]
+
 #from plugins.pelican_plugin_render_math import math
 #PLUGINS = [math,]
 

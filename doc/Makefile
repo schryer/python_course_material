@@ -52,15 +52,17 @@ help:
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html'
 	@echo '                                                                       '
 
+preparecontent:
+	python move_python_notebooks_and_construct_metadata.py
+	python add_links.py
+
 clean:
 	python add_links.py --clean
 
-html:
-	python add_links.py
+html: preparecontent
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
-regenerate:
-	python add_links.py
+regenerate: preparecontent
 	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
 serve:
@@ -82,8 +84,7 @@ stopserver:
 	kill -9 `cat srv.pid`
 	@echo 'Stopped Pelican and SimpleHTTPServer processes running in background.'
 
-publish:
-	python add_links.py
+publish: preparecontent
 	$(PELICAN) $(INPUTDIR) -o $(OUTPUTDIR) -s $(PUBLISHCONF) $(PELICANOPTS)
 
 ssh_upload: publish

@@ -7,7 +7,7 @@ __pycache__/
 doc/output/
 doc/content/
 doc/cache/
-doc/stubs/notebooks/generated/
+doc/stubs/python/
 
 # IPython files
 .ipynb_checkpoints/

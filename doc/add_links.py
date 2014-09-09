@@ -27,13 +27,19 @@ Each markdown file in stubs/ is converted and written to output/
 def convert_ipynb_file_to_stub(ipynb_path):
 
     notebook_filename = os.path.split(ipynb_path)[-1]
-    generation_directory = 'stubs/notebooks/generated/'
+    generation_directory = 'stubs/python/generated/'
+
+    if not os.path.exists(generation_directory):
+        cmd = 'mkdir {}'.format(generation_directory)
+        print('Making generation directory by Executing: {}'.format(cmd))
+        os.system(cmd)
+    
     notebook_directory = 'content/notebooks/'
-    notebook_path = ipynb_path.replace('stubs/notebooks/', notebook_directory)
-    generated_path = ipynb_path.replace('stubs/notebooks/', generation_directory).replace('.ipynb', '_GENERATED_by_add_links.ipynb')
+    notebook_path = ipynb_path.replace('stubs/python/', notebook_directory)
+    generated_path = ipynb_path.replace('stubs/python/', generation_directory).replace('.ipynb', '_GENERATED_by_add_links.ipynb')
     generated_md_path = generated_path.replace('.ipynb', '.md')
     stub_md_path = generated_path.replace('.ipynb', '_stub.md')
-    final_md_path = stub_md_path.replace(generation_directory, 'content/')
+    final_md_path = stub_md_path.replace(generation_directory, 'content/pages/')
         
     # Copy original files to generated directory    
     original_meta_path = ipynb_path.replace('.ipynb', '.ipynb-meta')
@@ -75,6 +81,7 @@ def convert_ipynb_file_to_stub(ipynb_path):
     # A: Write final .md file
 
     download_link = '[{0}]({{filename}}/notebooks/{0})'.format(notebook_filename)
+    nbviewer_link = '[{0}](http://nbviewer.ipython.org/url/schryer.github.io/python_course_material/notebooks/{0})'.format(notebook_filename)
     
     print('Reading generated Markdown file: {}'.format(generated_md_path))
     with open(generated_md_path, 'r') as f:
@@ -90,7 +97,7 @@ def convert_ipynb_file_to_stub(ipynb_path):
         for line in meta_lines:
             f.write(line)
 
-        f.write('Download original file: {}\n'.format(download_link))
+        f.write('\n\nDownload original file: {}\n\nView original file in nbviewer: {}\n\n'.format(download_link, nbviewer_link))
             
         for line_number, line in enumerate(md_lines):
             if len(line.split(support_directory)) > 1:
@@ -140,13 +147,17 @@ def make_content_file_from_stub(stub_filename, generated_filename, link_filename
 
 def process_arguments(args):
 
-    markdown_files = glob.glob('stubs/*.md') + glob.glob('stubs/pages/*.md')
-    ipynb_files = glob.glob('stubs/notebooks/*.ipynb')
-    ipynb_meta_files = glob.glob('stubs/notebooks/*.ipynb-meta')
+    markdown_files = glob.glob('stubs/*.md') + glob.glob('stubs/pages/*.md') 
+    ipynb_files = glob.glob('stubs/python/*.ipynb')
+    ipynb_meta_files = glob.glob('stubs/python/*.ipynb-meta')
     
     generated_files = glob.glob('content/*_GENERATED_by_add_links.md') \
                       + glob.glob('content/pages/*_GENERATED_by_add_links.md') \
-                      + glob.glob('content/notebooks/*.ipynb') 
+                      + glob.glob('content/notebooks/*.ipynb') \
+                      + glob.glob('stubs/python/*.ipynb') \
+                      + glob.glob('stubs/python/*.ipynb-meta')\
+                      + ['stubs/pages/python_index.md']
+
     
     if args.clean_generated_files:
         for gfn in generated_files:
