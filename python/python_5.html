@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Elementwise and vector operations in Python using Numpy and Pandas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="David Schryer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://schryer.github.io/python_course_material/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://schryer.github.io/python_course_material/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://schryer.github.io/python_course_material/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://schryer.github.io/python_course_material/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://schryer.github.io/python_course_material/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://schryer.github.io/python_course_material/" type="application/atom+xml" rel="alternate" title="Scientific Programming with Python ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://schryer.github.io/python_course_material/index.html">Scientific Programming with Python </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                  <li><a href="/python_course_material/">Home</a></li>
+                  <li><a href="/python_course_material/ipython/">Getting started with IPython notebook</a></li>
+                  <li><a href="/python_course_material/python/">Python notebooks</a></li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://schryer.github.io/python_course_material/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content" class="body">
+        <h1 class="entry-title">Elementwise and vector operations in Python using Numpy and Pandas</h1>
+        <p>Download original file: <a href="http://schryer.github.io/python_course_material/notebooks/5_elementwise_and_vector_operations.ipynb">5_elementwise_and_vector_operations.ipynb</a></p>
+<h1>Speeding up Python code using elementwise&nbsp;computation</h1>
+<p>Standard Python is fast enough to satisfy the computational
+needs of most users. However, some problems require even more
+rapid computation. One technique for speeding up computational
+speed is performing calculations <code>elementwise</code> using&nbsp;arrays.</p>
+<p>To illustrate how effective this technique can be, we will use
+a function to help us compare the computational time of performing
+the same calculation different&nbsp;ways.</p>
+<div class="highlight"><pre><span class="kr">import</span> <span class="nx">time</span>
+
+<span class="nx">def</span> <span class="nx">time_it</span><span class="p">(</span><span class="nx">msg</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="nx">verbose</span><span class="o">=</span><span class="nx">True</span><span class="p">,</span> <span class="nx">start</span><span class="o">=</span><span class="nx">False</span><span class="p">)</span><span class="o">:</span>
+    <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    Used to output the time difference between calls to time_it.</span>
+
+<span class="s1">    Parameters</span>
+<span class="s1">    ==========</span>
+<span class="s1">    msg : str (optional)</span>
+<span class="s1">          This message will be printed before the time value in seconds</span>
+
+<span class="s1">    verbose: boolean (optional, default=True)</span>
+<span class="s1">             If True, the function will print out the message and time.</span>
+
+<span class="s1">    start : boolean</span>
+<span class="s1">            If True, an initial time is stored in a global variable.</span>
+
+<span class="s1">    Returns</span>
+<span class="s1">    =======</span>
+<span class="s1">    time_difference : float</span>
+<span class="s1">                      The time difference in seconds as a floating point value.</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+    <span class="nx">def</span> <span class="nx">_set_start</span><span class="p">()</span><span class="o">:</span>
+        <span class="nx">global</span> <span class="nx">_start_time_for_timing</span>
+        <span class="nx">_start_time_for_timing</span> <span class="o">=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">time</span><span class="p">()</span> 
+        <span class="k">if</span> <span class="nx">verbose</span> <span class="nx">and</span> <span class="nx">start</span><span class="o">:</span>
+            <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Setting initial time to {} seconds past epoch.&#39;</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="nx">_start_time_for_timing</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="nx">start</span><span class="o">:</span>
+        <span class="nx">_set_start</span><span class="p">()</span>
+
+    <span class="nx">elif</span> <span class="s1">&#39;_start_time_for_timing&#39;</span> <span class="k">in</span> <span class="nx">globals</span><span class="p">()</span><span class="o">:</span>
+        <span class="nx">dt</span> <span class="o">=</span> <span class="nx">time</span><span class="p">.</span><span class="nx">time</span><span class="p">()</span> <span class="o">-</span> <span class="nx">_start_time_for_timing</span>
+
+        <span class="k">if</span> <span class="nx">verbose</span><span class="o">:</span>
+            <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;{} {:.4f} seconds&#39;</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="nx">msg</span><span class="p">,</span> <span class="nx">dt</span><span class="p">))</span>
+
+        <span class="nx">_set_start</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nx">dt</span>
+
+    <span class="k">else</span><span class="o">:</span>              
+        <span class="nx">raise</span> <span class="nx">UserWarning</span><span class="p">(</span><span class="s2">&quot;Start time not set.&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Use numpy to perform elementwise&nbsp;calculations</h3>
+<p>The Python package <code>numpy</code> is widely used by the Python
+community to perform both elementwise and matrix
+calculations in Python. The <code>numpy</code> package provides an
+array type, <code>numpy.ndarray</code>, that redefines almost all
+basic Python operations such as <code>+</code> and <code>+=</code> to work on
+entire arrays instead of single&nbsp;objects.</p>
+<p>Now let us see how this can speed up calculation&nbsp;time:</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+
+<span class="cp"># Set the array length</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">5000000</span>
+
+<span class="n">python_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
+<span class="n">numpy_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Add</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">each</span> <span class="n">element</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">time_it</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">False</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">item</span> <span class="n">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">python_list</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">python_list</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">dtA</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="err">&#39;</span><span class="n">A</span><span class="p">)</span> <span class="n">Using</span> <span class="n">a</span> <span class="n">Python</span> <span class="n">loop</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">python_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">item</span> <span class="n">in</span> <span class="n">python_list</span><span class="p">]</span>
+<span class="n">dtB</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="err">&#39;</span><span class="n">B</span><span class="p">)</span> <span class="n">Using</span> <span class="n">a</span> <span class="n">Python</span> <span class="n">list</span> <span class="n">comprehension</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">python_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">N</span>
+<span class="n">python_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">item</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">item</span> <span class="n">in</span> <span class="n">python_list</span><span class="p">]</span>
+<span class="n">dtC</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="err">&#39;</span><span class="n">C</span><span class="p">)</span> <span class="n">Using</span> <span class="n">a</span> <span class="n">Python</span> <span class="n">list</span> <span class="n">comprehension</span> <span class="p">(</span><span class="n">including</span> <span class="n">list</span> <span class="n">creation</span><span class="p">)</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">python_list</span> <span class="o">=</span> <span class="n">list</span><span class="p">(</span><span class="n">map</span><span class="p">(</span><span class="n">lambda</span> <span class="n">a</span><span class="o">:</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">python_list</span><span class="p">))</span>
+<span class="n">dtD</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="err">&#39;</span><span class="n">D</span><span class="p">)</span> <span class="n">Using</span> <span class="n">Python</span> <span class="n">iterators</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">numpy_array</span> <span class="o">=</span> <span class="n">numpy_array</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">dtE</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="err">&#39;</span><span class="n">E</span><span class="p">)</span> <span class="n">The</span> <span class="n">elementwise</span> <span class="n">way</span> <span class="n">using</span> <span class="n">numpy</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">numpy_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">numpy_array</span> <span class="o">=</span> <span class="n">numpy_array</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">dtF</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="err">&#39;</span><span class="n">F</span><span class="p">)</span> <span class="n">The</span> <span class="n">elementwise</span> <span class="n">way</span> <span class="n">using</span> <span class="n">numpy</span> <span class="p">(</span><span class="n">including</span> <span class="n">array</span> <span class="n">creation</span><span class="p">)</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">numpy_array</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">dtG</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="err">&#39;</span><span class="n">G</span><span class="p">)</span> <span class="n">The</span> <span class="n">fancy</span> <span class="n">elementwise</span> <span class="n">way</span> <span class="n">using</span> <span class="n">numpy</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">numpy_array</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">ones</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">numpy_array</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">dtH</span> <span class="o">=</span> <span class="n">time_it</span><span class="p">(</span><span class="err">&#39;</span><span class="n">H</span><span class="p">)</span> <span class="n">The</span> <span class="n">fancy</span> <span class="n">elementwise</span> <span class="n">way</span> <span class="n">using</span> <span class="n">numpy</span> <span class="p">(</span><span class="n">including</span> <span class="n">array</span> <span class="n">creation</span><span class="p">)</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">nConclusion</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">tThe</span> <span class="n">fastest</span> <span class="n">Python</span> <span class="n">method</span> <span class="n">is</span> <span class="n">using</span> <span class="n">a</span> <span class="n">list</span> <span class="n">comprehension</span><span class="o">:</span> <span class="p">{</span><span class="o">:</span><span class="mf">.4f</span><span class="p">}</span> <span class="n">seconds</span><span class="p">.</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtB</span><span class="p">))</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">nConclusion</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">tThe</span> <span class="n">fastest</span> <span class="n">elementwise</span> <span class="n">method</span> <span class="n">is</span> <span class="n">the</span> <span class="n">fancy</span> <span class="n">way</span> <span class="p">(</span><span class="n">with</span> <span class="o">+=</span><span class="p">)</span><span class="o">:</span> <span class="p">{</span><span class="o">:</span><span class="mf">.4f</span><span class="p">}</span> <span class="n">seconds</span><span class="p">.</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtG</span><span class="p">))</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">nConclusion</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">tThe</span> <span class="n">fastest</span> <span class="n">elementwise</span> <span class="n">approach</span> <span class="n">including</span> <span class="n">array</span> <span class="n">creation</span> <span class="n">is</span> <span class="p">{</span><span class="o">:</span><span class="mf">.0f</span><span class="p">}</span> <span class="n">times</span> <span class="n">faster</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtC</span><span class="o">/</span><span class="n">dtH</span><span class="p">)</span> <span class="o">+</span>\
+      <span class="err">&#39;\</span><span class="n">n</span><span class="err">\</span><span class="n">tthan</span> <span class="n">the</span> <span class="n">fastest</span> <span class="n">native</span> <span class="n">Python</span> <span class="n">approach</span> <span class="n">including</span> <span class="n">list</span> <span class="n">creation</span><span class="p">.</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">nConclusion</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">tThe</span> <span class="n">fastest</span> <span class="n">elementwise</span> <span class="n">approach</span> <span class="n">is</span> <span class="p">{</span><span class="o">:</span><span class="mf">.0f</span><span class="p">}</span> <span class="n">times</span> <span class="n">faster</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">dtB</span><span class="o">/</span><span class="n">dtG</span><span class="p">)</span> <span class="o">+</span>\
+      <span class="err">&#39;\</span><span class="n">n</span><span class="err">\</span><span class="n">tthan</span> <span class="n">the</span> <span class="n">fastest</span> <span class="n">native</span> <span class="n">Python</span> <span class="n">approach</span><span class="p">.</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">nFinal</span> <span class="n">conclusion</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">tElementwise</span> <span class="n">operations</span> <span class="n">can</span> <span class="n">speed</span> <span class="n">up</span> <span class="n">your</span> <span class="n">code</span> <span class="n">significantly</span> <span class="n">and</span> <span class="n">the</span> <span class="n">speed</span> <span class="n">up</span><span class="err">&#39;</span> 
+      <span class="err">&#39;\</span><span class="n">n</span><span class="err">\</span><span class="n">tis</span> <span class="n">more</span> <span class="n">dramatic</span> <span class="k">if</span> <span class="n">the</span> <span class="n">array</span> <span class="n">object</span> <span class="n">is</span> <span class="n">used</span> <span class="k">for</span> <span class="n">more</span> <span class="n">than</span> <span class="n">one</span> <span class="n">elementwise</span> <span class="n">operation</span><span class="p">.</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">Add</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">each</span> <span class="n">element</span><span class="o">:</span>
+
+<span class="n">A</span><span class="p">)</span> <span class="n">Using</span> <span class="n">a</span> <span class="n">Python</span> <span class="n">loop</span><span class="o">:</span> <span class="mf">1.2244</span> <span class="n">seconds</span>
+<span class="n">B</span><span class="p">)</span> <span class="n">Using</span> <span class="n">a</span> <span class="n">Python</span> <span class="n">list</span> <span class="n">comprehension</span><span class="o">:</span> <span class="mf">0.3227</span> <span class="n">seconds</span>
+<span class="n">C</span><span class="p">)</span> <span class="n">Using</span> <span class="n">a</span> <span class="n">Python</span> <span class="n">list</span> <span class="n">comprehension</span> <span class="p">(</span><span class="n">including</span> <span class="n">list</span> <span class="n">creation</span><span class="p">)</span><span class="o">:</span> <span class="mf">0.4364</span> <span class="n">seconds</span>
+<span class="n">D</span><span class="p">)</span> <span class="n">Using</span> <span class="n">Python</span> <span class="n">iterators</span><span class="o">:</span> <span class="mf">0.8780</span> <span class="n">seconds</span>
+<span class="n">E</span><span class="p">)</span> <span class="n">The</span> <span class="n">elementwise</span> <span class="n">way</span> <span class="n">using</span> <span class="n">numpy</span><span class="o">:</span> <span class="mf">0.0419</span> <span class="n">seconds</span>
+<span class="n">F</span><span class="p">)</span> <span class="n">The</span> <span class="n">elementwise</span> <span class="n">way</span> <span class="n">using</span> <span class="n">numpy</span> <span class="p">(</span><span class="n">including</span> <span class="n">array</span> <span class="n">creation</span><span class="p">)</span><span class="o">:</span> <span class="mf">0.0793</span> <span class="n">seconds</span>
+<span class="n">G</span><span class="p">)</span> <span class="n">The</span> <span class="n">fancy</span> <span class="n">elementwise</span> <span class="n">way</span> <span class="n">using</span> <span class="n">numpy</span><span class="o">:</span> <span class="mf">0.0101</span> <span class="n">seconds</span>
+<span class="n">H</span><span class="p">)</span> <span class="n">The</span> <span class="n">fancy</span> <span class="n">elementwise</span> <span class="n">way</span> <span class="n">using</span> <span class="n">numpy</span> <span class="p">(</span><span class="n">including</span> <span class="n">array</span> <span class="n">creation</span><span class="p">)</span><span class="o">:</span> <span class="mf">0.0485</span> <span class="n">seconds</span>
+
+<span class="nl">Conclusion:</span>
+    <span class="n">The</span> <span class="n">fastest</span> <span class="n">Python</span> <span class="n">method</span> <span class="n">is</span> <span class="n">using</span> <span class="n">a</span> <span class="n">list</span> <span class="n">comprehension</span><span class="o">:</span> <span class="mf">0.3227</span> <span class="n">seconds</span><span class="p">.</span>
+
+<span class="nl">Conclusion:</span>
+    <span class="n">The</span> <span class="n">fastest</span> <span class="n">elementwise</span> <span class="n">method</span> <span class="n">is</span> <span class="n">the</span> <span class="n">fancy</span> <span class="n">way</span> <span class="p">(</span><span class="n">with</span> <span class="o">+=</span><span class="p">)</span><span class="o">:</span> <span class="mf">0.0101</span> <span class="n">seconds</span><span class="p">.</span>
+
+<span class="nl">Conclusion:</span>
+    <span class="n">The</span> <span class="n">fastest</span> <span class="n">elementwise</span> <span class="n">approach</span> <span class="n">including</span> <span class="n">array</span> <span class="n">creation</span> <span class="n">is</span> <span class="mi">9</span> <span class="n">times</span> <span class="n">faster</span>
+    <span class="n">than</span> <span class="n">the</span> <span class="n">fastest</span> <span class="n">native</span> <span class="n">Python</span> <span class="n">approach</span> <span class="n">including</span> <span class="n">list</span> <span class="n">creation</span><span class="p">.</span>
+
+<span class="nl">Conclusion:</span>
+    <span class="n">The</span> <span class="n">fastest</span> <span class="n">elementwise</span> <span class="n">approach</span> <span class="n">is</span> <span class="mi">32</span> <span class="n">times</span> <span class="n">faster</span>
+    <span class="n">than</span> <span class="n">the</span> <span class="n">fastest</span> <span class="n">native</span> <span class="n">Python</span> <span class="n">approach</span><span class="p">.</span>
+
+<span class="n">Final</span> <span class="n">conclusion</span><span class="o">:</span>
+    <span class="n">Elementwise</span> <span class="n">operations</span> <span class="n">can</span> <span class="n">speed</span> <span class="n">up</span> <span class="n">your</span> <span class="n">code</span> <span class="n">significantly</span> <span class="n">and</span> <span class="n">the</span> <span class="n">speed</span> <span class="n">up</span>
+    <span class="n">is</span> <span class="n">more</span> <span class="n">dramatic</span> <span class="k">if</span> <span class="n">the</span> <span class="n">array</span> <span class="n">object</span> <span class="n">is</span> <span class="n">used</span> <span class="k">for</span> <span class="n">more</span> <span class="n">than</span> <span class="n">one</span> <span class="n">elementwise</span> <span class="n">operation</span><span class="p">.</span>
+</pre></div>
+
+
+<h3>A few examples of how one can use elementwise&nbsp;operations</h3>
+<p>These look like normal Python expressions, and thereby make your
+code more&nbsp;readable:</p>
+<div class="highlight"><pre><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Make</span> <span class="p">{}</span> <span class="n">spheres</span> <span class="n">with</span> <span class="n">random</span> <span class="n">radii</span> <span class="n">between</span> <span class="mi">0</span> <span class="n">and</span> <span class="mi">1</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+<span class="n">radii</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">volume</span> <span class="o">=</span> <span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="o">*</span><span class="mf">3.14159</span><span class="o">*</span><span class="n">radii</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">r</span> <span class="n">in</span> <span class="n">zip</span><span class="p">(</span><span class="n">volume</span><span class="p">,</span> <span class="n">radii</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">print</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">tVolume</span><span class="o">:</span> <span class="p">{</span><span class="o">:&lt;</span><span class="mf">8.5f</span><span class="p">}</span> <span class="n">Radii</span><span class="o">:</span> <span class="p">{</span><span class="o">:</span><span class="mf">.3f</span><span class="p">}</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">r</span><span class="p">))</span>
+
+<span class="n">Make</span> <span class="mi">10</span> <span class="n">spheres</span> <span class="n">with</span> <span class="n">random</span> <span class="n">radii</span> <span class="n">between</span> <span class="mi">0</span> <span class="n">and</span> <span class="mi">1</span><span class="o">:</span>
+
+    <span class="nl">Volume:</span> <span class="mf">1.56732</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.721</span>
+    <span class="nl">Volume:</span> <span class="mf">0.95730</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.611</span>
+    <span class="nl">Volume:</span> <span class="mf">0.00336</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.093</span>
+    <span class="nl">Volume:</span> <span class="mf">0.78253</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.572</span>
+    <span class="nl">Volume:</span> <span class="mf">1.33100</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.682</span>
+    <span class="nl">Volume:</span> <span class="mf">0.15701</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.335</span>
+    <span class="nl">Volume:</span> <span class="mf">3.29910</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.923</span>
+    <span class="nl">Volume:</span> <span class="mf">0.24541</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.388</span>
+    <span class="nl">Volume:</span> <span class="mf">0.03305</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.199</span>
+    <span class="nl">Volume:</span> <span class="mf">0.25514</span>  <span class="n">Radii</span><span class="o">:</span> <span class="mf">0.393</span>
+
+
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">nScale</span> <span class="n">and</span> <span class="n">offset</span> <span class="p">{}</span> <span class="n">random</span> <span class="n">xyz</span> <span class="n">coordinates</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="p">))</span>
+<span class="n">random_coords</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">rand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="cp"># Offset all coordinates to span +/- 0.5 of the origin</span>
+<span class="n">offset_coords</span> <span class="o">=</span> <span class="n">random_coords</span> <span class="o">-</span> <span class="mf">0.5</span>
+
+<span class="cp"># Scale all coordinates to lie between -1 and +1</span>
+<span class="n">scale_coords</span> <span class="o">=</span> <span class="n">offset_coords</span> <span class="o">/</span> <span class="mf">0.5</span>
+
+<span class="n">line_tmpl</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">{</span><span class="o">:&lt;</span><span class="mi">30</span><span class="p">}{</span><span class="o">:&lt;</span><span class="mi">30</span><span class="p">}{</span><span class="o">:&lt;</span><span class="mi">30</span><span class="p">}</span><span class="err">&#39;</span>
+<span class="n">coord_tmpl</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">({</span><span class="o">:</span><span class="mf">.3f</span><span class="p">},</span> <span class="p">{</span><span class="o">:</span><span class="mf">.3f</span><span class="p">},</span> <span class="p">{</span><span class="o">:</span><span class="mf">.3f</span><span class="p">})</span><span class="err">&#39;</span>
+
+<span class="n">print</span><span class="p">(</span><span class="n">line_tmpl</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Random</span> <span class="p">(</span><span class="mi">0</span> <span class="n">to</span> <span class="mi">1</span><span class="p">)</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Offset</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="n">to</span> <span class="mf">0.5</span><span class="p">)</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Scaled</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">1</span><span class="p">)</span><span class="err">&#39;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">rc</span><span class="p">,</span> <span class="n">oc</span><span class="p">,</span> <span class="n">sc</span> <span class="n">in</span> <span class="n">zip</span><span class="p">(</span><span class="n">random_coords</span><span class="p">,</span> <span class="n">offset_coords</span><span class="p">,</span> <span class="n">scale_coords</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">line_tmpl</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">coord_tmpl</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">rc</span><span class="p">),</span>              
+                           <span class="n">coord_tmpl</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">oc</span><span class="p">),</span>
+                           <span class="n">coord_tmpl</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="o">*</span><span class="n">sc</span><span class="p">)))</span>
+
+
+<span class="n">Scale</span> <span class="n">and</span> <span class="n">offset</span> <span class="mi">10</span> <span class="n">random</span> <span class="n">xyz</span> <span class="n">coordinates</span><span class="o">:</span>
+
+<span class="n">Random</span> <span class="p">(</span><span class="mi">0</span> <span class="n">to</span> <span class="mi">1</span><span class="p">)</span>               <span class="n">Offset</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.5</span> <span class="n">to</span> <span class="mf">0.5</span><span class="p">)</span>          <span class="n">Scaled</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="n">to</span> <span class="mi">1</span><span class="p">)</span>              
+<span class="p">(</span><span class="mf">0.295</span><span class="p">,</span> <span class="mf">0.163</span><span class="p">,</span> <span class="mf">0.703</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="mf">0.205</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.337</span><span class="p">,</span> <span class="mf">0.203</span><span class="p">)</span>       <span class="p">(</span><span class="o">-</span><span class="mf">0.411</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.674</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">)</span>       
+<span class="p">(</span><span class="mf">0.076</span><span class="p">,</span> <span class="mf">0.861</span><span class="p">,</span> <span class="mf">0.658</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="mf">0.424</span><span class="p">,</span> <span class="mf">0.361</span><span class="p">,</span> <span class="mf">0.158</span><span class="p">)</span>        <span class="p">(</span><span class="o">-</span><span class="mf">0.848</span><span class="p">,</span> <span class="mf">0.723</span><span class="p">,</span> <span class="mf">0.315</span><span class="p">)</span>        
+<span class="p">(</span><span class="mf">0.113</span><span class="p">,</span> <span class="mf">0.778</span><span class="p">,</span> <span class="mf">0.372</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="mf">0.387</span><span class="p">,</span> <span class="mf">0.278</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.128</span><span class="p">)</span>       <span class="p">(</span><span class="o">-</span><span class="mf">0.775</span><span class="p">,</span> <span class="mf">0.555</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.256</span><span class="p">)</span>       
+<span class="p">(</span><span class="mf">0.908</span><span class="p">,</span> <span class="mf">0.475</span><span class="p">,</span> <span class="mf">0.485</span><span class="p">)</span>         <span class="p">(</span><span class="mf">0.408</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.025</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.015</span><span class="p">)</span>       <span class="p">(</span><span class="mf">0.817</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.050</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.029</span><span class="p">)</span>       
+<span class="p">(</span><span class="mf">0.405</span><span class="p">,</span> <span class="mf">0.482</span><span class="p">,</span> <span class="mf">0.945</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="mf">0.095</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.018</span><span class="p">,</span> <span class="mf">0.445</span><span class="p">)</span>       <span class="p">(</span><span class="o">-</span><span class="mf">0.190</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.036</span><span class="p">,</span> <span class="mf">0.889</span><span class="p">)</span>       
+<span class="p">(</span><span class="mf">0.356</span><span class="p">,</span> <span class="mf">0.736</span><span class="p">,</span> <span class="mf">0.336</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="mf">0.144</span><span class="p">,</span> <span class="mf">0.236</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.164</span><span class="p">)</span>       <span class="p">(</span><span class="o">-</span><span class="mf">0.289</span><span class="p">,</span> <span class="mf">0.471</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.328</span><span class="p">)</span>       
+<span class="p">(</span><span class="mf">0.894</span><span class="p">,</span> <span class="mf">0.404</span><span class="p">,</span> <span class="mf">0.541</span><span class="p">)</span>         <span class="p">(</span><span class="mf">0.394</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.096</span><span class="p">,</span> <span class="mf">0.041</span><span class="p">)</span>        <span class="p">(</span><span class="mf">0.788</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.192</span><span class="p">,</span> <span class="mf">0.082</span><span class="p">)</span>        
+<span class="p">(</span><span class="mf">0.040</span><span class="p">,</span> <span class="mf">0.697</span><span class="p">,</span> <span class="mf">0.830</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="mf">0.460</span><span class="p">,</span> <span class="mf">0.197</span><span class="p">,</span> <span class="mf">0.330</span><span class="p">)</span>        <span class="p">(</span><span class="o">-</span><span class="mf">0.920</span><span class="p">,</span> <span class="mf">0.394</span><span class="p">,</span> <span class="mf">0.661</span><span class="p">)</span>        
+<span class="p">(</span><span class="mf">0.884</span><span class="p">,</span> <span class="mf">0.336</span><span class="p">,</span> <span class="mf">0.950</span><span class="p">)</span>         <span class="p">(</span><span class="mf">0.384</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.164</span><span class="p">,</span> <span class="mf">0.450</span><span class="p">)</span>        <span class="p">(</span><span class="mf">0.768</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.327</span><span class="p">,</span> <span class="mf">0.900</span><span class="p">)</span>        
+<span class="p">(</span><span class="mf">0.378</span><span class="p">,</span> <span class="mf">0.059</span><span class="p">,</span> <span class="mf">0.771</span><span class="p">)</span>         <span class="p">(</span><span class="o">-</span><span class="mf">0.122</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.441</span><span class="p">,</span> <span class="mf">0.271</span><span class="p">)</span>       <span class="p">(</span><span class="o">-</span><span class="mf">0.244</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.883</span><span class="p">,</span> <span class="mf">0.542</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Now we should look at actual vector operations using&nbsp;coordinates</h3>
+<p>The vector operations below are provided to illustrate the difference
+between these and the elementwise operations&nbsp;above.</p>
+<div class="highlight"><pre><span class="n">coord_A</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="n">coord_B</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Operations</span> <span class="n">on</span> <span class="n">coordinates</span> <span class="n">A</span><span class="p">{}</span> <span class="n">and</span> <span class="n">B</span><span class="p">{}</span><span class="o">:</span><span class="err">\</span><span class="n">n</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">coord_A</span><span class="p">,</span> <span class="n">coord_B</span><span class="p">))</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Dot</span> <span class="n">product</span><span class="o">:</span> <span class="p">{}</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">coord_A</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">coord_B</span><span class="p">)))</span>
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Distance</span> <span class="n">between</span> <span class="n">points</span><span class="o">:</span> <span class="p">{</span><span class="o">:</span><span class="mf">.3f</span><span class="p">}</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="n">norm</span><span class="p">(</span><span class="n">coord_A</span> <span class="o">-</span> <span class="n">coord_B</span><span class="p">)))</span>
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Cross</span> <span class="n">product</span><span class="o">:</span> <span class="p">{}</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">cross</span><span class="p">(</span><span class="n">coord_A</span><span class="p">,</span> <span class="n">coord_B</span><span class="p">)))</span>
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Scalar</span> <span class="n">product</span> <span class="p">(</span><span class="n">elementwise</span> <span class="n">operation</span><span class="p">)</span><span class="o">:</span> <span class="p">{}</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">coord_A</span> <span class="o">*</span> <span class="n">coord_B</span><span class="p">))</span>
+
+<span class="n">Operations</span> <span class="n">on</span> <span class="n">coordinates</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span> <span class="n">and</span> <span class="n">B</span><span class="p">[</span><span class="mi">6</span> <span class="mi">5</span> <span class="mi">4</span><span class="p">]</span><span class="o">:</span>
+
+<span class="n">Dot</span> <span class="n">product</span><span class="o">:</span> <span class="mi">28</span>
+<span class="n">Distance</span> <span class="n">between</span> <span class="n">points</span><span class="o">:</span> <span class="mf">5.916</span>
+<span class="n">Cross</span> <span class="n">product</span><span class="o">:</span> <span class="p">[</span><span class="o">-</span><span class="mi">7</span> <span class="mi">14</span> <span class="o">-</span><span class="mi">7</span><span class="p">]</span>
+<span class="n">Scalar</span> <span class="n">product</span> <span class="p">(</span><span class="n">elementwise</span> <span class="n">operation</span><span class="p">)</span><span class="o">:</span> <span class="p">[</span> <span class="mi">6</span> <span class="mi">10</span> <span class="mi">12</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>Real world example&nbsp;calculation</h3>
+<p>Lucas, Mia, Leon and Hannah each bought different quantities of three different
+chocolate&nbsp;varieties.</p>
+<p>The brand names are A, B and&nbsp;C.</p>
+<p>Lucas bought 100 g of brand A, 175 g of brand B and 210 of C.
+Mia choose 90 g of A, 160 g of B and 150 g of C.
+Leon bought 200 g of A, 50 of B and 100 g of C.
+Hannah didn&#8217;t purchase brand B, but did purchase 310 g of C and 120 g of&nbsp;A.</p>
+<p>A costs 2.98€ per 100 g.
+B costs 3.90€ per 100 g.
+C costs 1.99€ per 100&nbsp;g.</p>
+<p>To calculate how much each of them paid for their chocolates, we can use Python,
+NumPy and Matrix&nbsp;multiplication.</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+
+<span class="cp"># Each column is a chocolate variety and each row is a person.</span>
+<span class="n">mass_matrix</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">210</span><span class="p">],</span> 
+                        <span class="p">[</span><span class="mi">90</span><span class="p">,</span> <span class="mi">160</span><span class="p">,</span> <span class="mi">150</span><span class="p">],</span> 
+                        <span class="p">[</span><span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> 
+                        <span class="p">[</span><span class="mi">120</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">310</span><span class="p">]])</span>
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Numpy</span> <span class="n">mass_matrix</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">mass_matrix</span><span class="p">)</span>
+<span class="n">print</span><span class="p">()</span>
+
+<span class="cp"># The columns are the same chocolate varieties as the mass_matrix.</span>
+<span class="n">cost_per_100g</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mf">2.98</span><span class="p">,</span> <span class="mf">3.90</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">])</span>
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Numpy</span> <span class="n">cost</span> <span class="n">matrix</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">cost_per_100g</span><span class="p">)</span>
+<span class="n">print</span><span class="p">()</span>
+
+<span class="cp"># Matrix calculation using numpy:</span>
+<span class="n">money_spent_in_cents</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">mass_matrix</span><span class="p">,</span> <span class="n">cost_per_100g</span><span class="p">)</span>
+<span class="n">money_spent_in_euros</span> <span class="o">=</span> <span class="n">money_spent_in_cents</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="n">array</span><span class="p">([</span><span class="mi">100</span><span class="p">]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Numpy</span> <span class="n">solution</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">money_spent_in_euros</span><span class="p">)</span>
+<span class="n">print</span><span class="p">()</span>
+
+<span class="n">Numpy</span> <span class="n">mass_matrix</span><span class="o">:</span>
+<span class="p">[[</span><span class="mi">100</span> <span class="mi">175</span> <span class="mi">210</span><span class="p">]</span>
+ <span class="p">[</span> <span class="mi">90</span> <span class="mi">160</span> <span class="mi">150</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">200</span>  <span class="mi">50</span> <span class="mi">100</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">120</span>   <span class="mi">0</span> <span class="mi">310</span><span class="p">]]</span>
+
+<span class="n">Numpy</span> <span class="n">cost</span> <span class="n">matrix</span><span class="o">:</span>
+<span class="p">[</span> <span class="mf">2.98</span>  <span class="mf">3.9</span>   <span class="mf">1.99</span><span class="p">]</span>
+
+<span class="n">Numpy</span> <span class="n">solution</span><span class="o">:</span>
+<span class="p">[</span> <span class="mf">13.984</span>  <span class="mf">11.907</span>   <span class="mf">9.9</span>     <span class="mf">9.745</span><span class="p">]</span>
+</pre></div>
+
+
+<h3>Using pandas for the same&nbsp;task</h3>
+<p>To supplement Numpy matrix calculation, we can use Pandas for better
+visualization of the&nbsp;answer:</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">pandas</span> <span class="n">as</span> <span class="n">pd</span>
+
+<span class="cp"># Using a pandas.DataFrame object, we can keep track of the names of columns and rows:</span>
+<span class="n">chocolate_brands</span> <span class="o">=</span> <span class="p">[</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">,</span> <span class="sc">&#39;C&#39;</span><span class="p">]</span>
+<span class="n">names_of_people</span> <span class="o">=</span> <span class="p">[</span><span class="err">&#39;</span><span class="n">Lucas</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Mia</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Leon</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Hannah</span><span class="err">&#39;</span><span class="p">]</span>
+
+<span class="cp"># pandas.DataFrame version of mass_matrix:</span>
+<span class="n">mass_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">mass_matrix</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">chocolate_brands</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">names_of_people</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Pandas</span> <span class="n">mass</span> <span class="n">matrix</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">mass_df</span><span class="p">)</span>
+<span class="n">print</span><span class="p">()</span>
+
+<span class="cp"># pandas.DataFrame version of cost matrix:</span>
+<span class="n">cost_df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">cost_per_100g</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">chocolate_brands</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="err">&#39;</span><span class="n">Cost</span> <span class="n">in</span> <span class="n">euros</span> <span class="n">per</span> <span class="mi">100</span><span class="n">g</span><span class="err">&#39;</span><span class="p">])</span>
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Pandas</span> <span class="n">cost</span> <span class="n">matrix</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">cost_df</span><span class="p">)</span>
+<span class="n">print</span><span class="p">()</span>
+
+<span class="cp"># Matrix calculation using pandas:</span>
+<span class="cp"># NB!: The columns of the left matrix must match the index values of the right matrix.</span>
+<span class="n">money_spent_df</span> <span class="o">=</span> <span class="n">mass_df</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">cost_df</span><span class="p">)</span>
+<span class="n">money_spent_df</span><span class="p">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="err">&#39;</span><span class="n">Money</span> <span class="n">spent</span> <span class="n">in</span> <span class="n">euro</span> <span class="n">cents</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="n">money_spent_df</span><span class="p">[</span><span class="err">&#39;</span><span class="n">Money</span> <span class="n">spent</span> <span class="n">in</span> <span class="n">euros</span><span class="err">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">money_spent_df</span><span class="p">[</span><span class="err">&#39;</span><span class="n">Money</span> <span class="n">spent</span> <span class="n">in</span> <span class="n">euro</span> <span class="n">cents</span><span class="err">&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="mi">100</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Pandas</span> <span class="n">solution</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">money_spent_df</span><span class="p">)</span>
+
+<span class="n">Pandas</span> <span class="n">mass</span> <span class="n">matrix</span><span class="o">:</span>
+          <span class="n">A</span>    <span class="n">B</span>    <span class="n">C</span>
+<span class="n">Lucas</span>   <span class="mi">100</span>  <span class="mi">175</span>  <span class="mi">210</span>
+<span class="n">Mia</span>      <span class="mi">90</span>  <span class="mi">160</span>  <span class="mi">150</span>
+<span class="n">Leon</span>    <span class="mi">200</span>   <span class="mi">50</span>  <span class="mi">100</span>
+<span class="n">Hannah</span>  <span class="mi">120</span>    <span class="mi">0</span>  <span class="mi">310</span>
+
+<span class="n">Pandas</span> <span class="n">cost</span> <span class="n">matrix</span><span class="o">:</span>
+   <span class="n">Cost</span> <span class="n">in</span> <span class="n">euros</span> <span class="n">per</span> <span class="mi">100</span><span class="n">g</span>
+<span class="n">A</span>                    <span class="mf">2.98</span>
+<span class="n">B</span>                    <span class="mf">3.90</span>
+<span class="n">C</span>                    <span class="mf">1.99</span>
+
+<span class="n">Pandas</span> <span class="n">solution</span><span class="o">:</span>
+        <span class="n">Money</span> <span class="n">spent</span> <span class="n">in</span> <span class="n">euro</span> <span class="n">cents</span>  <span class="n">Money</span> <span class="n">spent</span> <span class="n">in</span> <span class="n">euros</span>
+<span class="n">Lucas</span>                      <span class="mf">1398.4</span>                <span class="mf">13.984</span>
+<span class="n">Mia</span>                        <span class="mf">1190.7</span>                <span class="mf">11.907</span>
+<span class="n">Leon</span>                        <span class="mf">990.0</span>                 <span class="mf">9.900</span>
+<span class="n">Hannah</span>                      <span class="mf">974.5</span>                 <span class="mf">9.745</span>
+</pre></div>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://schryer.github.io/python_course_material/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://schryer.github.io/python_course_material/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
