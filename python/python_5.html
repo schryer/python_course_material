@@ -83,10 +83,10 @@
         <div class="span9" id="content">
 <section id="content" class="body">
         <h1 class="entry-title">Elementwise and vector operations in Python using Numpy and Pandas</h1>
-        <p>Download original file: <a href="http://schryer.github.io/python_course_material/notebooks/5_elementwise_and_vector_operations.ipynb">5_elementwise_and_vector_operations.ipynb</a>
-View original file in nbviewer: <a href="http://nbviewer.ipython.org/url/schryer.github.io/python_course_material/notebooks/5_elementwise_and_vector_operations.ipynb">5_elementwise_and_vector_operations.ipynb</a></p>
-<h1>Speeding up Python code using elementwise&nbsp;computation</h1>
-<p>Standard Python is fast enough to satisfy the computational
+        <p>Download original file: <a href="http://schryer.github.io/python_course_material/notebooks/5_elementwise_and_vector_operations.ipynb">5_elementwise_and_vector_operations.ipynb</a></p>
+<p>View original file in nbviewer: <a href="http://nbviewer.ipython.org/url/schryer.github.io/python_course_material/notebooks/5_elementwise_and_vector_operations.ipynb">5_elementwise_and_vector_operations.ipynb</a></p>
+<h1>Speeding up <a href="http://www.python.org" title="Python programming language">Python</a> code using elementwise&nbsp;computation</h1>
+<p>Standard <a href="http://www.python.org" title="Python programming language">Python</a> is fast enough to satisfy the computational
 needs of most users. However, some problems require even more
 rapid computation. One technique for speeding up computational
 speed is performing calculations <code>elementwise</code> using&nbsp;arrays.</p>
@@ -138,12 +138,14 @@ the same calculation different&nbsp;ways.</p>
 </pre></div>
 
 
-<h3>Use numpy to perform elementwise&nbsp;calculations</h3>
-<p>The Python package <code>numpy</code> is widely used by the Python
+<h3>Use <a href="http://www.numpy.org/" title="numpy Python package">NumPy</a> to perform elementwise&nbsp;calculations</h3>
+<p>The <a href="http://www.python.org" title="Python programming language">Python</a> package <a href="http://www.numpy.org/" title="numpy Python package">NumPy</a> is widely used by the <a href="http://www.python.org" title="Python programming language">Python</a>
 community to perform both elementwise and matrix
-calculations in Python. The <code>numpy</code> package provides an
-array type, <code>numpy.ndarray</code>, that redefines almost all
-basic Python operations such as <code>+</code> and <code>+=</code> to work on
+calculations in <a href="http://www.python.org" title="Python programming language">Python</a>. The <a href="http://www.numpy.org/" title="numpy Python package">NumPy</a> package provides an
+array type, <a href="http://docs.scipy.org/doc/numpy/reference/generated/
+numpy.ndarray.html">numpy.ndarray</a>,
+that redefines almost all basic <a href="http://www.python.org" title="Python programming language">Python</a> operations such as <code>+</code> and <code>+=</code> to work
+on
 entire arrays instead of single&nbsp;objects.</p>
 <p>Now let us see how this can speed up calculation&nbsp;time:</p>
 <div class="highlight"><pre><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
@@ -231,7 +233,7 @@ entire arrays instead of single&nbsp;objects.</p>
 
 
 <h3>A few examples of how one can use elementwise&nbsp;operations</h3>
-<p>These look like normal Python expressions, and thereby make your
+<p>These look like normal <a href="http://www.python.org" title="Python programming language">Python</a> expressions, and thereby make your
 code more&nbsp;readable:</p>
 <div class="highlight"><pre><span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
 
@@ -327,8 +329,8 @@ Hannah didn&#8217;t purchase brand B, but did purchase 310 g of C and 120 g of&n
 <p>A costs 2.98€ per 100 g.
 B costs 3.90€ per 100 g.
 C costs 1.99€ per 100&nbsp;g.</p>
-<p>To calculate how much each of them paid for their chocolates, we can use Python,
-NumPy and Matrix&nbsp;multiplication.</p>
+<p>To calculate how much each of them paid for their chocolates, we can use
+<a href="http://www.python.org" title="Python programming language">Python</a>, <a href="http://www.numpy.org/" title="numpy Python package">NumPy</a> and Matrix&nbsp;multiplication.</p>
 <div class="highlight"><pre><span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
 
 <span class="cp"># Each column is a chocolate variety and each row is a person.</span>
@@ -367,8 +369,8 @@ NumPy and Matrix&nbsp;multiplication.</p>
 </pre></div>
 
 
-<h3>Using pandas for the same&nbsp;task</h3>
-<p>To supplement Numpy matrix calculation, we can use Pandas for better
+<h3>Using <a href="http://pandas.pydata.org/" title="pandas Python package">pandas</a> for the same&nbsp;task</h3>
+<p>To supplement <a href="http://www.numpy.org/" title="numpy Python package">NumPy</a> matrix calculation, we can use <a href="http://pandas.pydata.org/" title="pandas Python package">pandas</a> for better
 visualization of the&nbsp;answer:</p>
 <div class="highlight"><pre><span class="n">import</span> <span class="n">pandas</span> <span class="n">as</span> <span class="n">pd</span>
 
