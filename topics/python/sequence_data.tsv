@@ -1,0 +1,5 @@
+
+sequence_header	DNA_sequence
+ABC123	ATCGTACGATCGATCGATCGCTAGACGTATCG
+DEF456	actgatcgacgatcgatcgatcacgact
+HIJ789	ACTGAC-ACTGT--ACTGTA----CnATGTG
