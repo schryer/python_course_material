@@ -65,10 +65,16 @@ def make_python_subjects(base_dictionary):
                          urlname='python_5',
                          summary='Introduces elementwise and vector operations in Python using NumPy and pandas.'
                      ))
+    python_6 = dict(base_dictionary)
+    python_6.update(dict(filename='../topics/python/6_functions_with_tests.ipynb',
+                         title='Functions that use Biopython objects together with tests.',
+                         urlname='python_6',
+                         summary='Working version of the functions we wrote together in class.'
+                     ))
 
     
 
-    return [python_1, python_2, python_3, python_4, python_5]
+    return [python_1, python_2, python_3, python_4, python_5, python_6]
 
 
 def move_python_notebooks_and_construct_metadata(index_dic, meta_template):
