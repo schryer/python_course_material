@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Functions that use Biopython objects together with tests.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="David Schryer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://schryer.github.io/python_course_material/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://schryer.github.io/python_course_material/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://schryer.github.io/python_course_material/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://schryer.github.io/python_course_material/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://schryer.github.io/python_course_material/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://schryer.github.io/python_course_material/" type="application/atom+xml" rel="alternate" title="Scientific Programming with Python ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://schryer.github.io/python_course_material/index.html">Scientific Programming with Python </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                  <li><a href="/python_course_material/">Home</a></li>
+                  <li><a href="/python_course_material/ipython/">Getting started with IPython notebook</a></li>
+                  <li><a href="/python_course_material/python/">Python notebooks</a></li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://schryer.github.io/python_course_material/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content" class="body">
+        <h1 class="entry-title">Functions that use Biopython objects together with tests.</h1>
+        <p>Download original file: <a href="http://schryer.github.io/python_course_material/notebooks/7_introduction_to_sequence_alignment_Entrez_and_curve_fitting.ipynb">7_introduction_to_sequence_alignment_Entrez_and_curve_fitting.ipynb</a></p>
+<p>View original file in nbviewer: <a href="http://nbviewer.ipython.org/url/schryer.github.io/python_course_material/notebooks/7_introduction_to_sequence_alignment_Entrez_and_curve_fitting.ipynb">7_introduction_to_sequence_alignment_Entrez_and_curve_fitting.ipynb</a></p>
+<div class="highlight"><pre><span class="n">from</span> <span class="n">Bio</span> <span class="n">import</span> <span class="n">pairwise2</span>
+</pre></div>
+
+
+<h3>Task:</h3>
+<p>You have two sequences:
+seq1 = &#8216;<span class="caps">ACGTCCTTCATT</span>&#8217;
+seq2 = &#8216;<span class="caps">GTCTCATG</span>&#8217;</p>
+<p>You have a scoring scheme where
+<em> a match gives you +1
+</em> a mismatch gives you 0
+* gap opening costs&nbsp;−10</p>
+<p>Find the best alignment of the two&nbsp;sequences.</p>
+<p>You have a scoring scheme where:
+<em> a match gives you +1
+</em> a mismatch gives you −1
+* gap opening costs you&nbsp;−1</p>
+<p>Find the best alignment of the two&nbsp;sequences.</p>
+<p><span class="caps">HINT</span>: look at the following documentation page
+for Biopython:
+http://biopython.org/<span class="caps">DIST</span>/docs/api/Bio.pairwise2-module.html</p>
+<div class="highlight"><pre><span class="n">seq1</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">ACGTCCTTCATT</span><span class="err">&#39;</span>
+<span class="n">seq2</span> <span class="o">=</span>  <span class="err">&#39;</span><span class="n">GTCTCATG</span><span class="err">&#39;</span>
+<span class="n">pairwise2</span><span class="p">.</span><span class="n">align</span><span class="p">.</span><span class="n">localms</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10000000</span><span class="p">)</span>
+
+
+<span class="n">pairwise2</span><span class="p">.</span><span class="n">align</span><span class="p">.</span><span class="n">localms</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">10000000</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>The format_alignment&nbsp;function</h3>
+<p>pairwise2 has a format_alignment function to better visualize the alignment&nbsp;output.</p>
+<div class="highlight"><pre><span class="n">out_tuplesA</span> <span class="o">=</span> <span class="n">pairwise2</span><span class="p">.</span><span class="n">align</span><span class="p">.</span><span class="n">localms</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">10000000</span><span class="p">)</span>
+<span class="n">out_tuplesB</span> <span class="o">=</span> <span class="n">pairwise2</span><span class="p">.</span><span class="n">align</span><span class="p">.</span><span class="n">localms</span><span class="p">(</span><span class="n">seq1</span><span class="p">,</span> <span class="n">seq2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">10000000</span><span class="p">)</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="n">inf</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ot</span> <span class="n">in</span> <span class="n">out_tuplesA</span><span class="o">:</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">pairwise2</span><span class="p">.</span><span class="n">format_alignment</span><span class="p">(</span><span class="o">*</span><span class="n">ot</span><span class="p">))</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;\</span><span class="n">n1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="n">inf</span><span class="o">:</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ot</span> <span class="n">in</span> <span class="n">out_tuplesB</span><span class="o">:</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">pairwise2</span><span class="p">.</span><span class="n">format_alignment</span><span class="p">(</span><span class="o">*</span><span class="n">ot</span><span class="p">))</span>
+</pre></div>
+
+
+<h3>Using the Entrez databases via&nbsp;Biopython</h3>
+<p>You can access all of the information in the Entrez databases
+via Biopython, although a new Python package, Bioservices, is
+probably easier and provides access to <span class="caps">MANY</span> different online
+databases.&nbsp;https://pythonhosted.org/bioservices/</p>
+<div class="highlight"><pre><span class="n">from</span> <span class="n">Bio</span> <span class="n">import</span> <span class="n">Entrez</span>
+<span class="n">Entrez</span><span class="p">.</span><span class="n">email</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">schryer</span><span class="err">@</span><span class="n">gmail</span><span class="p">.</span><span class="n">com</span><span class="err">&#39;</span>
+
+
+<span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="p">.</span><span class="n">einfo</span><span class="p">()</span>
+<span class="n">record</span> <span class="o">=</span> <span class="n">Entrez</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+<span class="n">record</span><span class="p">[</span><span class="err">&#39;</span><span class="n">DbList</span><span class="err">&#39;</span><span class="p">]</span>
+
+
+<span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="p">.</span><span class="n">einfo</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="err">&#39;</span><span class="n">pubmed</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">record</span> <span class="o">=</span> <span class="n">Entrez</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+<span class="n">record</span><span class="p">[</span><span class="err">&#39;</span><span class="n">DbInfo</span><span class="err">&#39;</span><span class="p">][</span><span class="err">&#39;</span><span class="n">Description</span><span class="err">&#39;</span><span class="p">]</span>
+
+
+<span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="p">.</span><span class="n">esearch</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="err">&#39;</span><span class="n">pubmed</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">term</span><span class="o">=</span><span class="err">&#39;</span><span class="n">persister</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">record</span> <span class="o">=</span> <span class="n">Entrez</span><span class="p">.</span><span class="n">read</span><span class="p">(</span><span class="n">handle</span><span class="p">)</span>
+<span class="n">record</span><span class="p">[</span><span class="err">&#39;</span><span class="n">IdList</span><span class="err">&#39;</span><span class="p">]</span>
+
+
+<span class="n">handle</span> <span class="o">=</span> <span class="n">Entrez</span><span class="p">.</span><span class="n">efetch</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="err">&#39;</span><span class="n">pubmed</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">id</span><span class="o">=</span><span class="err">&#39;</span><span class="mi">25267859</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">handle</span><span class="p">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+
+
+<h3>Curve&nbsp;fitting</h3>
+<p>One common task for biologists is to fit experimental data
+to a function. For example, one may want to fit a 4 parameter
+logistic equation to enzyme-linked immunosorbent assay (<span class="caps">ELISA</span>)
+data. The usual formula for this model&nbsp;is:</p>
+<p><mathjax>$f(x) = \frac{A - D}{1 + \left(\frac{x}{C}\right)^B} + D$</mathjax>,</p>
+<p>where <mathjax>$x$</mathjax> is the concentration, <mathjax>$A$</mathjax> is the minimum asymptote, <mathjax>$B$</mathjax> is the
+steepness, <mathjax>$C$</mathjax> is the inflection point and <mathjax>$D$</mathjax> is the maximum&nbsp;asymptote.</p>
+<div class="highlight"><pre><span class="c">%matplotlib inline</span>
+<span class="n">import</span> <span class="n">numpy</span> <span class="n">as</span> <span class="n">np</span>
+<span class="n">import</span> <span class="n">numpy</span><span class="p">.</span><span class="n">random</span>
+<span class="n">import</span> <span class="n">matplotlib</span><span class="p">.</span><span class="n">pyplot</span> <span class="n">as</span> <span class="n">plt</span>
+<span class="n">from</span> <span class="n">scipy</span><span class="p">.</span><span class="n">optimize</span> <span class="n">import</span> <span class="n">leastsq</span>
+
+<span class="n">def</span> <span class="n">logistic4</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
+    <span class="s">&#39;&#39;&#39;Four parameter logistic equation.</span>
+
+<span class="s">    $f(x) = \frac{A - D}{1 + \left(\frac{x}{C}\right)^B} + D$</span>
+<span class="s">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">A</span><span class="o">-</span><span class="n">D</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="p">((</span><span class="n">x</span><span class="o">/</span><span class="n">C</span><span class="p">)</span><span class="o">**</span><span class="n">B</span><span class="p">)))</span> <span class="o">+</span> <span class="n">D</span>
+
+<span class="n">def</span> <span class="n">residuals</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="s">&#39;&#39;&#39;Deviations of data from logistic4&#39;&#39;&#39;</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="p">=</span> <span class="n">parameters</span>
+    <span class="n">err</span> <span class="p">=</span> <span class="n">y</span> <span class="o">-</span> <span class="n">logistic4</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">err</span>
+
+# <span class="n">Make</span> <span class="n">up</span> <span class="n">some</span> <span class="n">data</span> <span class="k">for</span> <span class="n">fitting</span> <span class="n">and</span> <span class="n">add</span> <span class="n">noise</span>
+# <span class="n">In</span> <span class="n">practice</span><span class="p">,</span> <span class="n">y_meas</span> <span class="n">would</span> <span class="n">be</span> <span class="n">read</span> <span class="n">in</span> <span class="n">from</span> <span class="n">a</span> <span class="n">file</span>
+<span class="n">x_measured</span> <span class="p">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">x_true</span> <span class="p">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+# <span class="n">True</span> <span class="n">parameter</span> <span class="n">values</span>
+<span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span> <span class="p">=</span> <span class="n">true_parameters</span> <span class="p">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mf">7.3</span>
+<span class="n">y_true</span> <span class="p">=</span> <span class="n">logistic4</span><span class="p">(</span><span class="n">x_true</span><span class="p">,</span> <span class="o">*</span><span class="n">true_parameters</span><span class="p">)</span>#<span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>
+
+# <span class="n">Simulated</span> <span class="n">measurements</span> <span class="n">of</span> <span class="n">data</span><span class="p">.</span>
+<span class="n">y_measured</span> <span class="p">=</span> <span class="n">logistic4</span><span class="p">(</span><span class="n">x_measured</span><span class="p">,</span> <span class="o">*</span><span class="n">true_parameters</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nb">randn</span><span class="p">(</span><span class="n">len</span><span class="p">(</span><span class="n">x_measured</span><span class="p">))</span>
+
+# <span class="n">Initial</span> <span class="n">guess</span> <span class="k">for</span> <span class="n">parameters</span>
+<span class="n">initial_parameters</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+# <span class="n">Fit</span> <span class="n">equation</span> <span class="n">using</span> <span class="n">least</span> <span class="n">squares</span> <span class="n">optimization</span>
+<span class="n">leastsq_output</span> <span class="p">=</span> <span class="n">leastsq</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">initial_parameters</span><span class="p">,</span> <span class="n">args</span><span class="p">=(</span><span class="n">y_measured</span><span class="p">,</span> <span class="n">x_measured</span><span class="p">))</span>
+
+# <span class="n">Plot</span> <span class="n">results</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_true</span><span class="p">,</span> <span class="n">logistic4</span><span class="p">(</span><span class="n">x_true</span><span class="p">,</span> <span class="o">*</span><span class="n">leastsq_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s">&#39;r--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_measured</span><span class="p">,</span> <span class="n">y_measured</span><span class="p">,</span> <span class="s">&#39;bo&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_true</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="s">&#39;g-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Least squares fit to logistic equation with noisy data&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">legend</span><span class="p">([</span><span class="s">&#39;Fit&#39;</span><span class="p">,</span> <span class="s">&#39;Data&#39;</span><span class="p">,</span> <span class="s">&#39;True&#39;</span><span class="p">],</span> <span class="n">loc</span><span class="p">=</span><span class="s">&#39;upper left&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s">&#39;Parameter   True   Estimated&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">estimated_value</span> <span class="n">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">leastsq_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="n">param_key</span> <span class="p">=</span> <span class="s">&#39;ABCD&#39;</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">true_value</span> <span class="p">=</span> <span class="n">true_parameters</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+    <span class="n">plot_text</span> <span class="p">=</span> <span class="s">&#39;{:&gt;10} {:&gt;12.2f} {:&gt;10.2f}&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">param_key</span><span class="p">,</span> <span class="n">true_value</span><span class="p">,</span> <span class="n">estimated_value</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">text</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="o">-</span><span class="n">index</span><span class="o">*</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">plot_text</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div><script type= "text/javascript">
+    if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+        var mathjaxscript = document.createElement('script');
+        mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+        mathjaxscript.type = 'text/javascript';
+        mathjaxscript.src = 'https:' == document.location.protocol
+                ? 'https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'
+                : 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+        mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+            "MathJax.Hub.Config({" +
+            "    config: ['MMLorHTML.js']," +
+            "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+            "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+            "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+            "    displayAlign: 'center'," +
+            "    displayIndent: '0em'," +
+            "    showMathMenu: true," +
+            "    tex2jax: { " +
+            "        inlineMath: [ ['$','$'] ], " +
+            "        displayMath: [ ['$$','$$'] ]," +
+            "        processEscapes: true," +
+            "        preview: 'TeX'," +
+            "    }, " +
+            "    'HTML-CSS': { " +
+            "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+            "    } " +
+            "}); ";
+        (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+    }
+</script>
+
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://schryer.github.io/python_course_material/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://schryer.github.io/python_course_material/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
