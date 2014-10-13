@@ -73,7 +73,7 @@ def make_python_subjects(base_dictionary):
                      ))
     python_7 = dict(base_dictionary)
     python_7.update(dict(filename='../topics/python/7_introduction_to_sequence_alignment_Entrez_and_curve_fitting.ipynb',
-                         title='Functions that use Biopython objects together with tests.',
+                         title='Introduction to sequence alignment, Entrez database retrieval and curve fitting.',
                          urlname='python_7',
                          summary='Some odd topics that could be useful.'
                      ))    
