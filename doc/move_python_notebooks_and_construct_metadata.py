@@ -71,10 +71,14 @@ def make_python_subjects(base_dictionary):
                          urlname='python_6',
                          summary='Working version of the functions we wrote together in class.'
                      ))
+    python_7 = dict(base_dictionary)
+    python_7.update(dict(filename='../topics/python/7_introduction_to_sequence_alignment_Entrez_and_curve_fitting.ipynb',
+                         title='Functions that use Biopython objects together with tests.',
+                         urlname='python_7',
+                         summary='Some odd topics that could be useful.'
+                     ))    
 
-    
-
-    return [python_1, python_2, python_3, python_4, python_5, python_6]
+    return [python_1, python_2, python_3, python_4, python_5, python_6, python_7]
 
 
 def move_python_notebooks_and_construct_metadata(index_dic, meta_template):
