@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Functions that use Biopython objects together with tests.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="David Schryer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://schryer.github.io/python_course_material/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://schryer.github.io/python_course_material/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://schryer.github.io/python_course_material/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://schryer.github.io/python_course_material/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://schryer.github.io/python_course_material/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://schryer.github.io/python_course_material/" type="application/atom+xml" rel="alternate" title="Scientific Programming with Python ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://schryer.github.io/python_course_material/index.html">Scientific Programming with Python </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                  <li><a href="/python_course_material/">Home</a></li>
+                  <li><a href="/python_course_material/ipython/">Getting started with IPython notebook</a></li>
+                  <li><a href="/python_course_material/python/">Python notebooks</a></li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://schryer.github.io/python_course_material/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content" class="body">
+        <h1 class="entry-title">Functions that use Biopython objects together with tests.</h1>
+        <p>Download original file: <a href="http://schryer.github.io/python_course_material/notebooks/6_functions_with_tests.ipynb">6_functions_with_tests.ipynb</a></p>
+<p>View original file in nbviewer: <a href="http://nbviewer.ipython.org/url/schryer.github.io/python_course_material/notebooks/6_functions_with_tests.ipynb">6_functions_with_tests.ipynb</a></p>
+<div class="highlight"><pre><span class="err">#</span> <span class="nx">These</span> <span class="nx">are</span> <span class="nx">the</span> <span class="nx">objects</span> <span class="nx">our</span> <span class="nx">code</span> <span class="nx">uses</span><span class="p">.</span>
+<span class="err">#</span> <span class="nx">This</span> <span class="nx">cell</span> <span class="nx">must</span> <span class="nx">be</span> <span class="nx">executed</span> <span class="nx">first</span><span class="p">,</span> <span class="nx">before</span> <span class="nx">the</span> <span class="nx">others</span><span class="p">.</span>
+<span class="nx">from</span> <span class="nx">Bio</span> <span class="kr">import</span> <span class="nx">SeqIO</span>
+<span class="nx">from</span> <span class="nx">Bio</span><span class="p">.</span><span class="nx">Alphabet</span> <span class="kr">import</span> <span class="nx">IUPAC</span><span class="p">,</span> <span class="nx">Alphabet</span>
+<span class="nx">from</span> <span class="nx">Bio</span><span class="p">.</span><span class="nx">Data</span> <span class="kr">import</span> <span class="nx">IUPACData</span>
+<span class="nx">from</span> <span class="nx">Bio</span><span class="p">.</span><span class="nx">Seq</span> <span class="kr">import</span> <span class="nx">Seq</span>
+
+<span class="kr">import</span> <span class="nx">random</span>
+
+
+<span class="nx">IUPAC</span><span class="p">.</span><span class="nx">ambiguous_rna</span><span class="p">.</span><span class="nx">letters</span>
+<span class="nx">IUPACData</span><span class="p">.</span><span class="nx">ambiguous_rna_values</span>
+<span class="nx">IUPAC</span><span class="p">.</span><span class="nx">unambiguous_dna</span><span class="p">.</span><span class="nx">letters</span>
+
+
+
+
+<span class="s1">&#39;GATC&#39;</span>
+
+
+
+
+<span class="nx">my_seq</span> <span class="o">=</span> <span class="nx">Seq</span><span class="p">(</span><span class="s1">&#39;AAAAGG&#39;</span><span class="p">,</span> <span class="nx">IUPAC</span><span class="p">.</span><span class="nx">unambiguous_dna</span><span class="p">)</span>
+<span class="nx">my_seq</span><span class="p">.</span><span class="nx">translate</span><span class="p">()</span>
+
+
+
+
+<span class="nx">Seq</span><span class="p">(</span><span class="s1">&#39;KR&#39;</span><span class="p">,</span> <span class="nx">IUPACProtein</span><span class="p">())</span>
+
+
+
+
+<span class="nx">IUPAC</span><span class="p">.</span><span class="nx">ambiguous_rna</span><span class="p">.</span><span class="nx">letters</span>
+<span class="nx">IUPACData</span><span class="p">.</span><span class="nx">unambiguous_rna_weights</span>
+
+
+
+
+<span class="p">{</span><span class="s1">&#39;G&#39;</span><span class="o">:</span> <span class="mf">379.0</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span> <span class="mf">363.0</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="o">:</span> <span class="mf">339.0</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="o">:</span> <span class="mf">340.0</span><span class="p">}</span>
+
+
+
+
+<span class="err">#</span> <span class="nx">Note</span> <span class="nx">that</span> <span class="k">this</span> <span class="kd">function</span> <span class="nx">needed</span> <span class="nx">to</span> <span class="nx">be</span> <span class="nx">changed</span> 
+<span class="err">#</span> <span class="nx">to</span> <span class="nx">accomodate</span> <span class="nx">the</span> <span class="nx">creation</span> <span class="nx">of</span> <span class="nx">proper</span> <span class="nx">Seq</span> <span class="nx">objects</span> 
+<span class="err">#</span> <span class="k">in</span> <span class="nx">the</span> <span class="nx">functions</span> <span class="nx">below</span><span class="p">.</span>  <span class="nx">It</span> <span class="nx">now</span> <span class="nx">returns</span> <span class="nx">a</span> <span class="nx">proper</span> 
+<span class="err">#</span> <span class="nx">Alphabet</span> <span class="nx">object</span> <span class="nx">from</span> <span class="nx">Biopython</span> <span class="nx">and</span> <span class="nx">our</span> <span class="nx">code</span> <span class="nx">needs</span> 
+<span class="err">#</span> <span class="nx">to</span> <span class="nx">use</span> <span class="p">.</span><span class="nx">letters</span> <span class="nx">explicitly</span>
+
+<span class="nx">def</span> <span class="nx">select_alphabet</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">)</span><span class="o">:</span>
+    <span class="s1">&#39;&#39;&#39; Returns a default alphabet.</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="nx">alphabet</span>
+
+    <span class="k">if</span> <span class="nx">a</span> <span class="nx">is</span> <span class="nx">None</span><span class="o">:</span>
+        <span class="nx">a</span> <span class="o">=</span> <span class="nx">IUPAC</span><span class="p">.</span><span class="nx">unambiguous_dna</span>
+
+    <span class="k">if</span> <span class="nx">not</span> <span class="nx">hasattr</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="s1">&#39;letters&#39;</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">a</span> <span class="o">=</span> <span class="nx">Alphabet</span><span class="p">()</span>
+        <span class="nx">a</span><span class="p">.</span><span class="nx">letters</span> <span class="o">=</span> <span class="nx">alphabet</span>
+
+    <span class="k">return</span> <span class="nx">a</span>
+
+<span class="nx">def</span> <span class="nx">validate_sequence</span><span class="p">(</span><span class="nx">sequence</span><span class="p">,</span> <span class="nx">alphabet</span><span class="o">=</span><span class="nx">None</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">:</span>
+    <span class="s2">&quot;&quot;&quot;Return True if the string sequence contains </span>
+<span class="s2">    only letters from the supplied alphabet, otherwise False. </span>
+<span class="s2">    Default alphabet is IUPAC.unambiguous_dna&quot;&quot;&quot;</span>
+    <span class="nx">alphabet</span> <span class="o">=</span> <span class="nx">select_alphabet</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span>
+        <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">sequence</span><span class="o">:</span>
+            <span class="k">if</span> <span class="nx">i</span> <span class="nx">not</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="o">:</span>
+                <span class="k">return</span> <span class="nx">False</span>
+        <span class="k">return</span> <span class="nx">True</span>
+
+    <span class="nx">elif</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">set</span><span class="p">(</span><span class="nx">sequence</span><span class="p">.</span><span class="nx">upper</span><span class="p">())</span> <span class="o">-</span> <span class="nx">set</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="p">.</span><span class="nx">upper</span><span class="p">())</span> <span class="o">==</span> <span class="nx">set</span><span class="p">()</span>
+
+<span class="nx">def</span> <span class="nx">test_validate_sequence</span><span class="p">()</span><span class="o">:</span>
+    <span class="nx">vs</span> <span class="o">=</span> <span class="nx">validate_sequence</span>
+    <span class="k">for</span> <span class="nx">method</span> <span class="k">in</span> <span class="cp">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="cp">]</span><span class="o">:</span>
+        <span class="nx">assert</span> <span class="nx">vs</span><span class="p">(</span><span class="s1">&#39;AAA&#39;</span><span class="p">,</span> <span class="s1">&#39;ATG&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span>
+        <span class="nx">assert</span> <span class="nx">vs</span><span class="p">(</span><span class="s1">&#39;AAA&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span> <span class="o">==</span> <span class="nx">False</span>
+        <span class="nx">assert</span> <span class="nx">vs</span><span class="p">(</span><span class="s1">&#39;ATCG&#39;</span><span class="p">,</span> <span class="nx">IUPAC</span><span class="p">.</span><span class="nx">unambiguous_dna</span><span class="p">.</span><span class="nx">letters</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span>
+        <span class="nx">assert</span> <span class="nx">vs</span><span class="p">(</span><span class="s1">&#39;AT&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span> <span class="o">==</span> <span class="nx">False</span>
+        <span class="nx">assert</span> <span class="nx">vs</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">)</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Test OK.&#39;</span><span class="p">)</span>
+
+<span class="nx">test_validate_sequence</span><span class="p">()</span>
+
+<span class="nx">Test</span> <span class="nx">OK</span><span class="p">.</span>
+
+
+
+<span class="kr">import</span> <span class="nx">random</span>
+<span class="nx">def</span> <span class="nx">random_base</span><span class="p">(</span><span class="nx">alphabet</span><span class="o">=</span><span class="nx">None</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">:</span>
+    <span class="s2">&quot;&quot;&quot;Returns a random base from the supplied alphabet. </span>
+<span class="s2">    Default alphabet is IUPAC.unambiguous_dna&quot;&quot;&quot;</span>
+    <span class="nx">alphabet</span> <span class="o">=</span> <span class="nx">select_alphabet</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span>
+        <span class="err">#</span> <span class="nx">This</span> <span class="nx">method</span> <span class="nx">is</span> <span class="nx">better</span> <span class="nx">because</span> <span class="nx">it</span> <span class="nx">returns</span> <span class="nx">a</span> <span class="nx">proper</span> 
+        <span class="err">#</span> <span class="nx">Biopython</span> <span class="nx">sequence</span> <span class="nx">object</span><span class="p">.</span> 
+        <span class="k">return</span> <span class="nx">Seq</span><span class="p">(</span><span class="nx">random</span><span class="p">.</span><span class="nx">choice</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="p">),</span> <span class="nx">alphabet</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">random</span><span class="p">.</span><span class="nx">choice</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="p">)</span>
+
+<span class="nx">def</span> <span class="nx">test_random_base</span><span class="p">()</span><span class="o">:</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">for</span> <span class="nx">method</span> <span class="k">in</span> <span class="cp">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="cp">]</span><span class="o">:</span>
+            <span class="nx">rb</span> <span class="o">=</span> <span class="nx">random_base</span><span class="p">(</span><span class="nx">IUPAC</span><span class="p">.</span><span class="nx">unambiguous_rna</span><span class="p">)</span>
+            <span class="nx">assert</span> <span class="nx">validate_sequence</span><span class="p">(</span><span class="nx">rb</span><span class="p">,</span> <span class="nx">IUPAC</span><span class="p">.</span><span class="nx">unambiguous_rna</span><span class="p">)</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Test OK.&#39;</span><span class="p">)</span>
+<span class="nx">test_random_base</span><span class="p">()</span>
+
+<span class="nx">Test</span> <span class="nx">OK</span><span class="p">.</span>
+
+
+
+<span class="nx">def</span> <span class="nx">random_codon</span><span class="p">(</span><span class="nx">alphabet</span><span class="o">=</span><span class="nx">None</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">:</span>
+    <span class="s2">&quot;&quot;&quot;Returns a random codon from the supplied alphabet. </span>
+<span class="s2">    Default alphabet is IUPAC.unambiguous_dna&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">random_base</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">)</span> <span class="o">+</span> <span class="o">\</span>
+               <span class="nx">random_base</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">)</span> <span class="o">+</span> <span class="o">\</span>
+               <span class="nx">random_base</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="o">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="cp">[</span><span class="nx">random_base</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">,</span> <span class="nb">method</span><span class="p">)</span> <span class="nb">for</span> <span class="n">x</span> <span class="k">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="cp">]</span><span class="p">)</span>
+
+<span class="nx">def</span> <span class="nx">test_random_codon</span><span class="p">()</span><span class="o">:</span>
+    <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span><span class="o">:</span>
+        <span class="k">for</span> <span class="nx">method</span> <span class="k">in</span> <span class="cp">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="cp">]</span><span class="o">:</span>
+            <span class="nx">rc</span> <span class="o">=</span> <span class="nx">random_codon</span><span class="p">(</span><span class="nx">IUPAC</span><span class="p">.</span><span class="nx">unambiguous_rna</span><span class="p">,</span> <span class="nx">method</span><span class="p">)</span>
+            <span class="nx">assert</span> <span class="nx">validate_sequence</span><span class="p">(</span><span class="nx">rc</span><span class="p">,</span> <span class="nx">IUPAC</span><span class="p">.</span><span class="nx">unambiguous_rna</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span>
+                <span class="nx">assert</span> <span class="nx">type</span><span class="p">(</span><span class="nx">rc</span><span class="p">)</span> <span class="o">==</span> <span class="nx">type</span><span class="p">(</span><span class="nx">Seq</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">))</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Test OK.&#39;</span><span class="p">)</span>
+
+<span class="nx">test_random_codon</span><span class="p">()</span>
+
+<span class="nx">Test</span> <span class="nx">OK</span><span class="p">.</span>
+
+
+
+<span class="nx">def</span> <span class="nx">replace_base_randomly</span><span class="p">(</span><span class="nx">sequence</span><span class="p">,</span> <span class="nx">alphabet</span><span class="o">=</span><span class="nx">None</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">:</span>
+    <span class="s2">&quot;&quot;&quot;Returns sequence with one base randomly mutated </span>
+<span class="s2">    to one of the letters from the supplied alphabet. </span>
+<span class="s2">    Default alphabet is IUPAC.unambiguous_dna&quot;&quot;&quot;</span>
+    <span class="nx">alphabet</span> <span class="o">=</span> <span class="nx">select_alphabet</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">len</span><span class="p">(</span><span class="nx">sequence</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
+        <span class="nx">raise</span> <span class="nx">Exception</span> <span class="p">(</span><span class="s2">&quot;Error: No sequence detected!&quot;</span><span class="p">,</span> <span class="nx">sequence</span><span class="p">)</span>
+
+    <span class="nx">elif</span> <span class="nx">len</span><span class="p">(</span><span class="nx">set</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="p">.</span><span class="nx">upper</span><span class="p">()))</span> <span class="o">==</span> <span class="mi">1</span> <span class="nx">and</span> <span class="o">\</span>
+         <span class="nx">len</span><span class="p">(</span><span class="nx">set</span><span class="p">(</span><span class="nx">sequence</span><span class="p">.</span><span class="nx">upper</span><span class="p">()))</span> <span class="o">==</span> <span class="mi">1</span><span class="o">:</span>
+        <span class="nx">raise</span> <span class="nx">Exception</span> <span class="p">(</span><span class="s2">&quot;Error: Mutation not possible!&quot;</span><span class="p">,</span> <span class="nx">sequence</span><span class="p">,</span> <span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="p">)</span>
+
+    <span class="nx">pos</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span><span class="p">(</span><span class="nx">sequence</span><span class="p">))</span>
+    <span class="nx">removed_base</span> <span class="o">=</span> <span class="nx">sequence</span><span class="cp">[</span><span class="nx">pos</span><span class="cp">]</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span>
+        <span class="nx">letters_subset</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="nx">base</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="o">:</span>
+            <span class="k">if</span> <span class="nx">base</span> <span class="o">!=</span> <span class="nx">removed_base</span><span class="p">.</span><span class="nx">upper</span><span class="p">()</span> <span class="nx">and</span> <span class="nx">base</span> <span class="o">!=</span> <span class="nx">removed_base</span><span class="p">.</span><span class="nx">lower</span><span class="p">()</span><span class="o">:</span>
+                <span class="nx">letters_subset</span> <span class="o">+=</span> <span class="nx">base</span>
+
+    <span class="nx">elif</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="o">:</span>
+        <span class="nx">letters_subset</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">.</span><span class="nx">join</span><span class="p">((</span><span class="nx">b</span> <span class="k">for</span> <span class="nx">b</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span> 
+                                  <span class="k">if</span> <span class="nx">base</span> <span class="o">!=</span> <span class="nx">removed_base</span><span class="p">.</span><span class="nx">upper</span><span class="p">()</span> <span class="nx">and</span> 
+                                     <span class="nx">base</span> <span class="o">!=</span> <span class="nx">removed_base</span><span class="p">.</span><span class="nx">lower</span><span class="p">()))</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="k">in</span> <span class="cp">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="cp">]</span><span class="o">:</span>
+        <span class="k">return</span> <span class="nx">sequence</span><span class="cp">[</span><span class="p">:</span><span class="nx">pos</span><span class="cp">]</span> <span class="o">+</span> <span class="nx">random</span><span class="p">.</span><span class="nx">choice</span><span class="p">(</span><span class="nx">letters_subset</span><span class="p">)</span> <span class="o">+</span> <span class="nx">sequence</span><span class="cp">[</span><span class="nx">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="cp">]</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="o">:</span>
+        <span class="nx">seq_list</span> <span class="o">=</span> <span class="cp">[</span><span class="nx">r_base</span> <span class="k">if</span> <span class="nx">i</span> <span class="o">==</span> <span class="nx">r_index</span> <span class="k">else</span> <span class="nx">b</span> <span class="nb">for</span> <span class="nx">i</span><span class="p">,</span> <span class="n">b</span> <span class="k">in</span> <span class="nx">enumerate</span><span class="p">(</span><span class="nx">sequence</span><span class="p">)</span><span class="cp">]</span>
+
+
+<span class="nx">def</span> <span class="nx">replace_base_randomly</span><span class="p">(</span><span class="nx">sequence</span><span class="p">,</span> <span class="nx">alphabet</span><span class="o">=</span><span class="nx">None</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">:</span>
+    <span class="s2">&quot;&quot;&quot;Returns sequence with one base randomly mutated </span>
+<span class="s2">    to one of the letters from the supplied alphabet. </span>
+<span class="s2">    Default alphabet is IUPAC.unambiguous_dna&quot;&quot;&quot;</span>
+    <span class="nx">alphabet</span> <span class="o">=</span> <span class="nx">select_alphabet</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">len</span><span class="p">(</span><span class="nx">sequence</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="o">:</span>
+        <span class="nx">raise</span> <span class="nx">Exception</span> <span class="p">(</span><span class="s2">&quot;Error: No sequence detected!&quot;</span><span class="p">,</span> <span class="nx">sequence</span><span class="p">)</span>
+
+    <span class="nx">elif</span> <span class="nx">len</span><span class="p">(</span><span class="nx">set</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="p">.</span><span class="nx">upper</span><span class="p">()))</span> <span class="o">==</span> <span class="mi">1</span> <span class="nx">and</span> <span class="o">\</span>
+         <span class="nx">len</span><span class="p">(</span><span class="nx">set</span><span class="p">(</span><span class="nx">sequence</span><span class="p">.</span><span class="nx">upper</span><span class="p">()))</span> <span class="o">==</span> <span class="mi">1</span><span class="o">:</span>
+        <span class="nx">raise</span> <span class="nx">Exception</span> <span class="p">(</span><span class="s2">&quot;Error: Mutation not possible!&quot;</span><span class="p">,</span> <span class="nx">sequence</span><span class="p">,</span> <span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="p">)</span>
+
+    <span class="nx">pos</span> <span class="o">=</span> <span class="nx">random</span><span class="p">.</span><span class="nx">randrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">len</span><span class="p">(</span><span class="nx">sequence</span><span class="p">))</span>
+    <span class="nx">removed_base</span> <span class="o">=</span> <span class="nx">sequence</span><span class="cp">[</span><span class="nx">pos</span><span class="cp">]</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span>
+        <span class="nx">letters_subset</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">for</span> <span class="nx">base</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="o">:</span>
+            <span class="k">if</span> <span class="nx">base</span> <span class="o">!=</span> <span class="nx">removed_base</span><span class="p">.</span><span class="nx">upper</span><span class="p">()</span> <span class="nx">and</span> <span class="nx">base</span> <span class="o">!=</span> <span class="nx">removed_base</span><span class="p">.</span><span class="nx">lower</span><span class="p">()</span><span class="o">:</span>
+                <span class="nx">letters_subset</span> <span class="o">+=</span> <span class="nx">base</span>
+
+    <span class="nx">elif</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="o">:</span>
+        <span class="nx">letters_subset</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">.</span><span class="nx">join</span><span class="p">((</span><span class="nx">b</span> <span class="k">for</span> <span class="nx">b</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span> 
+                                  <span class="k">if</span> <span class="nx">b</span> <span class="o">!=</span> <span class="nx">removed_base</span><span class="p">.</span><span class="nx">upper</span><span class="p">()</span> <span class="nx">and</span> 
+                                     <span class="nx">b</span> <span class="o">!=</span> <span class="nx">removed_base</span><span class="p">.</span><span class="nx">lower</span><span class="p">()))</span>  
+    <span class="nx">elif</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="o">:</span>  
+        <span class="nx">letters_subset</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">alphabet</span><span class="p">.</span><span class="nx">letters</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="nx">removed_base</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="nx">sequence</span><span class="cp">[</span><span class="p">:</span><span class="nx">pos</span><span class="cp">]</span> <span class="o">+</span> <span class="nx">random</span><span class="p">.</span><span class="nx">choice</span><span class="p">(</span><span class="nx">letters_subset</span><span class="p">)</span> <span class="o">+</span> <span class="nx">sequence</span><span class="cp">[</span><span class="nx">pos</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="cp">]</span>
+
+<span class="nx">def</span> <span class="nx">test_replace_base_randomly</span><span class="p">()</span><span class="o">:</span>
+
+    <span class="k">for</span> <span class="nx">method</span> <span class="k">in</span> <span class="cp">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="cp">]</span><span class="o">:</span>
+        <span class="k">try</span><span class="o">:</span>
+            <span class="nx">replace_base_randomly</span><span class="p">(</span><span class="s2">&quot;aAaAaAaA&quot;</span><span class="p">,</span> <span class="s2">&quot;Aa&quot;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="nx">method</span><span class="p">)</span>
+        <span class="nx">except</span> <span class="nx">Exception</span> <span class="nx">as</span> <span class="nx">e</span><span class="o">:</span>
+            <span class="nx">assert</span> <span class="nx">e</span><span class="p">.</span><span class="nx">args</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;Error: Mutation not possible!&#39;</span><span class="p">,</span>
+                              <span class="s1">&#39;aAaAaAaA&#39;</span><span class="p">,</span> <span class="s1">&#39;Aa&#39;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">range</span><span class="p">(</span><span class="mi">6000</span><span class="p">)</span><span class="o">:</span>
+            <span class="nx">random_sequence</span> <span class="o">=</span> <span class="nx">random_codon</span><span class="p">(</span><span class="s1">&#39;atcg&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="o">\</span>
+                              <span class="nx">random_codon</span><span class="p">(</span><span class="s1">&#39;ATCG&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="o">\</span>
+                              <span class="nx">random_codon</span><span class="p">(</span><span class="s1">&#39;atcg&#39;</span><span class="p">)</span>
+            <span class="nx">new_seq</span> <span class="o">=</span> <span class="nx">replace_base_randomly</span><span class="p">(</span><span class="nx">random_sequence</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="nx">method</span><span class="p">)</span>
+
+            <span class="err">#</span><span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Old: {}  New: {}&#39;</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="nx">random_sequence</span><span class="p">,</span> <span class="nx">new_seq</span><span class="p">))</span>   
+            <span class="nx">assert</span> <span class="nx">new_seq</span><span class="p">.</span><span class="nx">upper</span><span class="p">()</span> <span class="o">!=</span> <span class="nx">random_sequence</span><span class="p">.</span><span class="nx">upper</span><span class="p">()</span>
+
+            <span class="nx">N_differences</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="nx">index</span><span class="p">,</span> <span class="nx">base</span> <span class="k">in</span> <span class="nx">enumerate</span><span class="p">(</span><span class="nx">new_seq</span><span class="p">)</span><span class="o">:</span>
+                <span class="k">if</span> <span class="nx">base</span> <span class="o">!=</span> <span class="nx">random_sequence</span><span class="cp">[</span><span class="nb">index</span><span class="cp">]</span><span class="o">:</span>
+                    <span class="nx">N_differences</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="nx">assert</span> <span class="nx">N_differences</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="nx">N_differences</span>
+
+    <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Test OK.&#39;</span><span class="p">)</span>
+
+<span class="nx">test_replace_base_randomly</span><span class="p">()</span>
+
+<span class="nx">Test</span> <span class="nx">OK</span><span class="p">.</span>
+
+
+
+<span class="nx">def</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="nx">sequence</span><span class="p">,</span> <span class="nx">letters</span><span class="p">,</span> <span class="nx">alphabet</span><span class="o">=</span><span class="nx">None</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">:</span>
+    <span class="s2">&quot;&quot;&quot;Return the percentage of characters in sequence that are </span>
+<span class="s2">    part of letters. Checks if both the sequence and letters are </span>
+<span class="s2">    part of the supplied alphabet. Default alphabet is IUPAC.unambiguous_dna&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="nx">not</span> <span class="nx">validate_sequence</span><span class="p">(</span><span class="nx">sequence</span><span class="p">,</span> <span class="nx">alphabet</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">raise</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">&#39;The sequence you supplied must only contain &#39;</span>
+                        <span class="s1">&#39;letters from the alphabet supplied.&#39;</span><span class="p">,</span> <span class="nx">alphabet</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">not</span> <span class="nx">validate_sequence</span><span class="p">(</span><span class="nx">letters</span><span class="p">,</span> <span class="nx">alphabet</span><span class="p">)</span><span class="o">:</span>
+        <span class="nx">raise</span> <span class="nx">Exception</span><span class="p">(</span><span class="s1">&#39;The letters you supplied must only contain &#39;</span>
+                        <span class="s1">&#39;characters from the alphabet supplied.&#39;</span><span class="p">,</span> 
+                        <span class="nx">alphabet</span><span class="p">,</span> <span class="nx">letters</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span><span class="o">:</span>
+        <span class="nx">n</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="nx">letter</span> <span class="k">in</span> <span class="nx">set</span><span class="p">(</span><span class="nx">letters</span><span class="p">)</span><span class="o">:</span>
+            <span class="k">for</span> <span class="kr">char</span> <span class="k">in</span> <span class="nx">sequence</span><span class="o">:</span>
+                <span class="k">if</span> <span class="nx">letter</span> <span class="o">==</span> <span class="kr">char</span><span class="o">:</span>
+                    <span class="nx">n</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="mi">100</span><span class="o">*</span> <span class="nx">n</span> <span class="o">/</span> <span class="kr">float</span><span class="p">(</span><span class="nx">len</span><span class="p">(</span><span class="nx">sequence</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="o">:</span>
+        <span class="nx">return_value</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="nx">letter</span> <span class="k">in</span> <span class="nx">set</span><span class="p">(</span><span class="nx">letters</span><span class="p">)</span><span class="o">:</span>
+            <span class="nx">return_value</span> <span class="o">+=</span> <span class="mi">100</span><span class="o">*</span><span class="nx">list</span><span class="p">(</span><span class="nx">sequence</span><span class="p">).</span><span class="nx">count</span><span class="p">(</span><span class="nx">letter</span><span class="p">)</span> <span class="o">/</span> <span class="nx">len</span><span class="p">(</span><span class="nx">sequence</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nx">return_value</span>
+
+    <span class="k">if</span> <span class="nx">method</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="o">:</span>
+        <span class="nx">from</span> <span class="nx">collections</span> <span class="kr">import</span> <span class="nx">Counter</span> <span class="nx">as</span> <span class="nx">CC</span>
+        <span class="k">return</span> <span class="mi">100</span> <span class="o">*</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">bc</span><span class="o">/</span><span class="nx">len</span><span class="p">(</span><span class="nx">sequence</span><span class="p">)</span> <span class="k">for</span> <span class="nx">b</span><span class="p">,</span> <span class="nx">bc</span> <span class="k">in</span> <span class="nx">CC</span><span class="p">(</span><span class="nx">sequence</span><span class="p">).</span><span class="nx">items</span><span class="p">()</span> <span class="k">if</span> <span class="nx">b</span> <span class="k">in</span> <span class="nx">letters</span><span class="p">)</span>
+
+<span class="nx">def</span> <span class="nx">test_sequence_content_fraction</span><span class="p">()</span><span class="o">:</span>
+    <span class="nx">f_A</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+    <span class="nx">f_B</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+    <span class="nx">f_C</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+
+    <span class="err">#</span> <span class="nx">This</span> <span class="nx">is</span> <span class="nx">how</span> <span class="nx">you</span> <span class="nx">should</span> <span class="nx">check</span> <span class="k">if</span> <span class="nx">two</span> <span class="nx">floats</span> <span class="nx">have</span> <span class="nx">the</span> <span class="nx">same</span> 
+    <span class="err">#</span> <span class="p">(</span><span class="nx">the</span> <span class="nx">values</span> <span class="nx">must</span> <span class="nx">be</span> <span class="nx">close</span><span class="p">,</span> <span class="nx">but</span> <span class="nx">not</span> <span class="nx">exactly</span> <span class="nx">the</span> <span class="nx">same</span><span class="p">)</span>
+    <span class="nx">assert</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">f_A</span> <span class="o">-</span> <span class="nx">f_B</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="nx">e</span><span class="o">-</span><span class="mi">12</span>
+    <span class="nx">assert</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">f_A</span> <span class="o">-</span> <span class="nx">f_C</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="nx">e</span><span class="o">-</span><span class="mi">12</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Test OK.&#39;</span><span class="p">)</span>
+
+<span class="nx">test_sequence_content_fraction</span><span class="p">()</span>
+
+<span class="nx">Test</span> <span class="nx">OK</span><span class="p">.</span>
+</pre></div>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://schryer.github.io/python_course_material/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://schryer.github.io/python_course_material/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
