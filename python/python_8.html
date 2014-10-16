@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Responses to student questions from unit 6.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="David Schryer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://schryer.github.io/python_course_material/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://schryer.github.io/python_course_material/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://schryer.github.io/python_course_material/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://schryer.github.io/python_course_material/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://schryer.github.io/python_course_material/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://schryer.github.io/python_course_material/" type="application/atom+xml" rel="alternate" title="Scientific Programming with Python ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://schryer.github.io/python_course_material/index.html">Scientific Programming with Python </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                  <li><a href="/python_course_material/">Home</a></li>
+                  <li><a href="/python_course_material/ipython/">Getting started with IPython notebook</a></li>
+                  <li><a href="/python_course_material/python/">Python notebooks</a></li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://schryer.github.io/python_course_material/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content" class="body">
+        <h1 class="entry-title">Responses to student questions from unit 6.</h1>
+        <p>Download original file: <a href="http://schryer.github.io/python_course_material/notebooks/8_questions_from_unit_6.ipynb">8_questions_from_unit_6.ipynb</a></p>
+<p>View original file in nbviewer: <a href="http://nbviewer.ipython.org/url/schryer.github.io/python_course_material/notebooks/8_questions_from_unit_6.ipynb">8_questions_from_unit_6.ipynb</a></p>
+<h2>Answers to questions raised in unit&nbsp;7</h2>
+<p>Going through strange code to try and understand it is the very best way of
+learning new tricks, but often raises questions. This notebook
+tries to address the questions raised last week in unit&nbsp;7.</p>
+<h3>Question&nbsp;1:</h3>
+<p><em>I don&#8217;t understand this line</em>:</p>
+<div class="highlight"><pre><span class="k">return</span> <span class="n">set</span><span class="p">(</span><span class="n">sequence</span><span class="p">.</span><span class="n">upper</span><span class="p">())</span> <span class="o">-</span> <span class="n">set</span><span class="p">(</span><span class="n">alphabet</span><span class="p">.</span><span class="n">letters</span><span class="p">.</span><span class="n">upper</span><span class="p">())</span> <span class="o">==</span> <span class="n">set</span><span class="p">()</span>
+</pre></div>
+
+
+<h3>Response&nbsp;1:</h3>
+<p>To understand code, one should separate it into discrete chunks that are
+interpreted in order. In this case there are six separate elements that occur in
+one&nbsp;line:</p>
+<h4>Element&nbsp;1:</h4>
+<p>The <code>.upper</code> string method returns the sequence in upper&nbsp;case:</p>
+<div class="highlight"><pre><span class="n">sequence</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">abcd</span><span class="err">&#39;</span>
+<span class="n">sequence</span><span class="p">.</span><span class="n">upper</span><span class="p">()</span>
+
+
+
+
+<span class="err">&#39;</span><span class="n">ABCD</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<h4>Element&nbsp;2:</h4>
+<p>This element takes the letters attribute from the alphabet and returns them in
+upper&nbsp;case:</p>
+<div class="highlight"><pre><span class="n">from</span> <span class="n">Bio</span><span class="p">.</span><span class="n">Alphabet</span> <span class="n">import</span> <span class="n">IUPAC</span>
+<span class="n">alphabet</span> <span class="o">=</span> <span class="n">IUPAC</span><span class="p">.</span><span class="n">ambiguous_rna</span>
+<span class="n">alphabet</span><span class="p">.</span><span class="n">letters</span><span class="p">.</span><span class="n">upper</span><span class="p">()</span>
+
+
+
+
+<span class="err">&#39;</span><span class="n">GAUCRYWSMKHBVDN</span><span class="err">&#39;</span>
+</pre></div>
+
+
+<h4>Element&nbsp;3:</h4>
+<p>The <code>set</code> function takes a sequence or iterable and turns it into a&nbsp;set:</p>
+<div class="highlight"><pre><span class="n">iterable</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">A</span> <span class="n">string</span> <span class="n">is</span> <span class="n">an</span> <span class="n">iterable</span><span class="p">.</span><span class="err">&#39;</span>
+<span class="n">set</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+
+
+
+
+<span class="p">{</span><span class="sc">&#39; &#39;</span><span class="p">,</span> <span class="sc">&#39;.&#39;</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="sc">&#39;b&#39;</span><span class="p">,</span> <span class="sc">&#39;e&#39;</span><span class="p">,</span> <span class="sc">&#39;g&#39;</span><span class="p">,</span> <span class="sc">&#39;i&#39;</span><span class="p">,</span> <span class="sc">&#39;l&#39;</span><span class="p">,</span> <span class="sc">&#39;n&#39;</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="sc">&#39;s&#39;</span><span class="p">,</span> <span class="sc">&#39;t&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<p>Note that A set only contains unique members and the order does not&nbsp;matter.</p>
+<h4>Element&nbsp;4:</h4>
+<p>If <code>A</code> is a set and <code>B</code> is a set we can compute the difference between sets. The
+difference between sets means we find all members in <code>A</code> that do not appear in
+<code>B</code>. The difference can be computed in two&nbsp;ways:</p>
+<div class="highlight"><pre><span class="n">A</span> <span class="o">=</span> <span class="n">set</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Any</span> <span class="n">iterable</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">set</span><span class="p">(</span><span class="err">&#39;</span><span class="n">iterable</span> <span class="n">B</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="cp"># This method is prefered when it is not clear what A and B are</span>
+<span class="n">A</span><span class="p">.</span><span class="n">difference</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+
+<span class="cp"># This method is used here because it is more readable in this case:</span>
+<span class="n">A</span> <span class="o">-</span> <span class="n">B</span>
+
+
+
+
+<span class="p">{</span><span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;n&#39;</span><span class="p">,</span> <span class="sc">&#39;y&#39;</span><span class="p">}</span>
+</pre></div>
+
+
+<h4>Element&nbsp;5:</h4>
+<p>This evaluates to <code>True</code> if <code>A</code> has the same members as <code>B</code>:</p>
+<div class="highlight"><pre><span class="n">A</span> <span class="o">==</span> <span class="n">B</span>
+
+
+
+
+<span class="n">False</span>
+</pre></div>
+
+
+<h4>Element&nbsp;6:</h4>
+<p>The final element returns the result of element 5 when the function is&nbsp;called:</p>
+<div class="highlight"><pre><span class="k">return</span> <span class="n">result</span>
+</pre></div>
+
+
+<h3>Question&nbsp;2:</h3>
+<p><em>Why do we use method A and B (and C)? Sometimes it seams that only one method
+is sufficient to&nbsp;use</em></p>
+<h3>Response&nbsp;2:</h3>
+<p>I included all answers provided by all learners as different methods.
+In this way people can compare the code for different methods so that
+they can learn different ways of accomplishing the same thing.
+The test methods prove that all methods are&nbsp;equivalent.</p>
+<h3>Question&nbsp;3:</h3>
+<p><em>I have trouble understanding built in function</em> <code>enumarate()</code>.</p>
+<h3>Response&nbsp;3:</h3>
+<p>Here is the documentation for the <code>enumerate</code> function:</p>
+<p><a href="https://docs.pyth
+on.org/3/library/functions.html#enumerate"><code>https://docs.python.org/3/library/functions.html#enumerate</code></a></p>
+<p>There are a number of quirks to this&nbsp;function:</p>
+<h4>The function enumerate returns a&nbsp;generator</h4>
+<p><code>enumerate</code> is equivalent&nbsp;to:</p>
+<div class="highlight"><pre><span class="n">def</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">start</span>
+    <span class="k">for</span> <span class="n">elem</span> <span class="n">in</span> <span class="n">sequence</span><span class="o">:</span>
+        <span class="n">yield</span> <span class="n">n</span><span class="p">,</span> <span class="n">elem</span>
+        <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>The enumerate function uses the <code>yield</code> keyword to create a&nbsp;generator.</p>
+<p><a href="https://docs.python.org/3/reference/expressions.html#yield-
+expressions"><code>https://docs.python.org/3/reference/expressions.html#yield-
+expressions</code></a></p>
+<p>A generator is an object we can iterate over exactly one time.
+This contrasts with a list or other container that can be iterated over
+as many times as one desires.  Consider the following&nbsp;example:</p>
+<div class="highlight"><pre><span class="cp"># Note that round brackets are used.</span>
+<span class="n">my_generator</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="cp"># Note that square brackets are used.</span>
+<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="n">in</span> <span class="n">my_generator</span><span class="o">:</span>
+    <span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Generator</span> <span class="n">item</span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="n">in</span> <span class="n">my_list</span><span class="o">:</span>
+    <span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">List</span> <span class="n">item</span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="n">in</span> <span class="n">my_generator</span><span class="o">:</span>
+    <span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">This</span> <span class="n">should</span> <span class="n">never</span> <span class="n">be</span> <span class="n">printed</span> <span class="n">out</span><span class="p">.</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="n">in</span> <span class="n">my_list</span><span class="o">:</span>
+    <span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Second</span> <span class="n">time</span> <span class="n">through</span> <span class="n">list</span><span class="o">:</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+
+<span class="n">Generator</span> <span class="n">item</span><span class="o">:</span> <span class="mi">0</span>
+<span class="n">Generator</span> <span class="n">item</span><span class="o">:</span> <span class="mi">1</span>
+<span class="n">Generator</span> <span class="n">item</span><span class="o">:</span> <span class="mi">4</span>
+<span class="n">List</span> <span class="n">item</span><span class="o">:</span> <span class="mi">0</span>
+<span class="n">List</span> <span class="n">item</span><span class="o">:</span> <span class="mi">1</span>
+<span class="n">List</span> <span class="n">item</span><span class="o">:</span> <span class="mi">4</span>
+<span class="n">Second</span> <span class="n">time</span> <span class="n">through</span> <span class="n">list</span><span class="o">:</span> <span class="mi">0</span>
+<span class="n">Second</span> <span class="n">time</span> <span class="n">through</span> <span class="n">list</span><span class="o">:</span> <span class="mi">1</span>
+<span class="n">Second</span> <span class="n">time</span> <span class="n">through</span> <span class="n">list</span><span class="o">:</span> <span class="mi">4</span>
+</pre></div>
+
+
+<h4>The <code>enumerate</code> function returns a two&nbsp;tuple</h4>
+<p>The <code>enumerate</code> function returns items from an iterable one at a time together
+with the value of a counter that starts at start. If the default <code>start=0</code> is
+used, the value of the counter is the same as the index used to access items
+from this iterable, if that iterable supports retrieval by&nbsp;index.</p>
+<div class="highlight"><pre><span class="n">list</span><span class="p">(</span><span class="n">enumerate</span><span class="p">(</span><span class="err">&#39;</span><span class="n">ABCD</span><span class="err">&#39;</span><span class="p">))</span>
+
+
+
+
+<span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="sc">&#39;A&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="sc">&#39;C&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">)]</span>
+</pre></div>
+
+
+<h3>Question&nbsp;4:</h3>
+<p><em>The following code is difficult to understand because the <code>assert</code> keyword uses
+two parameters and the loop uses the enumarate()&nbsp;function</em></p>
+<div class="highlight"><pre><span class="n">new_seq</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">AAAABBBBCCCC</span><span class="err">&#39;</span>
+
+<span class="cp"># Has only one base that is different from new_seq.</span>
+<span class="cp"># In this case the assert statement is passed silently.</span>
+<span class="n">random_sequence</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">AAAABBBBCCDC</span><span class="err">&#39;</span>
+
+<span class="cp"># Has more than one base that is different from new_seq.</span>
+<span class="cp"># In this case the assert is not passed.</span>
+<span class="cp">#random_sequence = &#39;ADAABBBBCCDC&#39;</span>
+
+<span class="n">N_differences</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">base</span> <span class="n">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">new_seq</span><span class="p">)</span><span class="o">:</span>
+    <span class="k">if</span> <span class="n">base</span> <span class="o">!=</span> <span class="n">random_sequence</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">:</span>
+        <span class="n">N_differences</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">assert</span> <span class="n">N_differences</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N_differences</span>
+</pre></div>
+
+
+<h3>Response&nbsp;4:</h3>
+<p>Assuming we now understand the <code>enumerate</code> function from response 3, we can
+focus on only two elements of this&nbsp;code.</p>
+<h4>Element 1:  The counting&nbsp;loop</h4>
+<p>Let us rewrite this a little bit to help us understand what is going&nbsp;on:</p>
+<div class="highlight"><pre><span class="n">new_seq</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">AAAABBBBCCCC</span><span class="err">&#39;</span>
+<span class="n">random_sequence</span> <span class="o">=</span> <span class="err">&#39;</span><span class="n">AAAABBBBCCDC</span><span class="err">&#39;</span>
+
+<span class="n">N_differences</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">base</span> <span class="n">in</span> <span class="n">enumerate</span><span class="p">(</span><span class="n">new_seq</span><span class="p">)</span><span class="o">:</span>
+    <span class="n">other_base</span> <span class="o">=</span> <span class="n">random_sequence</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+
+    <span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="p">{}</span> <span class="p">(</span><span class="n">base</span> <span class="p">{})</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">base</span><span class="p">)</span> <span class="o">+</span> 
+          <span class="err">&#39;</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="p">{}</span> <span class="p">(</span><span class="n">base</span> <span class="p">{}).</span><span class="err">&#39;</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">other_base</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">base</span> <span class="o">!=</span> <span class="n">other_base</span><span class="o">:</span>
+
+        <span class="n">print</span><span class="p">(</span><span class="err">&#39;</span>   <span class="n">Bases</span> <span class="n">are</span> <span class="n">different</span><span class="p">.</span> <span class="n">Adding</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">N_differences</span><span class="err">&#39;</span><span class="p">)</span>
+        <span class="n">N_differences</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">print</span><span class="p">(</span><span class="err">&#39;</span><span class="n">N_differences</span> <span class="o">=</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">N_differences</span><span class="p">)</span>
+
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">0</span> <span class="p">(</span><span class="n">base</span> <span class="n">A</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">0</span> <span class="p">(</span><span class="n">base</span> <span class="n">A</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">1</span> <span class="p">(</span><span class="n">base</span> <span class="n">A</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">1</span> <span class="p">(</span><span class="n">base</span> <span class="n">A</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">2</span> <span class="p">(</span><span class="n">base</span> <span class="n">A</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">2</span> <span class="p">(</span><span class="n">base</span> <span class="n">A</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">3</span> <span class="p">(</span><span class="n">base</span> <span class="n">A</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">3</span> <span class="p">(</span><span class="n">base</span> <span class="n">A</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">4</span> <span class="p">(</span><span class="n">base</span> <span class="n">B</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">4</span> <span class="p">(</span><span class="n">base</span> <span class="n">B</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">5</span> <span class="p">(</span><span class="n">base</span> <span class="n">B</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">5</span> <span class="p">(</span><span class="n">base</span> <span class="n">B</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">6</span> <span class="p">(</span><span class="n">base</span> <span class="n">B</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">6</span> <span class="p">(</span><span class="n">base</span> <span class="n">B</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">7</span> <span class="p">(</span><span class="n">base</span> <span class="n">B</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">7</span> <span class="p">(</span><span class="n">base</span> <span class="n">B</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">8</span> <span class="p">(</span><span class="n">base</span> <span class="n">C</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">8</span> <span class="p">(</span><span class="n">base</span> <span class="n">C</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">9</span> <span class="p">(</span><span class="n">base</span> <span class="n">C</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">9</span> <span class="p">(</span><span class="n">base</span> <span class="n">C</span><span class="p">).</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">10</span> <span class="p">(</span><span class="n">base</span> <span class="n">C</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">10</span> <span class="p">(</span><span class="n">base</span> <span class="n">D</span><span class="p">).</span>
+   <span class="n">Bases</span> <span class="n">are</span> <span class="n">different</span><span class="p">.</span> <span class="n">Adding</span> <span class="mi">1</span> <span class="n">to</span> <span class="n">N_differences</span>
+<span class="n">Comparing</span> <span class="n">original</span> <span class="n">index</span> <span class="mi">11</span> <span class="p">(</span><span class="n">base</span> <span class="n">C</span><span class="p">)</span> <span class="n">to</span> <span class="n">random</span> <span class="n">index</span> <span class="mi">11</span> <span class="p">(</span><span class="n">base</span> <span class="n">C</span><span class="p">).</span>
+<span class="n">N_differences</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+
+
+<p>This use of <code>enumerate</code> allows us to retrieve the base from <code>random_sequence</code>
+that is in the same position as <code>new_seq</code>.</p>
+<p>If these bases are different we add it to the total number of differences&nbsp;(N_differences).</p>
+<h4>Element 2: The <code>assert</code> statement</h4>
+<p><a href="https://docs.python.org/3/reference/simple_stmts.html#grammar-
+token-assert_stmt"><code>https://docs.python.org/3/reference/simple_stmts.html#grammar-token-
+assert_stmt</code></a></p>
+<p>The <code>assert</code> statement can be give either one or two expressions as&nbsp;such:</p>
+<div class="highlight"><pre><span class="n">expression1</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">expression2</span> <span class="o">=</span> <span class="mi">1</span><span class="o">*</span><span class="mi">4</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">-</span><span class="mi">6</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span><span class="o">%</span><span class="mi">99</span>
+
+<span class="n">assert</span> <span class="n">expression1</span>
+<span class="n">assert</span> <span class="n">expression1</span><span class="p">,</span> <span class="n">expression2</span> 
+<span class="n">assert</span><span class="p">(</span><span class="n">expression1</span><span class="p">)</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">expression1</span><span class="p">),</span> <span class="n">expression2</span>
+</pre></div>
+
+
+<p>Note that the second expression can be a tuple of other&nbsp;expressions:</p>
+<div class="highlight"><pre><span class="n">assert</span> <span class="n">expression1</span><span class="p">,</span> <span class="p">(</span><span class="n">expression2</span><span class="p">)</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">expression1</span><span class="p">),</span> <span class="p">(</span><span class="n">expression2</span><span class="p">)</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">expression1</span><span class="p">),</span> <span class="p">(</span><span class="n">expression1</span><span class="p">,</span> <span class="n">expression2</span><span class="p">,</span> <span class="err">&#39;</span><span class="n">Or</span> <span class="n">more</span><span class="p">...</span><span class="err">&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If only one expression is given to an <code>assert</code> statement and this evaluates to
+<code>False</code>, an <code>AssertionError</code> is raised without any&nbsp;arguments:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="n">not</span> <span class="n">expression1</span><span class="o">:</span>
+    <span class="n">raise</span> <span class="n">AssertionError</span>
+</pre></div>
+
+
+<p>If two expressions are given to an <code>assert</code> statement, an <code>AssertionError</code> is
+raised with <code>expression2</code> as the&nbsp;argument:</p>
+<div class="highlight"><pre><span class="k">if</span> <span class="n">not</span> <span class="n">expression1</span><span class="o">:</span>
+    <span class="n">raise</span> <span class="n">AssertionError</span><span class="p">(</span><span class="n">expression2</span><span class="p">)</span>
+</pre></div>
+
+
+<h3>Question&nbsp;5:</h3>
+<p><em>This part is also difficult to&nbsp;understand:</em></p>
+<div class="highlight"><pre><span class="nx">def</span> <span class="nx">test_sequence_content_fraction</span><span class="p">()</span><span class="o">:</span>
+    <span class="nx">f_A</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+    <span class="nx">f_B</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+    <span class="nx">f_C</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+
+    <span class="err">#</span> <span class="nx">This</span> <span class="nx">is</span> <span class="nx">how</span> <span class="nx">you</span> <span class="nx">should</span> <span class="nx">check</span> <span class="k">if</span> <span class="nx">two</span> <span class="nx">floats</span> <span class="nx">have</span> <span class="nx">the</span> <span class="nx">same</span>
+    <span class="err">#</span> <span class="p">(</span><span class="nx">the</span> <span class="nx">values</span> <span class="nx">must</span> <span class="nx">be</span> <span class="nx">close</span><span class="p">,</span> <span class="nx">but</span> <span class="nx">not</span> <span class="nx">exactly</span> <span class="nx">the</span> <span class="nx">same</span><span class="p">)</span>
+    <span class="nx">assert</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">f_A</span> <span class="o">-</span> <span class="nx">f_B</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="nx">e</span><span class="o">-</span><span class="mi">12</span>
+    <span class="nx">assert</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">f_A</span> <span class="o">-</span> <span class="nx">f_C</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="nx">e</span><span class="o">-</span><span class="mi">12</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Test OK.&#39;</span><span class="p">)</span>
+<span class="nx">test_sequence_content_fraction</span><span class="p">()</span>
+
+
+<span class="err">#</span> <span class="nx">We</span> <span class="nx">need</span> <span class="nx">a</span> <span class="nx">dummy</span> <span class="kd">function</span> <span class="nx">to</span> <span class="nx">explain</span> <span class="k">this</span> <span class="nx">code</span><span class="o">:</span>
+<span class="nx">def</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="o">*</span><span class="nx">args</span><span class="p">,</span> <span class="o">**</span><span class="nx">kwds</span><span class="p">)</span><span class="o">:</span>
+    <span class="kr">import</span> <span class="nx">random</span>
+    <span class="nx">almost_the_same</span> <span class="o">=</span> <span class="mf">0.654</span> <span class="o">+</span> <span class="mi">1</span><span class="nx">e</span><span class="o">-</span><span class="mi">14</span> <span class="o">*</span> <span class="nx">random</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Returning sequence_content_fraction:&#39;</span><span class="p">,</span> <span class="nx">almost_the_same</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nx">almost_the_same</span>
+
+<span class="nx">def</span> <span class="nx">test_sequence_content_fraction</span><span class="p">()</span><span class="o">:</span>
+    <span class="nx">f_A</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">)</span>
+    <span class="nx">f_B</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;B&#39;</span><span class="p">)</span>
+    <span class="nx">f_C</span> <span class="o">=</span> <span class="nx">sequence_content_fraction</span><span class="p">(</span><span class="s1">&#39;AAABBBCCC&#39;</span><span class="p">,</span> <span class="s1">&#39;BC&#39;</span><span class="p">,</span> <span class="s1">&#39;ABC&#39;</span><span class="p">,</span> <span class="nx">method</span><span class="o">=</span><span class="s1">&#39;C&#39;</span><span class="p">)</span>
+
+    <span class="err">#</span> <span class="nx">This</span> <span class="nx">is</span> <span class="nx">how</span> <span class="nx">you</span> <span class="nx">should</span> <span class="nx">check</span> <span class="k">if</span> <span class="nx">two</span> <span class="nx">floats</span> <span class="nx">have</span> <span class="nx">the</span> <span class="nx">same</span> 
+    <span class="err">#</span> <span class="p">(</span><span class="nx">the</span> <span class="nx">values</span> <span class="nx">must</span> <span class="nx">be</span> <span class="nx">close</span><span class="p">,</span> <span class="nx">but</span> <span class="nx">not</span> <span class="nx">exactly</span> <span class="nx">the</span> <span class="nx">same</span><span class="p">)</span>
+    <span class="nx">assert</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">f_A</span> <span class="o">-</span> <span class="nx">f_B</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="nx">e</span><span class="o">-</span><span class="mi">12</span>
+    <span class="nx">assert</span> <span class="nx">abs</span><span class="p">(</span><span class="nx">f_A</span> <span class="o">-</span> <span class="nx">f_C</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="nx">e</span><span class="o">-</span><span class="mi">12</span>
+    <span class="nx">print</span><span class="p">(</span><span class="s1">&#39;Test OK.&#39;</span><span class="p">)</span>
+
+<span class="nx">test_sequence_content_fraction</span><span class="p">()</span>
+
+<span class="nx">Returning</span> <span class="nx">sequence_content_fraction</span><span class="o">:</span> <span class="mf">0.6540000000000066</span>
+<span class="nx">Returning</span> <span class="nx">sequence_content_fraction</span><span class="o">:</span> <span class="mf">0.6540000000000087</span>
+<span class="nx">Returning</span> <span class="nx">sequence_content_fraction</span><span class="o">:</span> <span class="mf">0.6540000000000086</span>
+<span class="nx">Test</span> <span class="nx">OK</span><span class="p">.</span>
+</pre></div>
+
+
+<p>This code runs the function <code>sequence_content_fraction</code> three times and stores
+the results in <code>f_A</code>, <code>f_B</code>, and <code>f_C</code>.</p>
+<p>The <code>assert</code> statements check the question &#8220;Are these number close to within
+machine precision?&#8221; using the following&nbsp;expressions:</p>
+<div class="highlight"><pre><span class="n">f_A</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="err">&#39;</span><span class="mf">0.6540000000000082</span><span class="err">&#39;</span><span class="p">)</span> <span class="err">#</span> <span class="n">Your</span> <span class="n">numbers</span> <span class="n">may</span> <span class="n">be</span> <span class="n">different</span><span class="p">..</span>
+<span class="n">f_B</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="err">&#39;</span><span class="mf">0.6540000000000096</span><span class="err">&#39;</span><span class="p">)</span>
+<span class="n">f_C</span> <span class="o">=</span> <span class="kt">float</span><span class="p">(</span><span class="err">&#39;</span><span class="mf">0.6540000000000085</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">expressionA</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">f_A</span> <span class="o">-</span> <span class="n">f_B</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span>
+<span class="n">expressionB</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">f_A</span> <span class="o">-</span> <span class="n">f_C</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span>
+</pre></div>
+
+
+<p>The <code>abs</code> function is required to avoid the following error in&nbsp;logic:</p>
+<div class="highlight"><pre><span class="n">f_A</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">f_B</span> <span class="o">=</span> <span class="mi">500000</span>
+
+<span class="cp"># This evaluates to True even though the numbers are not close.</span>
+<span class="n">print</span><span class="p">(</span><span class="n">f_A</span> <span class="o">-</span> <span class="n">f_B</span> <span class="o">&lt;</span> <span class="mf">1e-12</span><span class="p">)</span>
+
+<span class="cp"># This correctly evaluates to False (numbers are not close.)</span>
+<span class="n">print</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">f_A</span> <span class="o">-</span> <span class="n">f_B</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-12</span><span class="p">)</span>
+
+<span class="n">True</span>
+<span class="n">False</span>
+</pre></div>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://schryer.github.io/python_course_material/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://schryer.github.io/python_course_material/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
