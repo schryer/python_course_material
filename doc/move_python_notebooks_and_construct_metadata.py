@@ -77,8 +77,14 @@ def make_python_subjects(base_dictionary):
                          urlname='python_7',
                          summary='Some odd topics that could be useful.'
                      ))    
+    python_8 = dict(base_dictionary)
+    python_8.update(dict(filename='../topics/python/8_questions_from_unit_6.ipynb',
+                         title='Responses to student questions from unit 6.',
+                         urlname='python_8',
+                         summary='Responses to student questions from unit 6.'
+                     ))    
 
-    return [python_1, python_2, python_3, python_4, python_5, python_6, python_7]
+    return [python_1, python_2, python_3, python_4, python_5, python_6, python_7, python_8]
 
 
 def move_python_notebooks_and_construct_metadata(index_dic, meta_template):
