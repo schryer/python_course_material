@@ -455,7 +455,7 @@ steepness, <mathjax>$C$</mathjax> is the inflection point and <mathjax>$D$</math
 
 # <span class="n">Make</span> <span class="n">up</span> <span class="n">some</span> <span class="n">data</span> <span class="k">for</span> <span class="n">fitting</span> <span class="n">and</span> <span class="n">add</span> <span class="n">noise</span>
 # <span class="n">In</span> <span class="n">practice</span><span class="p">,</span> <span class="n">y_meas</span> <span class="n">would</span> <span class="n">be</span> <span class="n">read</span> <span class="n">in</span> <span class="n">from</span> <span class="n">a</span> <span class="n">file</span>
-<span class="n">x_measured</span> <span class="p">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">x_measured</span> <span class="p">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
 <span class="n">x_true</span> <span class="p">=</span> <span class="n">np</span><span class="p">.</span><span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 
 # <span class="n">True</span> <span class="n">parameter</span> <span class="n">values</span>
@@ -469,7 +469,7 @@ steepness, <mathjax>$C$</mathjax> is the inflection point and <mathjax>$D$</math
 <span class="n">initial_parameters</span> <span class="p">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 
 # <span class="n">Fit</span> <span class="n">equation</span> <span class="n">using</span> <span class="n">least</span> <span class="n">squares</span> <span class="n">optimization</span>
-<span class="n">leastsq_output</span> <span class="p">=</span> <span class="n">leastsq</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">initial_parameters</span><span class="p">,</span> <span class="n">args</span><span class="p">=(</span><span class="n">x_measured</span><span class="p">,</span> <span class="n">y_measured</span><span class="p">))</span>
+<span class="n">leastsq_output</span> <span class="p">=</span> <span class="n">leastsq</span><span class="p">(</span><span class="n">residuals</span><span class="p">,</span> <span class="n">initial_parameters</span><span class="p">,</span> <span class="n">full_output</span><span class="p">=</span><span class="n">True</span><span class="p">,</span> <span class="n">args</span><span class="p">=(</span><span class="n">x_measured</span><span class="p">,</span> <span class="n">y_measured</span><span class="p">))</span>
 
 # <span class="n">Plot</span> <span class="n">results</span>
 <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_true</span><span class="p">,</span> <span class="n">logistic4</span><span class="p">(</span><span class="n">x_true</span><span class="p">,</span> <span class="o">*</span><span class="n">leastsq_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="s">&#39;r--&#39;</span><span class="p">)</span>
@@ -489,7 +489,65 @@ steepness, <mathjax>$C$</mathjax> is the inflection point and <mathjax>$D$</math
 </pre></div>
 
 
-<p><img alt="png" src="images/7_introduction_to_sequence_alignment_Entrez_and_curve_fitting_GENERATED_by_add_links_13_0.png" /></p><script type= "text/javascript">
+<p><img alt="png" src="images/7_introduction_to_sequence_alignment_Entrez_and_curve_fitting_GENERATED_by_add_links_13_0.png" /></p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">pandas</span> <span class="n">as</span> <span class="n">pd</span>
+
+
+<span class="n">filename</span> <span class="o">=</span> <span class="err">&#39;</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">data</span><span class="o">/</span><span class="n">python_excel</span><span class="p">.</span><span class="n">xlsx</span><span class="err">&#39;</span>
+
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+
+<span class="n">df</span><span class="p">.</span><span class="n">columns</span>
+<span class="n">df</span><span class="p">[</span><span class="err">&#39;</span><span class="n">weight</span><span class="err">&#39;</span><span class="p">]</span>
+<span class="n">df</span><span class="p">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="err">&#39;</span><span class="n">weight</span><span class="err">&#39;</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+
+
+
+
+<span class="n">array</span><span class="p">([[</span><span class="o">&lt;</span><span class="n">matplotlib</span><span class="p">.</span><span class="n">axes</span><span class="p">.</span><span class="n">AxesSubplot</span> <span class="n">object</span> <span class="n">at</span> <span class="mh">0x7f6549a044e0</span><span class="o">&gt;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">object</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="png" src="images/7_introduction_to_sequence_alignment_Entrez_and_curve_fitting_GENERATED_by_add_links_17_1.png" /></p>
+<div class="highlight"><pre><span class="nx">df</span><span class="cp">[</span><span class="s1">&#39;weight_squared&#39;</span><span class="cp">]</span> <span class="o">=</span> <span class="nx">df</span><span class="cp">[</span><span class="s1">&#39;weight&#39;</span><span class="cp">]</span> <span class="o">**</span> <span class="mi">2</span>
+
+
+<span class="nx">s</span> <span class="o">=</span> <span class="nx">pd</span><span class="p">.</span><span class="nx">Series</span><span class="p">(</span><span class="cp">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="cp">]</span><span class="p">)</span>
+
+
+<span class="nx">df</span><span class="cp">[</span><span class="s1">&#39;random_series&#39;</span><span class="cp">]</span> <span class="o">=</span> <span class="nx">s</span>
+
+
+<span class="nx">del</span> <span class="nx">df</span><span class="cp">[</span><span class="s1">&#39;random_series&#39;</span><span class="cp">]</span>
+
+
+<span class="k">for</span> <span class="nx">column_name</span> <span class="k">in</span> <span class="nx">df</span><span class="p">.</span><span class="nx">columns</span><span class="o">:</span>
+    <span class="k">if</span> <span class="nx">column_name</span> <span class="nx">not</span> <span class="k">in</span> <span class="cp">[</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">,</span> <span class="s1">&#39;weight_squared&#39;</span><span class="cp">]</span><span class="o">:</span>
+        <span class="nx">del</span> <span class="nx">df</span><span class="cp">[</span><span class="nb">column_name</span><span class="cp">]</span>
+
+
+<span class="nx">df</span><span class="p">.</span><span class="nx">to_excel</span><span class="p">(</span><span class="s1">&#39;small_table.xls&#39;</span><span class="p">,</span> <span class="s1">&#39;Year Weight Weight squared&#39;</span><span class="p">)</span>
+
+
+<span class="nx">ls</span>
+
+<span class="mi">1</span><span class="nx">_reading_python_code</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="mi">2</span><span class="nx">_fundamental_python_types</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="mi">3</span><span class="nx">_python_strings_as_containers</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="mi">4</span><span class="nx">_python_keywords</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="mi">5</span><span class="nx">_elementwise_and_vector_operations</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="mi">6</span><span class="nx">_functions_with_tests</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="mi">7</span><span class="nx">_introduction_to_sequence_alignment_Entrez_and_curve_fitting</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="mi">8</span><span class="nx">_questions_from_unit_6</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="nx">python_PART_4</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="nx">python_PART_5</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="nx">python_PART_6</span><span class="p">.</span><span class="nx">ipynb</span>
+<span class="nx">sequence_data</span><span class="p">.</span><span class="nx">tsv</span>
+<span class="nx">small_table</span><span class="p">.</span><span class="nx">xls</span>
+<span class="nx">X_</span><span class="p">.</span><span class="nx">ipynb</span>
+</pre></div><script type= "text/javascript">
     if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
         var mathjaxscript = document.createElement('script');
         mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
