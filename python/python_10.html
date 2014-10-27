@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>How to read in Zeiss CZI files into numpy and plot.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="David Schryer">
+
+    <!-- Le styles -->
+    <link rel="stylesheet" href="http://schryer.github.io/python_course_material/theme/css/bootstrap.min.css" type="text/css" />
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+      .tag-1 {
+        font-size: 13pt;
+      }
+      .tag-2 {
+        font-size: 10pt;
+      }
+      .tag-2 {
+        font-size: 8pt;
+      }
+      .tag-4 {
+        font-size: 6pt;
+     }
+    </style>
+    <link href="http://schryer.github.io/python_course_material/theme/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="http://schryer.github.io/python_course_material/theme/css/font-awesome.css" rel="stylesheet">
+
+    <link href="http://schryer.github.io/python_course_material/theme/css/pygments.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="http://schryer.github.io/python_course_material/theme/images/favicon.ico">
+    <link rel="apple-touch-icon" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://schryer.github.io/python_course_material/theme/images/apple-touch-icon-114x114.png">
+
+    <link href="http://schryer.github.io/python_course_material/" type="application/atom+xml" rel="alternate" title="Scientific Programming with Python ATOM Feed" />
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://schryer.github.io/python_course_material/index.html">Scientific Programming with Python </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+                  <li><a href="/python_course_material/">Home</a></li>
+                  <li><a href="/python_course_material/ipython/">Getting started with IPython notebook</a></li>
+                  <li><a href="/python_course_material/python/">Python notebooks</a></li>
+
+                          <ul class="nav pull-right">
+                                <li><a href="http://schryer.github.io/python_course_material/archives.html"><i class="icon-th-list"></i>Archives</a></li>
+                          </ul>
+
+            </ul>
+            <!--<p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>-->
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="span9" id="content">
+<section id="content" class="body">
+        <h1 class="entry-title">How to read in Zeiss CZI files into numpy and plot.</h1>
+        <p>Download original file: <a href="http://schryer.github.io/python_course_material/notebooks/10_CZI_Zeiss_images.ipynb">10_CZI_Zeiss_images.ipynb</a></p>
+<p>View original file in nbviewer: <a href="http://nbviewer.ipython.org/url/schryer.github.io/python_course_material/notebooks/10_CZI_Zeiss_images.ipynb">10_CZI_Zeiss_images.ipynb</a></p>
+<h3>Opening some image formats can be a&nbsp;pain</h3>
+<p>The Zeiss <span class="caps">CZI</span> image format can be opened up using code provided by
+Christoph Gohlke.  There are other ways, but they rely on even more&nbsp;magic&#8230;</p>
+<p>Our first goal is import code from his module. For this we need to
+append the code directory to the system&nbsp;path.</p>
+<div class="highlight"><pre><span class="n">import</span> <span class="n">sys</span>
+<span class="n">sys</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="err">&#39;</span><span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="err">&#39;</span><span class="p">)</span>
+
+<span class="n">from</span> <span class="n">czifile</span> <span class="n">import</span> <span class="n">CziFile</span>
+
+<span class="p">..</span><span class="o">/</span><span class="p">..</span><span class="o">/</span><span class="n">code</span><span class="o">/</span><span class="n">czifile</span><span class="p">.</span><span class="n">py</span><span class="o">:</span><span class="mi">123</span><span class="o">:</span> <span class="n">UserWarning</span><span class="o">:</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">import</span> <span class="n">the</span> <span class="n">optional</span> <span class="n">_czifile</span> <span class="n">C</span> <span class="n">extension</span> <span class="n">module</span><span class="p">.</span>
+<span class="n">Decoding</span> <span class="n">of</span> <span class="n">JXR</span> <span class="n">and</span> <span class="n">JPG</span> <span class="n">encoded</span> <span class="n">images</span> <span class="n">will</span> <span class="n">be</span> <span class="n">unavailable</span><span class="p">.</span>
+<span class="n">Czifile</span><span class="p">.</span><span class="n">pyx</span> <span class="n">can</span> <span class="n">be</span> <span class="n">obtained</span> <span class="n">at</span> <span class="n">http</span><span class="o">:</span><span class="c1">//www.lfd.uci.edu/~gohlke/</span>
+  <span class="s">&quot;failed to import the optional _czifile C extension module.</span><span class="se">\n</span><span class="s">&quot;</span>
+</pre></div>
+
+
+<p>The <code>CziFile</code> class allows us to read all of the images at&nbsp;once:</p>
+<div class="highlight"><pre><span class="n">with</span> <span class="n">CziFile</span><span class="p">(</span><span class="err">&#39;</span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">david</span><span class="o">/</span><span class="n">Dropbox</span><span class="o">/</span><span class="n">images</span><span class="o">/</span><span class="n">test</span><span class="p">.</span><span class="n">czi</span><span class="err">&#39;</span><span class="p">)</span> <span class="n">as</span> <span class="n">czi</span><span class="o">:</span>
+    <span class="n">image_arrays</span> <span class="o">=</span> <span class="n">czi</span><span class="p">.</span><span class="n">asarray</span><span class="p">()</span>
+</pre></div>
+
+
+<p>If we look at the underlying numpy array, we see that there
+are quite a few&nbsp;dimensions:</p>
+<div class="highlight"><pre><span class="n">image_arrays</span><span class="p">.</span><span class="n">shape</span>
+
+
+
+
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+
+<p>It looks like three regions of interest with 18 z-stacked images in each&nbsp;region.</p>
+<p>Now we can look at this array of 18 images for region&nbsp;1:</p>
+<div class="highlight"><pre><span class="c">%matplotlib inline</span>
+<span class="n">import</span> <span class="n">matplotlib</span><span class="p">.</span><span class="n">pyplot</span> <span class="n">as</span> <span class="n">plt</span>
+
+# <span class="n">This</span> <span class="n">indexing</span> <span class="n">gives</span> <span class="n">us</span> <span class="n">full</span> <span class="n">sized</span> <span class="n">images</span> <span class="n">in</span> <span class="n">region</span> <span class="mi">1</span>
+# <span class="n">Some</span> <span class="n">playing</span> <span class="n">was</span> <span class="n">required</span> <span class="n">to</span> <span class="n">extract</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">data</span><span class="p">.</span>
+<span class="n">images</span> <span class="p">=</span> <span class="p">[</span><span class="n">image_arrays</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">index</span><span class="p">].</span><span class="n">T</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="mi">18</span><span class="p">)]</span>
+
+# <span class="n">To</span> <span class="n">fit</span> <span class="n">on</span> <span class="n">the</span> <span class="n">screen</span> <span class="n">in</span> <span class="n">a</span> <span class="n">nice</span> <span class="n">way</span><span class="p">,</span> <span class="n">we</span> <span class="n">can</span> <span class="n">arange</span> <span class="n">the</span> 
+# <span class="n">z</span><span class="o">-</span><span class="n">stack</span> <span class="n">in</span> <span class="n">a</span> <span class="n">grid</span> <span class="n">of</span> <span class="mi">6</span><span class="n">x3</span> <span class="n">on</span> <span class="n">a</span> <span class="n">large</span> <span class="n">figure</span><span class="p">.</span>
+<span class="n">N_rows</span> <span class="p">=</span> <span class="mi">6</span>
+<span class="n">N_cols</span> <span class="p">=</span> <span class="mi">3</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax_grid</span> <span class="p">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">N_rows</span><span class="p">,</span> <span class="n">N_cols</span><span class="p">,</span> <span class="n">figsize</span><span class="p">=(</span><span class="n">N_cols</span><span class="o">*</span><span class="mi">10</span><span class="p">,</span><span class="n">N_rows</span><span class="o">*</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="n">N_rows</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="n">in</span> <span class="n">range</span><span class="p">(</span><span class="n">N_cols</span><span class="p">):</span>
+        <span class="n">image</span> <span class="p">=</span> <span class="n">images</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">ax_grid</span><span class="p">[</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">].</span><span class="n">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+
+
+<p><img alt="png" src="images/10_CZI_Zeiss_images_GENERATED_by_add_links_7_0.png" /></p>
+<h2>Exercise:</h2>
+<p>Try to visualize only the cell in region <code>x, y = [400:620, 400:600]</code>.</p>
+</section>
+        </div><!--/span-->
+
+                <div class="span3 well sidebar-nav" id="sidebar">
+<ul class="nav nav-list">
+
+<li class="nav-header"><h4><i class="icon-folder-close icon-large"></i>Categories</h4></li>
+
+<li class="nav-header"><h4><i class="icon-tags icon-large"></i>Tags</h4></li>
+
+
+</ul>        </div><!--/.well -->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <address id="about">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican <i class="icon-external-link"></i></a>,
+                                which takes great advantage of <a href="http://python.org">Python <i class="icon-external-link"></i></a>.
+        </address><!-- /#about -->
+
+        <p>The theme is from <a href="http://twitter.github.com/bootstrap/">Bootstrap from Twitter <i class="icon-external-link"></i></a>,
+                   and <a href="http://fortawesome.github.com/Font-Awesome/">Font-Awesome <i class="icon-external-link"></i></a>, thanks!</p>
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+
+
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="http://schryer.github.io/python_course_material/theme/js/jquery-1.7.2.min.js"></script>
+    <script src="http://schryer.github.io/python_course_material/theme/js/bootstrap.min.js"></script>
+  </body>
+</html>
