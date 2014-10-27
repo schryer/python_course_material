@@ -83,8 +83,14 @@ def make_python_subjects(base_dictionary):
                          urlname='python_8',
                          summary='Responses to student questions from unit 6.'
                      ))    
+    python_9 = dict(base_dictionary)
+    python_9.update(dict(filename='../topics/python/9_Organizing_your_data_and_boxplot.ipynb',
+                         title='How to organize your data for use in Python: Boxplot example with statistical calculations.',
+                         urlname='python_9',
+                         summary='How to organized data for use in Python: Boxplot example with statistical calculations.'
+                     ))    
 
-    return [python_1, python_2, python_3, python_4, python_5, python_6, python_7, python_8]
+    return [python_1, python_2, python_3, python_4, python_5, python_6, python_7, python_8, python_9]
 
 
 def move_python_notebooks_and_construct_metadata(index_dic, meta_template):
